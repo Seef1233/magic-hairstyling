@@ -1756,24 +1756,193 @@
       .summary-glance { grid-template-columns: 1fr; }
     }
 
-    /* ══ Extra mobile tweaks ══ */
+    /* ══════════════════════════════════════
+       BOTTOM NAV (mobile only)
+    ══════════════════════════════════════ */
+    .mob-bottom-nav {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 1100;
+      background: rgba(8,8,8,.96);
+      backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(201,168,76,.14);
+      padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+      box-shadow: 0 -8px 32px rgba(0,0,0,.32);
+    }
+    .mob-bottom-nav-inner {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-around;
+    }
+    .mob-bnav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 4px;
+      color: rgba(255,255,255,.45);
+      font-size: .58rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      text-decoration: none;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      transition: color .2s;
+      border-radius: 8px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .mob-bnav-item i { font-size: 1.1rem; transition: transform .2s; }
+    .mob-bnav-item:hover, .mob-bnav-item:active { color: var(--gold); }
+    .mob-bnav-item:active i { transform: scale(.9); }
+    .mob-bnav-item.bnav-book {
+      color: var(--dark);
+      background: linear-gradient(135deg, var(--gold2), var(--gold));
+      border-radius: 14px;
+      margin: 0 6px;
+      padding: 6px 10px;
+      box-shadow: 0 4px 18px rgba(201,168,76,.3);
+    }
+    .mob-bnav-item.bnav-book i { color: var(--dark); }
+
+    /* ══════════════════════════════════════
+       MOBILE OVERRIDES — 880px
+    ══════════════════════════════════════ */
     @media (max-width: 880px) {
+      body { padding-bottom: 70px; }
+      .mob-bottom-nav { display: flex; flex-direction: column; }
+      #top-btn { bottom: 80px; right: 18px; }
+
       #diensten, #over, #portfolio, #tarieven, #reviews, #contact, .pages-hub {
-        padding-top: 70px;
-        padding-bottom: 70px;
+        padding-top: 64px;
+        padding-bottom: 64px;
       }
-      .sec-head { margin-bottom: 40px; }
+      .sec-head { margin-bottom: 36px; }
+      .sec-head h2 { font-size: clamp(1.55rem, 5vw, 2rem); }
+      .sec-head p { font-size: .88rem; }
+
+      /* hero */
       .hero-arr { width: 40px; height: 40px; font-size: .85rem; }
       .arr-l { left: 12px; }
       .arr-r { right: 12px; }
+      .slide-content { padding: 0 20px; }
+      .slide-btns .btn { padding: 13px 24px; font-size: .88rem; }
+
+      /* about badge */
       .over-badge { right: 0; bottom: 0; }
+
+      /* stats: 2×2 grid */
+      .stats-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        max-width: 100%;
+      }
+      .stat {
+        padding: 18px 10px;
+        border-right: 1px solid rgba(0,0,0,.12);
+        border-bottom: 1px solid rgba(0,0,0,.12);
+      }
+      .stat:nth-child(2n) { border-right: none; }
+      .stat:nth-child(3), .stat:nth-child(4) { border-bottom: none; }
+      .stat .n { font-size: 1.9rem; }
     }
+
+    /* ══════════════════════════════════════
+       MOBILE OVERRIDES — 560px
+    ══════════════════════════════════════ */
     @media (max-width: 560px) {
       #diensten, #over, #portfolio, #tarieven, #reviews, #contact, .pages-hub {
-        padding-top: 54px;
-        padding-bottom: 54px;
+        padding-top: 52px;
+        padding-bottom: 52px;
+        padding-left: 16px;
+        padding-right: 16px;
       }
+
+      /* hero */
       .hero-arr { display: none; }
+      .slide-content h1 { font-size: clamp(2.2rem, 11vw, 3.2rem); }
+      .hero-trust { flex-direction: row; flex-wrap: wrap; gap: 8px; justify-content: center; }
+      .hero-pill { font-size: .7rem; padding: 8px 11px; }
+
+      /* services — horizontal scroll snap */
+      .diensten-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 14px;
+        padding-bottom: 12px;
+        scrollbar-width: none;
+      }
+      .diensten-grid::-webkit-scrollbar { display: none; }
+      .diensten-grid .d-card {
+        flex: 0 0 80vw;
+        max-width: 320px;
+        scroll-snap-align: start;
+        min-height: 300px;
+        grid-column: unset;
+        grid-row: unset;
+      }
+
+      /* portfolio 2-col */
+      .port-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .port-item img { height: 160px; }
+      .port-item.tall { grid-row: span 1; }
+      .port-item.tall img { height: 160px; }
+
+      /* reviews */
+      .rev-txt { font-size: .9rem; }
+      .rev-name { font-size: .9rem; }
+
+      /* footer */
+      .foot-grid { grid-template-columns: 1fr; gap: 28px; }
+      .foot-brand p { max-width: 100%; }
+
+      /* social cards horizontal scroll */
+      .social-cards {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+        gap: 14px;
+      }
+      .social-cards::-webkit-scrollbar { display: none; }
+      .social-card {
+        flex: 0 0 160px;
+        min-width: 160px;
+        max-width: 160px;
+        scroll-snap-align: start;
+        padding: 22px 16px;
+      }
+      .sc-icon { width: 70px; height: 70px; border-radius: 18px; font-size: 2rem; }
+      .sc-icon svg { width: 38px; height: 38px; }
+
+      /* buttons — bigger touch targets */
+      .btn { padding: 14px 28px; font-size: .9rem; min-height: 48px; }
+
+      /* pages grid */
+      .pages-grid { grid-template-columns: 1fr; gap: 12px; }
+
+      /* price */
+      .price-wrap { gap: 16px; }
+    }
+
+    /* ══════════════════════════════════════
+       MOBILE OVERRIDES — 400px
+    ══════════════════════════════════════ */
+    @media (max-width: 400px) {
+      .diensten-grid .d-card { flex: 0 0 88vw; }
+      .nav-logo-main { font-size: 1.05rem; }
+      .nav-logo-icon { width: 30px; height: 30px; font-size: .8rem; }
     }
   </style>
 </head>
@@ -2532,6 +2701,32 @@
 <button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-i18n-aria-label="ui.backToTop" aria-label="Naar boven">
   <i class="fas fa-chevron-up"></i>
 </button>
+
+<!-- Mobile Bottom Navigation -->
+<nav class="mob-bottom-nav" aria-label="Mobile navigation">
+  <div class="mob-bottom-nav-inner">
+    <a href="#hero" class="mob-bnav-item">
+      <i class="fas fa-home"></i>
+      <span data-i18n="nav.home">Home</span>
+    </a>
+    <a href="#diensten" class="mob-bnav-item">
+      <i class="fas fa-scissors"></i>
+      <span data-i18n="nav.services">Diensten</span>
+    </a>
+    <a href="#" class="mob-bnav-item bnav-book" onclick="openAfspraakModal();return false;">
+      <i class="fas fa-calendar-check"></i>
+      <span data-i18n="nav.book">Boeken</span>
+    </a>
+    <a href="tarieven.html" class="mob-bnav-item">
+      <i class="fas fa-tag"></i>
+      <span data-i18n="nav.pricing">Tarieven</span>
+    </a>
+    <a href="#contact" class="mob-bnav-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <span data-i18n="nav.contact">Contact</span>
+    </a>
+  </div>
+</nav>
 
 <!-- â•â•â•â•â•â•â•â•â•â• JS â•â•â•â•â•â•â•â•â•â• -->
 <script src="site-i18n.js"></script>
