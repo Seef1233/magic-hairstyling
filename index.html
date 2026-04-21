@@ -1,0 +1,3175 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="meta.title">Magic Hairstyling - Alkmaar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* â”&euro;â”&euro; Reset â”&euro;â”&euro; */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:   #c9a84c;
+      --gold2:  #e8c96e;
+      --dark:   #0f0f0f;
+      --dark2:  #1a1a1a;
+      --dark3:  #242424;
+      --gray:   #888;
+      --white:  #ffffff;
+      --radius: 6px;
+      --shadow: 0 4px 24px rgba(0,0,0,.5);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+    /* â”&euro;â”&euro; Buttons â”&euro;â”&euro; */
+    .btn {
+      display: inline-block;
+      padding: 13px 34px;
+      border-radius: var(--radius);
+      font-family: 'Montserrat', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all .3s;
+      letter-spacing: .5px;
+    }
+    .btn-gold  { background: var(--gold); color: var(--dark); }
+    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,.4); }
+    .btn-outline { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
+    .btn-outline:hover { background: var(--gold); color: var(--dark); }
+
+    /* â”&euro;â”&euro; Section heading â”&euro;â”&euro; */
+    .sec-head { text-align: center; margin-bottom: 60px; }
+    .sec-head .kicker {
+      display: inline-block;
+      font-size: .75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .sec-head h2 { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; }
+    .sec-head p {
+      max-width: 620px;
+      margin: 16px auto 0;
+      color: rgba(255,255,255,.62);
+      line-height: 1.8;
+      font-size: .95rem;
+    }
+    .sec-head .bar {
+      width: 56px; height: 3px;
+      background: var(--gold);
+      margin: 14px auto 0;
+      border-radius: 2px;
+    }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       NAVBAR
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      transition: background .4s, box-shadow .4s;
+      padding: 0;
+      background: linear-gradient(180deg, rgba(6,6,6,.94), rgba(10,10,10,.72));
+      box-shadow: 0 8px 32px rgba(0,0,0,.28);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    /* Gold accent bar at top */
+    #nav::before {
+      content: '';
+      display: block;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold2) 60%, transparent 100%);
+      opacity: .7;
+    }
+    #nav.scrolled {
+      background: linear-gradient(180deg, rgba(6,6,6,.98), rgba(10,10,10,.92));
+      box-shadow: 0 10px 40px rgba(0,0,0,.38);
+      border-bottom-color: rgba(201,168,76,.18);
+    }
+    #nav.scrolled::before { opacity: 1; }
+    .nav-inner {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 72px;
+      padding: 12px 36px;
+      gap: 16px;
+    }
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(201,168,76,.18), rgba(201,168,76,.08));
+      border: 1px solid rgba(201,168,76,.28);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.05rem; color: var(--gold);
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(201,168,76,.12);
+    }
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      line-height: 1;
+    }
+    .nav-logo-main {
+      font-size: 1.38rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: .3px;
+    }
+    .nav-logo-main em {
+      font-style: normal;
+      color: var(--white);
+    }
+    .nav-logo-sub {
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.42);
+    }
+    /* Separator */
+    .nav-sep {
+      width: 1px;
+      height: 32px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,.12), transparent);
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex; gap: 4px; align-items: center;
+      padding: 0 8px;
+    }
+    .nav-links a {
+      font-size: .78rem; font-weight: 700; color: rgba(255,255,255,.78);
+      text-transform: uppercase; letter-spacing: .12em;
+      position: relative; padding: 8px 12px;
+      border-radius: 6px;
+      transition: color .25s, background .25s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 4px; left: 12px; right: 12px;
+      height: 1.5px; background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 999px;
+      transform: scaleX(0);
+      transition: transform .28s ease;
+      transform-origin: center;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+      background: rgba(201,168,76,.07);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    /* Book button */
+    .nav-btn {
+      margin-left: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      white-space: nowrap;
+      color: var(--dark);
+      border: none;
+      background: linear-gradient(135deg, var(--gold2) 0%, var(--gold) 100%);
+      box-shadow: 0 6px 22px rgba(201,168,76,.28), inset 0 1px 0 rgba(255,255,255,.22);
+      transition: transform .25s, box-shadow .25s;
+      flex-shrink: 0;
+    }
+    .nav-btn i {
+      font-size: .8rem;
+    }
+    .nav-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(201,168,76,.38), inset 0 1px 0 rgba(255,255,255,.22);
+    }
+    .nav-btn:active { transform: translateY(0); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 6px;
+      border-radius: 8px;
+      transition: background .2s;
+    }
+    .hamburger:hover { background: rgba(255,255,255,.06); }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px; transition: all .3s;
+      transform-origin: center;
+    }
+    /* X animation when open */
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mob-menu {
+      display: none; flex-direction: column;
+      margin: 0;
+      max-width: 100%;
+      background: rgba(10,10,10,.97);
+      padding: 8px 0 16px;
+      gap: 0;
+      border-top: 1px solid rgba(201,168,76,.14);
+      box-shadow: 0 20px 48px rgba(0,0,0,.32);
+      backdrop-filter: blur(20px);
+    }
+    .mob-menu.open { display: flex; }
+    .mob-menu a {
+      font-size: .82rem; font-weight: 700; color: rgba(255,255,255,.78);
+      padding: 13px 24px;
+      text-transform: uppercase; letter-spacing: .1em;
+      border-left: 2px solid transparent;
+      transition: color .2s, border-color .2s, background .2s, padding-left .2s;
+    }
+    .mob-menu a:hover {
+      color: var(--gold);
+      border-left-color: var(--gold);
+      background: rgba(201,168,76,.05);
+      padding-left: 28px;
+    }
+    .mob-menu .nav-btn {
+      margin: 10px 20px 0;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 8px;
+    }
+    .mob-menu [data-language-switcher] { padding: 4px 20px 0; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       HERO
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #hero {
+      position: relative; height: 100vh; min-height: 620px; overflow: hidden;
+    }
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 1.4s ease;
+    }
+    .slide.active { opacity: 1; z-index: 1; }
+    .slide-bg {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      filter: brightness(.72);
+      transform: scale(1.06); transition: transform 9s ease;
+    }
+    .slide.active .slide-bg { transform: scale(1); }
+    /* overlay: ØªØ¯Ø±Ø¬ Ø¯Ø§ÙƒÙ† Ù…Ù† Ø§Ù„Ø£Ø³ÙÙ„ + Ø·Ø¨Ù‚Ø© Ø®ÙÙŠÙØ© Ù…ÙˆØ­Ø¯Ø© */
+    .slide::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: rgba(0,0,0,.38);
+    }
+    .slide::after {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(to top, rgba(0,0,0,.72) 0%, transparent 55%);
+    }
+    .slide-content {
+      position: relative; z-index: 2;
+      max-width: 780px; padding: 0 32px;
+      text-align: center;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    /* Ø®Ø· Ø°Ù‡Ø¨ÙŠ Ø£Ù†ÙŠÙ‚ Ø¨Ø¯Ù„Ø§Ù‹ Ù…Ù† Ø§Ù„Ù&euro; pill */
+    .slide-tag {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--gold); font-size: .72rem; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .slide-tag::before,
+    .slide-tag::after {
+      content: ''; display: block; height: 1px; width: 48px;
+      background: var(--gold); opacity: .7;
+    }
+    .slide-content h1 {
+      font-size: clamp(2.6rem, 7vw, 5rem);
+      font-weight: 900; line-height: 1.1; margin-bottom: 20px;
+      text-shadow: 0 4px 30px rgba(0,0,0,.5);
+      letter-spacing: -.5px;
+    }
+    /* Ø®Ø· Ø°Ù‡Ø¨ÙŠ ØªØ­Øª Ø§Ù„Ø¹Ù†ÙˆØ§Ù† */
+    .slide-content h1 span {
+      position: relative; display: inline-block;
+    }
+    .slide-content h1 span::after {
+      content: ''; position: absolute; left: 0; bottom: -4px;
+      width: 100%; height: 3px; background: var(--gold); border-radius: 2px;
+    }
+    .slide-content p {
+      font-size: clamp(.92rem, 2vw, 1.1rem);
+      color: rgba(255,255,255,.78); line-height: 1.8; margin-bottom: 36px;
+      max-width: 520px;
+    }
+    .slide-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .hero-trust {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 24px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(10,10,10,.34);
+      box-shadow: 0 10px 28px rgba(0,0,0,.18);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.9);
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .hero-pill i {
+      color: var(--gold);
+      font-size: .78rem;
+    }
+
+    /* Dots & arrows */
+    .hero-dots {
+      position: absolute; bottom: 28px; left: 50%;
+      transform: translateX(-50%); z-index: 10;
+      display: flex; gap: 10px;
+    }
+    .hero-dots span {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(255,255,255,.35); cursor: pointer;
+      transition: all .3s;
+    }
+    .hero-dots span.active { background: var(--gold); transform: scale(1.3); }
+    .hero-arr {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      z-index: 10;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(201,168,76,.4);
+      color: var(--gold); font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all .3s;
+      backdrop-filter: blur(4px);
+    }
+    .hero-arr:hover { background: var(--gold); border-color: var(--gold); color: var(--dark); transform: translateY(-50%) scale(1.08); }
+    .arr-l { left: 28px; }
+    .arr-r { right: 28px; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       STATS BAR
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    /* â”&euro;â”&euro; Section dividers â”&euro;â”&euro; */
+    section:not(#hero):not(#stats) {
+      border-top: 1px solid rgba(255,255,255,.06);
+      position: relative;
+    }
+    section:not(#hero):not(#stats)::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 120px; height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      border-radius: 2px;
+    }
+
+    #stats { background: var(--gold); padding: 26px 24px; }
+    .stats-row {
+      max-width: 900px; margin: 0 auto;
+      display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;
+    }
+    .stat { text-align: center; color: var(--dark); }
+    .stat .n { font-size: 2.1rem; font-weight: 900; line-height: 1; }
+    .stat .l { font-size: .78rem; font-weight: 700; margin-top: 4px; opacity: .8; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       SERVICES
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #diensten { padding: 100px 24px; background: var(--dark2); }
+    .diensten-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .d-card {
+      position: relative; overflow: hidden;
+      background: var(--dark3); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 24px; padding: 22px; text-align: left;
+      transition: all .35s; cursor: default;
+      min-height: 376px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      isolation: isolate;
+    }
+    .d-card.featured {
+      min-height: 376px;
+    }
+    .d-card.featured-left {
+      min-height: 376px;
+    }
+    .d-card.featured-center {
+      min-height: 376px;
+    }
+    .d-card.compact {
+      min-height: 376px;
+    }
+    .d-card-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: .72;
+      transform: scale(1.02);
+      filter: saturate(1.04) contrast(1.03) brightness(.88);
+      transition: transform .55s ease, opacity .35s ease, filter .35s ease;
+    }
+    .d-card-bg.trimmen { object-position: center 35%; }
+    .d-card::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(180deg, rgba(8,8,8,.04) 0%, rgba(8,8,8,.16) 30%, rgba(8,8,8,.58) 68%, rgba(8,8,8,.88) 100%),
+        linear-gradient(135deg, rgba(201,168,76,.18) 0%, rgba(201,168,76,0) 40%);
+      z-index: 1;
+    }
+    .d-card > :not(.d-card-bg) { position: relative; z-index: 2; }
+    .d-card:hover {
+      border-color: rgba(201,168,76,.48); transform: translateY(-8px);
+      box-shadow: 0 24px 46px rgba(0,0,0,.45);
+    }
+    .d-card-content {
+      width: 100%;
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(10,10,10,.16) 0%, rgba(10,10,10,.54) 30%, rgba(10,10,10,.82) 100%);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 14px 30px rgba(0,0,0,.18);
+    }
+    .d-head {
+      display: flex;
+      align-items: center; justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .d-title-group { display: grid; gap: 4px; }
+    .d-kicker {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: rgba(255,255,255,.72);
+    }
+    .d-icon {
+      width: 46px; height: 46px; border-radius: 14px;
+      background: rgba(201,168,76,.14);
+      border: 1px solid rgba(201,168,76,.22);
+      box-shadow: 0 8px 24px rgba(0,0,0,.22);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0;
+      flex: 0 0 46px;
+      font-size: 1.8rem; color: var(--gold2);
+      transition: background .35s, color .35s, transform .35s, box-shadow .35s;
+    }
+    .d-card:hover .d-icon {
+      background: rgba(201,168,76,.9);
+      color: var(--dark);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(201,168,76,.18);
+    }
+    .d-card:hover .d-card-bg { opacity: .84; transform: scale(1.07); filter: saturate(1.08) contrast(1.04) brightness(.96); }
+    .d-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.2;
+    }
+    .d-card h3 {
+      font-size: 1.44rem; font-weight: 800; margin-bottom: 0;
+      color: var(--white); text-shadow: 0 2px 18px rgba(0,0,0,.35);
+    }
+    .d-card.compact h3 { font-size: 1.18rem; }
+    .d-card p  {
+      max-width: 100%;
+      font-size: .98rem; color: rgba(255,255,255,.88); line-height: 1.7;
+      text-shadow: 0 2px 14px rgba(0,0,0,.28);
+      margin-top: 0;
+    }
+    .d-card.compact p {
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .d-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .d-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.07);
+      color: rgba(255,255,255,.76);
+      font-size: .72rem;
+      font-weight: 700;
+    }
+    .d-meta i { color: var(--gold2); font-size: .72rem; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       ABOUT
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #over { padding: 100px 24px; background: var(--dark); }
+    .over-wrap {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .over-img { position: relative; }
+    .over-img img {
+      width: 100%; height: 460px; object-fit: cover; border-radius: 12px;
+    }
+    .over-badge {
+      position: absolute; bottom: -18px; right: -18px;
+      background: var(--gold); color: var(--dark);
+      border-radius: 10px; padding: 18px 22px; text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .over-badge .yrs { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+    .over-badge .yrl { font-size: .76rem; font-weight: 700; }
+    .over-text .kicker {
+      font-size: .75rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px; display: block;
+    }
+    .over-text h2 {
+      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+      font-weight: 900; margin-bottom: 18px; line-height: 1.3;
+    }
+    .over-text p { color: var(--gray); line-height: 1.85; margin-bottom: 14px; }
+    .over-feats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px; margin: 24px 0 32px;
+    }
+    .feat { display: flex; align-items: center; gap: 9px; font-size: .87rem; font-weight: 600; }
+    .feat i { color: var(--gold); }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       PORTFOLIO
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #portfolio { padding: 100px 24px; background: var(--dark2); }
+    .port-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .port-item { overflow: hidden; border-radius: 12px; position: relative; cursor: pointer; }
+    .port-item img { width: 100%; height: 280px; object-fit: cover; transition: transform .5s; display: block; }
+    .port-item:hover img { transform: scale(1.07); }
+    .port-item .ov {
+      position: absolute; inset: 0;
+      background: rgba(201,168,76,.72);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .4s;
+      font-size: 1.8rem; color: var(--dark);
+    }
+    .port-item:hover .ov { opacity: 1; }
+    .port-item.tall { grid-row: span 2; }
+    .port-item.tall img { height: 514px; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       PRICING
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #tarieven { padding: 100px 24px; background: var(--dark); }
+    .tar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 26px; max-width: 980px; margin: 0 auto;
+    }
+    .tar-card {
+      background: var(--dark2); border: 1px solid #252525;
+      border-radius: 12px; padding: 38px 30px; text-align: center;
+      position: relative; transition: all .35s;
+    }
+    .tar-card.pop { border-color: var(--gold); background: var(--dark3); }
+    .tar-card.pop::before {
+      content: 'Meest gekozen';
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--dark);
+      font-size: .7rem; font-weight: 700; padding: 4px 18px; border-radius: 20px;
+    }
+    .tar-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.3); }
+    .tar-card .plan {
+      font-size: .72rem; letter-spacing: 3px; font-weight: 700;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 14px;
+    }
+    .tar-card .price { font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+    .tar-card .price sup { font-size: 1.1rem; vertical-align: super; }
+    .tar-card .sub { font-size: .8rem; color: var(--gray); margin-bottom: 26px; }
+    .tar-card ul { text-align: left; margin-bottom: 28px; }
+    .tar-card ul li {
+      padding: 8px 0; border-bottom: 1px solid #252525;
+      font-size: .85rem; display: flex; align-items: center; gap: 8px;
+    }
+    .tar-card ul li:last-child { border: none; }
+    .tar-card ul li i { color: var(--gold); font-size: .75rem; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       REVIEWS
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #reviews { padding: 100px 24px; background: var(--dark2); }
+    .reviews-shell {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 74px;
+    }
+    .rev-viewport { overflow: hidden; }
+    .rev-track {
+      display: flex;
+      transition: transform .55s ease;
+      will-change: transform;
+    }
+    .rev-card {
+      min-width: 100%;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+        var(--dark3);
+      border: 1px solid #252525;
+      border-radius: 22px;
+      padding: 34px;
+      transition: border-color .3s, transform .3s;
+      box-shadow: 0 18px 42px rgba(0,0,0,.18);
+    }
+    .rev-card:hover { border-color: var(--gold); }
+    .rev-topline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .rev-origin {
+      font-size: .76rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: rgba(255,255,255,.55);
+    }
+    .rev-stars { color: var(--gold); margin-bottom: 18px; font-size: 1.05rem; letter-spacing: 2px; }
+    .rev-txt {
+      font-size: 1.02rem;
+      color: rgba(255,255,255,.9);
+      line-height: 1.8;
+      margin-bottom: 26px;
+      font-style: italic;
+    }
+    .rev-auth { display: flex; align-items: center; gap: 14px; }
+    .rev-av {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--gold); display: flex; align-items: center; justify-content: center;
+      font-weight: 900; color: var(--dark); font-size: 1.05rem;
+      flex: 0 0 52px;
+    }
+    .rev-name { font-weight: 800; font-size: 1rem; }
+    .rev-since { font-size: .82rem; color: var(--gray); margin-top: 4px; }
+    .rev-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,.24);
+      background: rgba(18,18,18,.9);
+      color: var(--gold2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .25s ease;
+      z-index: 3;
+    }
+    .rev-nav:hover {
+      background: var(--gold);
+      color: var(--dark);
+      border-color: var(--gold);
+    }
+    .rev-prev { left: 0; }
+    .rev-next { right: 0; }
+    .rev-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 22px;
+    }
+    .rev-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,.18);
+      padding: 0;
+    }
+    .rev-dot.active { background: var(--gold); transform: scale(1.2); }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       CONTACT
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #contact { padding: 100px 24px; }
+
+    /* â”&euro;â”&euro; Contact strip â”&euro;â”&euro; */
+    .contact-strip {
+      display: flex; flex-wrap: wrap; gap: 0;
+      background: var(--dark2); border: 1px solid #1e1e1e;
+      border-radius: 14px; margin-bottom: 36px; overflow: hidden;
+    }
+    .cstrip-item {
+      display: flex; align-items: center; gap: 14px;
+      flex: 1; min-width: 200px;
+      padding: 20px 24px;
+      border-right: 1px solid #1e1e1e;
+    }
+    .cstrip-item:last-child { border-right: none; }
+    .cstrip-ic {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(201,168,76,.1);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: .95rem; flex-shrink: 0;
+    }
+    .cstrip-item .lbl { font-size: .7rem; color: var(--gray); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .5px; }
+    .cstrip-item strong { font-size: .85rem; font-weight: 600; }
+    .cstrip-item strong a { color: var(--white); }
+    .hours-entry { display: flex; flex-direction: column; gap: 1px; }
+    .day-lbl { font-size: .68rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
+    .day-time { font-size: .82rem; font-weight: 700; color: var(--white); }
+
+    /* â”&euro;â”&euro; Booking layout â”&euro;â”&euro; */
+    .booking-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* â”&euro;â”&euro; Booking wizard â”&euro;â”&euro; */
+    .booking-wizard {
+      background:
+        radial-gradient(circle at top left, rgba(201,168,76,.08), transparent 30%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+        var(--dark2);
+      border: 1px solid #1e1e1e;
+      border-radius: 22px;
+      overflow: visible;
+      box-shadow: 0 24px 70px rgba(0,0,0,.42);
+    }
+    .wizard-header {
+      background:
+        linear-gradient(135deg, rgba(201,168,76,.08), transparent 35%),
+        linear-gradient(135deg, #181818, #111);
+      border-bottom: 1px solid #1c1c1c;
+      padding: 28px 32px 24px;
+      border-radius: 22px 22px 0 0;
+    }
+    .wizard-title {
+      font-size: 1.15rem; font-weight: 900;
+      margin-bottom: 26px; letter-spacing: .3px;
+    }
+
+    /* Step bar */
+    .step-bar {
+      display: flex; align-items: flex-start;
+      position: relative;
+    }
+    .step-bar::before {
+      content: ''; position: absolute;
+      top: 17px; left: 17px; right: 17px;
+      height: 2px; background: #252525; z-index: 0;
+    }
+    .step-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; position: relative; z-index: 1;
+    }
+    .step-circle {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #141414; border: 2px solid #2a2a2a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .84rem; font-weight: 700; color: var(--gray);
+      transition: all .35s;
+    }
+    .step-item.active .step-circle {
+      background: var(--gold); border-color: var(--gold); color: var(--dark);
+      box-shadow: 0 0 0 5px rgba(201,168,76,.18);
+    }
+    .step-item.done .step-circle {
+      background: rgba(201,168,76,.12); border-color: var(--gold); color: var(--gold);
+    }
+    .step-label {
+      margin-top: 9px; font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .6px;
+      color: var(--gray); text-align: center;
+    }
+    .step-item.active .step-label { color: var(--gold); }
+    .step-item.done .step-label { color: rgba(201,168,76,.55); }
+
+    /* Wizard body */
+    .wizard-body { padding: 28px 32px; }
+
+    /* Category tabs */
+    .cat-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+    .cat-tab {
+      padding: 7px 18px; border-radius: 20px;
+      border: 1px solid #252525; background: transparent;
+      color: var(--gray); font-family: 'Montserrat', sans-serif;
+      font-size: .75rem; font-weight: 700; cursor: pointer;
+      transition: all .2s; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .cat-tab:hover { border-color: rgba(201,168,76,.3); color: var(--white); }
+    .cat-tab.active { background: var(--gold); border-color: var(--gold); color: var(--dark); }
+
+    /* Service cards */
+    .svc-select-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      gap: 8px; margin-bottom: 16px;
+    }
+    .svc-card {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), #161616; border: 1.5px solid #222;
+      border-radius: 14px; padding: 14px 12px;
+      cursor: pointer; transition: all .25s;
+      position: relative; overflow: hidden;
+    }
+    .svc-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,.07), transparent);
+      opacity: 0; transition: opacity .25s;
+    }
+    .svc-card:hover { border-color: rgba(201,168,76,.35); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
+    .svc-card:hover::after { opacity: 1; }
+    .svc-card.selected {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 1px var(--gold), 0 6px 24px rgba(201,168,76,.18);
+    }
+    .svc-card.selected::after { opacity: 1; }
+    .svc-check {
+      position: absolute; top: 9px; right: 9px;
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--gold); color: var(--dark);
+      font-size: .62rem; display: none;
+      align-items: center; justify-content: center; z-index: 2;
+    }
+    .svc-card.selected .svc-check { display: flex; }
+    .svc-icon { font-size: 1.2rem; color: var(--gold); margin-bottom: 6px; position: relative; z-index: 1; }
+    .svc-name { font-size: .82rem; font-weight: 700; margin-bottom: 3px; position: relative; z-index: 1; }
+    .svc-detail { font-size: .68rem; color: var(--gray); line-height: 1.4; position: relative; z-index: 1; }
+    .svc-price {
+      font-size: .92rem; font-weight: 700; color: var(--gold);
+      margin-top: 10px; padding-top: 9px;
+      border-top: 1px solid #232323;
+      position: relative; z-index: 1;
+    }
+
+    /* Form fields */
+    .fg { margin-bottom: 18px; }
+    .fg label {
+      display: block; font-size: .72rem; font-weight: 700;
+      margin-bottom: 8px; color: rgba(255,255,255,.45);
+      text-transform: uppercase; letter-spacing: .6px;
+    }
+    .fg input, .fg textarea, .fg select {
+      width: 100%; background: #161616;
+      border: 1.5px solid #222; border-radius: 10px;
+      padding: 13px 16px;
+      font-family: 'Montserrat', sans-serif; font-size: .9rem;
+      color: var(--white); outline: none;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .fg input:focus, .fg textarea:focus, .fg select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+    }
+    .fg input::placeholder, .fg textarea::placeholder { color: #333; }
+    .fg textarea { resize: vertical; min-height: 95px; }
+    .fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* â”&euro;â”&euro; Date & Time unified block â”&euro;â”&euro; */
+    .datetime-block {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), #111;
+      border: 1.5px solid #222;
+      border-radius: 18px;
+      overflow: visible;
+      margin-bottom: 20px;
+      transition: margin-bottom .25s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+    }
+    .datetime-block.ts-open { margin-bottom: 270px; }
+    .datetime-block.cal-open { margin-bottom: 400px; }
+    .datetime-row {
+      display: flex; align-items: stretch;
+      gap: 0; overflow: visible;
+    }
+    .datetime-row .dt-half {
+      flex: 1; padding: 16px 22px; position: relative; overflow: visible;
+    }
+    .datetime-row .dt-divider {
+      width: 1px; background: #222; flex-shrink: 0; margin: 14px 0;
+    }
+    .dt-half .dt-label {
+      display: flex; align-items: center; gap: 7px;
+      font-size: .68rem; font-weight: 700;
+      color: rgba(255,255,255,.35);
+      text-transform: uppercase; letter-spacing: .7px;
+      margin-bottom: 10px;
+    }
+    .dt-half .dt-label i { color: var(--gold); font-size: .75rem; }
+
+    /* â”&euro;â”&euro; Custom Calendar â”&euro;â”&euro; */
+    .cal-trigger {
+      cursor: pointer; user-select: none;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .98rem; font-weight: 600;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .2px;
+      transition: color .2s;
+    }
+    .cal-trigger.has-date { color: var(--white); }
+
+    .cal-popup {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      width: 288px;
+      background: #0d0d0d;
+      border: 1.5px solid rgba(201,168,76,.25);
+      border-radius: 18px;
+      padding: 20px 18px 16px;
+      opacity: 0;
+      transform: translateY(-10px) scale(.97);
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+      z-index: 400;
+      box-shadow: 0 28px 64px rgba(0,0,0,.75);
+    }
+    .cal-popup.open {
+      opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
+    }
+
+    .cal-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .cal-head-label {
+      font-size: .88rem; font-weight: 700; color: var(--white);
+      text-transform: capitalize; letter-spacing: .4px;
+    }
+    .cal-nav {
+      background: none; border: none; cursor: pointer;
+      color: var(--gold); font-size: .75rem;
+      width: 28px; height: 28px; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .cal-nav:hover { background: rgba(201,168,76,.14); }
+
+    .cal-dow {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 6px;
+    }
+    .cal-dow span {
+      text-align: center;
+      font-size: .6rem; font-weight: 700;
+      color: rgba(255,255,255,.25);
+      text-transform: uppercase;
+      padding: 3px 0 6px;
+    }
+    .cal-dow span.cal-weekend { color: rgba(201,168,76,.4); }
+
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 3px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .78rem; font-weight: 600;
+      border-radius: 50%; border: none; background: none;
+      cursor: pointer; color: rgba(255,255,255,.7);
+      transition: background .15s, color .15s, transform .1s;
+    }
+    .cal-day:hover:not(:disabled):not(.cal-selected) {
+      background: rgba(201,168,76,.12); color: var(--gold);
+      transform: scale(1.1);
+    }
+    .cal-day.cal-today:not(.cal-selected) {
+      border: 1.5px solid rgba(201,168,76,.5);
+      color: var(--gold);
+    }
+    .cal-day.cal-selected {
+      background: var(--gold); color: #0f0f0f; font-weight: 800;
+      box-shadow: 0 4px 16px rgba(201,168,76,.4);
+    }
+    .cal-day.cal-weekend:not(:disabled):not(.cal-selected) { color: rgba(201,168,76,.55); }
+    .cal-day:disabled { opacity: .2; cursor: not-allowed; transform: none; }
+    .cal-day.cal-other { opacity: .15; cursor: default; }
+
+    .cal-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 14px; padding-top: 12px;
+      border-top: 1px solid #1d1d1d;
+    }
+    .cal-today-btn {
+      background: none; border: 1px solid #2a2a2a;
+      color: var(--gold); font-family: 'Montserrat', sans-serif;
+      font-size: .68rem; font-weight: 700; letter-spacing: .5px;
+      text-transform: uppercase; padding: 5px 14px;
+      border-radius: 20px; cursor: pointer; transition: all .2s;
+    }
+    .cal-today-btn:hover { background: rgba(201,168,76,.1); border-color: rgba(201,168,76,.45); }
+    .cal-clear-btn {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.25); font-size: .7rem; font-weight: 600;
+      font-family: 'Montserrat', sans-serif; letter-spacing: .3px;
+      transition: color .2s; text-transform: uppercase;
+    }
+    .cal-clear-btn:hover { color: rgba(255,255,255,.5); }
+
+    /* â”&euro;â”&euro; Custom time dropdown â”&euro;â”&euro; */
+    .custom-select { position: relative; }
+    .cs-trigger {
+      display: flex; justify-content: space-between; align-items: center;
+      background: transparent; border: none; border-radius: 0;
+      padding: 0; cursor: pointer;
+      transition: none;
+      user-select: none;
+    }
+    .cs-trigger:hover { border-color: none; }
+    .custom-select.open .cs-trigger { border-radius: 0; box-shadow: none; border: none; }
+    .cs-trigger.disabled { opacity: .4; cursor: not-allowed; }
+    .cs-warn {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 10px; padding: 10px 14px;
+      background: rgba(220,53,53,.08);
+      border-left: 3px solid #e03e3e;
+      border-radius: 0 8px 8px 0;
+      font-size: .76rem; font-weight: 600;
+      color: #ff6b6b; letter-spacing: .2px;
+      opacity: 0; transform: translateX(-6px);
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    .cs-warn i { font-size: .8rem; flex-shrink: 0; color: #e03e3e; }
+    .cs-warn.show { opacity: 1; transform: translateX(0); }
+    .cs-val {
+      font-family: 'Montserrat', sans-serif; font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .3px;
+    }
+    .cs-val.picked { color: var(--white); font-weight: 600; }
+    .cs-arrow {
+      color: var(--gold); font-size: .75rem;
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+    .custom-select.open .cs-arrow { transform: rotate(180deg); }
+
+    /* Active highlight on the datetime block halves */
+    .datetime-block:focus-within,
+    .datetime-block:has(.custom-select.open) {
+      border-color: rgba(201,168,76,.4);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.08);
+    }
+
+    .cs-dropdown {
+      position: absolute;
+      top: calc(100% + 6px); left: 0; right: 0;
+      background: #131313;
+      border: 1.5px solid rgba(201,168,76,.3);
+      border-radius: 12px;
+      overflow: hidden; overflow-y: auto;
+      max-height: 240px;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity .22s ease, transform .22s ease;
+      z-index: 500;
+      box-shadow: 0 16px 40px rgba(0,0,0,.6);
+      scrollbar-width: thin;
+      scrollbar-color: rgba(201,168,76,.3) transparent;
+    }
+    .custom-select.open .cs-dropdown {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .cs-dropdown::-webkit-scrollbar { width: 4px; }
+    .cs-dropdown::-webkit-scrollbar-thumb { background: rgba(201,168,76,.3); border-radius: 4px; }
+
+    .cs-option {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 18px; cursor: pointer;
+      border-bottom: 1px solid #1e1e1e;
+      transition: background .15s, border-left .15s;
+      border-left: 3px solid transparent;
+    }
+    .cs-option:last-child { border-bottom: none; }
+    .cs-option:hover { background: rgba(201,168,76,.07); border-left-color: rgba(201,168,76,.4); }
+    .cs-option.active { background: rgba(201,168,76,.12); border-left-color: var(--gold); }
+    .cs-option .cs-t { font-family: 'Montserrat', sans-serif; font-size: .9rem; font-weight: 700; color: var(--white); }
+    .cs-option .cs-d {
+      font-size: .72rem; color: var(--gray);
+      background: #1e1e1e; padding: 2px 8px; border-radius: 20px;
+    }
+    .cs-option:hover .cs-t { color: var(--gold); }
+    .cs-option.active .cs-t { color: var(--gold); }
+    .cs-option.active .cs-d { background: rgba(201,168,76,.15); color: rgba(201,168,76,.7); }
+
+    /* Step nav */
+    .step-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 12px; margin-top: 14px; padding-top: 14px;
+      border-top: 1px solid #1c1c1c;
+    }
+    .step-nav-right { display: flex; gap: 10px; }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; }
+
+    /* Success state */
+    .success-overlay {
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 52px 32px; text-align: center;
+    }
+    .success-overlay.show { display: flex; }
+    .success-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(76,175,80,.1); border: 2px solid #4caf50;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.9rem; color: #4caf50; margin-bottom: 22px;
+      animation: popIn .45s cubic-bezier(.34,1.56,.64,1);
+    }
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .success-overlay h3 { font-size: 1.3rem; font-weight: 900; margin-bottom: 10px; }
+    .success-overlay p { font-size: .86rem; color: var(--gray); line-height: 1.8; }
+    .success-code {
+      margin-top: 20px; padding: 12px 24px;
+      background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.25);
+      border-radius: 8px; font-size: .8rem; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--gold); font-weight: 700;
+    }
+
+    /* â”&euro;â”&euro; Summary panel â”&euro;â”&euro; */
+    .booking-summary {
+      background:
+        radial-gradient(circle at top right, rgba(201,168,76,.12), transparent 32%),
+        linear-gradient(160deg, #181818, #111);
+      border: 1px solid #1e1e1e; border-radius: 20px;
+      overflow: hidden; position: sticky; top: 88px;
+      box-shadow: 0 18px 46px rgba(0,0,0,.28);
+    }
+    .summary-header {
+      background: linear-gradient(135deg, rgba(201,168,76,.13), rgba(201,168,76,.04));
+      border-bottom: 1px solid rgba(201,168,76,.14);
+      padding: 14px 16px; display: flex; align-items: center; gap: 10px;
+    }
+    .summary-header i { color: var(--gold); font-size: .9rem; }
+    .summary-header h4 { font-size: .85rem; font-weight: 700; }
+    .summary-glance {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 12px 16px 0;
+    }
+    .glance-item {
+      padding: 10px 8px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.05);
+      text-align: center;
+    }
+    .glance-item strong {
+      display: block;
+      font-size: .86rem;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .glance-item span {
+      font-size: .68rem;
+      color: rgba(255,255,255,.52);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .summary-body { padding: 10px 16px 4px; }
+    .sum-row {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; gap: 10px;
+      padding: 7px 0; border-bottom: 1px solid #1a1a1a; font-size: .78rem;
+    }
+    .sum-row:last-child { border-bottom: none; }
+    .sum-lbl { color: var(--gray); flex-shrink: 0; }
+    .sum-val { font-weight: 600; text-align: right; max-width: 60%; word-break: break-word; }
+    .sum-val.gold { color: var(--gold); font-size: .95rem; font-weight: 700; }
+    .sum-tip {
+      margin: 8px 16px 12px;
+      padding: 10px 12px;
+      background: rgba(201,168,76,.05);
+      border: 1px dashed rgba(201,168,76,.22);
+      border-radius: 12px; font-size: .74rem;
+      color: rgba(255,255,255,.48); line-height: 1.6;
+    }
+    .past-bookings { border-top: 1px solid #181818; padding: 10px 16px; }
+    .past-bookings h5 {
+      font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .8px;
+      color: var(--gray); margin-bottom: 12px;
+    }
+    .booking-item {
+      padding: 11px 13px; border-radius: 10px;
+      background: rgba(255,255,255,.03); border: 1px solid #1e1e1e; margin-bottom: 8px;
+    }
+    .booking-item:last-child { margin-bottom: 0; }
+    .booking-item strong { display: block; font-size: .82rem; margin-bottom: 4px; }
+    .booking-item p { font-size: .74rem; color: rgba(255,255,255,.5); line-height: 1.6; }
+    .booking-code {
+      display: inline-block; margin-top: 5px; font-size: .68rem;
+      letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold);
+      background: rgba(201,168,76,.1); padding: 2px 8px; border-radius: 4px;
+    }
+    .booking-empty { font-size: .78rem; color: var(--gray); }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       FOOTER
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #footer { background: #080808; padding: 60px 24px 22px; border-top: 1px solid #1c1c1c; }
+    .foot-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 44px; max-width: 1180px; margin: 0 auto 44px;
+    }
+    .foot-brand .logo { font-size: 1.5rem; font-weight: 900; color: var(--gold); margin-bottom: 12px; }
+    .foot-brand .logo span { color: var(--white); }
+    .foot-brand p { color: var(--gray); font-size: .84rem; line-height: 1.8; max-width: 290px; }
+    .foot-social { display: flex; gap: 10px; margin-top: 20px; }
+    .foot-social a {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1px solid #282828;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.86); font-size: 1.25rem; transition: all .3s;
+      background: rgba(255,255,255,.04);
+    }
+    .foot-social a[aria-label="Instagram"] { color: #e1306c; border-color: rgba(225,48,108,.32); background: rgba(225,48,108,.08); }
+    .foot-social a[aria-label="Facebook"]  { color: #1877f2; border-color: rgba(24,119,242,.32); background: rgba(24,119,242,.08); }
+    .foot-social a[aria-label="TikTok"]    { color: #fe2c55; border-color: rgba(254,44,85,.32); background: rgba(254,44,85,.08); }
+    .foot-social a svg { display: block; transition: transform .3s; }
+    .foot-social a:hover svg { transform: scale(1.1); }
+    .foot-social a:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(201,168,76,.2); }
+    .foot-social a[aria-label="Instagram"]:hover { border-color: #e1306c; color: #e1306c; box-shadow: 0 6px 20px rgba(225,48,108,.25); }
+    .foot-social a[aria-label="Facebook"]:hover  { border-color: #1877f2; color: #1877f2; box-shadow: 0 6px 20px rgba(24,119,242,.25); }
+    .foot-social a[aria-label="TikTok"]:hover    { border-color: #fe2c55; color: #fe2c55; box-shadow: 0 6px 20px rgba(254,44,85,.25); }
+
+    /* â”&euro;â”&euro; Social strip â”&euro;â”&euro; */
+    #social { background: #0a0a0a; padding: 70px 24px; border-top: 1px solid #141414; }
+    .social-cards {
+      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+      max-width: 800px; margin: 0 auto;
+    }
+    .social-card {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 12px; padding: 32px 28px; border-radius: 16px;
+      background: #111; border: 1px solid #1e1e1e;
+      text-decoration: none; flex: 1; min-width: 180px; max-width: 220px;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .social-card::before {
+      content: ''; position: absolute; inset: 0;
+      opacity: 0; transition: opacity .3s;
+    }
+    .social-card:hover { transform: translateY(-6px); }
+    .social-card:hover::before { opacity: 1; }
+
+    .social-card.instagram::before { background: linear-gradient(135deg, rgba(131,58,180,.15), rgba(253,29,29,.08), rgba(252,176,69,.08)); }
+    .social-card.instagram:hover  { border-color: rgba(253,29,29,.4); box-shadow: 0 12px 40px rgba(131,58,180,.2); }
+    .social-card.instagram .sc-icon { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
+
+    .social-card.facebook::before { background: linear-gradient(135deg, rgba(24,119,242,.15), transparent); }
+    .social-card.facebook:hover   { border-color: rgba(24,119,242,.4); box-shadow: 0 12px 40px rgba(24,119,242,.2); }
+    .social-card.facebook .sc-icon { background: #1877f2; }
+
+    .social-card.tiktok::before { background: linear-gradient(135deg, rgba(0,0,0,.3), rgba(254,44,85,.1)); }
+    .social-card.tiktok:hover   { border-color: rgba(254,44,85,.4); box-shadow: 0 12px 40px rgba(254,44,85,.15); }
+    .social-card.tiktok .sc-icon { background: linear-gradient(135deg, #010101, #fe2c55); }
+
+    .sc-icon {
+      width: 92px; height: 92px; border-radius: 24px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.7rem; color: #fff;
+      position: relative; z-index: 1;
+      box-shadow: 0 12px 28px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.14);
+      overflow: hidden;
+    }
+    .sc-icon::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+    .sc-icon svg {
+      position: relative;
+      z-index: 1;
+      width: 52px; height: 52px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.45));
+      transition: transform .3s;
+    }
+    .social-card:hover .sc-icon svg { transform: scale(1.12); }
+    .social-card .sc-name {
+      font-size: .95rem; font-weight: 700; color: var(--white);
+      position: relative; z-index: 1;
+    }
+    .social-card .sc-handle {
+      font-size: .75rem; color: var(--gray);
+      position: relative; z-index: 1;
+      text-align: center;
+    }
+    .social-card:hover .sc-handle { color: rgba(255,255,255,.6); }
+    .sc-follow {
+      margin-top: 4px; padding: 6px 18px; border-radius: 20px;
+      border: 1px solid #2a2a2a; background: transparent;
+      font-family: 'Montserrat', sans-serif; font-size: .72rem;
+      font-weight: 700; color: var(--gray); letter-spacing: .5px;
+      text-transform: uppercase; transition: all .3s;
+      position: relative; z-index: 1;
+    }
+    .social-card:hover .sc-follow {
+      border-color: var(--gold); color: var(--gold);
+      background: rgba(201,168,76,.08);
+    }
+    .foot-col h4 { font-size: .9rem; font-weight: 700; margin-bottom: 18px; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
+    .foot-col ul li { margin-bottom: 9px; }
+    .foot-col ul li a { color: var(--gray); font-size: .84rem; transition: color .3s; }
+    .foot-col ul li a:hover { color: var(--gold); }
+    .foot-bottom {
+      max-width: 1180px; margin: 0 auto;
+      border-top: 1px solid #1c1c1c; padding-top: 18px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+    }
+    .foot-bottom p { color: var(--gray); font-size: .78rem; }
+    .foot-bottom span { color: var(--gold); }
+
+    /* â”&euro;â”&euro; Afspraak Modal â”&euro;â”&euro; */
+    #afspraak-modal {
+      display: none; position: fixed; inset: 0; z-index: 9998;
+      background: rgba(0,0,0,.82); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+      padding: 16px;
+    }
+    #afspraak-modal.open { display: flex; }
+    #afspraak-modal .booking-layout {
+      width: 100%; max-width: 1080px;
+      max-height: calc(100vh - 32px);
+      display: grid; grid-template-columns: 1fr 270px; gap: 16px;
+      animation: wmIn .35s ease;
+    }
+    /* â”&euro;â”&euro; Afspraak modal: alles past in het scherm â”&euro;â”&euro; */
+    #afspraak-modal .booking-layout {
+      height: calc(100vh - 32px);
+    }
+    #afspraak-modal .booking-wizard {
+      display: flex; flex-direction: column;
+      height: 100%; overflow: visible;
+    }
+    #afspraak-modal .booking-summary {
+      height: 100%; overflow-y: auto;
+    }
+    #afspraak-modal .wizard-header {
+      padding: 14px 24px 12px; flex-shrink: 0;
+    }
+    #afspraak-modal .wizard-title { margin-bottom: 12px; font-size: 1rem; }
+    #afspraak-modal .step-circle { width: 30px; height: 30px; font-size: .78rem; }
+    #afspraak-modal .step-bar::before { top: 14px; }
+    #afspraak-modal .step-label { font-size: .62rem; margin-top: 6px; }
+    #afspraak-modal .wizard-body {
+      overflow: visible; flex: 1;
+      padding: 12px 20px 10px;
+      display: flex; flex-direction: column;
+      min-height: 0;
+    }
+    #afspraak-modal .cat-tabs { margin-bottom: 10px; gap: 6px; flex-shrink: 0; }
+    #afspraak-modal .cat-tab { padding: 6px 14px; font-size: .72rem; }
+    #afspraak-modal .step-nav { margin-top: 10px; padding-top: 10px; flex-shrink: 0; }
+
+    /* step 1: grid vult alle resterende ruimte */
+    #afspraak-modal #step1.active {
+      display: flex; flex-direction: column; flex: 1; overflow: hidden; min-height: 0;
+    }
+
+    /* step 2 & 3 */
+    #afspraak-modal #step2.active,
+    #afspraak-modal #step3.active {
+      display: flex; flex-direction: column; flex: 1; overflow: visible; min-height: 0;
+    }
+    #afspraak-modal .datetime-block { margin-bottom: 0; flex: 1; }
+    #afspraak-modal .datetime-block.cal-open,
+    #afspraak-modal .datetime-block.ts-open { margin-bottom: 0; }
+    #afspraak-modal .dt-half { overflow: visible !important; }
+    #afspraak-modal .datetime-row { flex: 1; }
+    #afspraak-modal .svc-select-grid {
+      grid-template-columns: repeat(5, 1fr) !important;
+      gap: 10px; margin-bottom: 0; flex: 1;
+      display: grid !important;
+      grid-template-rows: repeat(2, 1fr);
+    }
+    #afspraak-modal .svc-card {
+      padding: 16px 14px; border-radius: 12px;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 5px; height: 100%;
+    }
+    #afspraak-modal .svc-icon { font-size: 1.15rem; margin-bottom: 4px; }
+    #afspraak-modal .svc-name { font-size: .82rem; font-weight: 700; margin-bottom: 2px; }
+    #afspraak-modal .svc-detail { font-size: .68rem; line-height: 1.4; color: var(--gray); }
+    #afspraak-modal .svc-price { font-size: .84rem; font-weight: 700; color: var(--gold); margin-top: 4px; padding-top: 5px; border-top: 1px solid #2a2a2a; }
+    #afspraak-modal .step-panel { display: none; flex-direction: column; flex: 1; }
+    #afspraak-modal .step-panel.active { display: flex; }
+    #afspraak-modal #step1.active { overflow: hidden; }
+
+    /* Stap 2 & 3 scrollen niet ook */
+    #afspraak-modal .datetime-block { flex: 1; }
+    #afspraak-modal .fg-row { gap: 10px; }
+    #afspraak-modal .fg textarea { min-height: 54px; }
+    #afspraak-modal .fg { margin-bottom: 8px; }
+
+    /* â”&euro;â”&euro; Werken bij link â”&euro;â”&euro; */
+    .werken-link { color: var(--gold) !important; font-weight: 600; }
+    .werken-link:hover { color: #fff !important; }
+
+    /* â”&euro;â”&euro; Werken bij Modal â”&euro;â”&euro; */
+    #werken-modal {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,.78); backdrop-filter: blur(6px);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    #werken-modal.open { display: flex; }
+    .wm-box {
+      background: #111; border: 1px solid #222; border-radius: 20px;
+      width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto;
+      padding: 40px 36px; position: relative;
+      box-shadow: 0 30px 80px rgba(0,0,0,.6);
+      animation: wmIn .35s ease;
+    }
+    @keyframes wmIn {
+      from { opacity: 0; transform: translateY(24px) scale(.97); }
+      to   { opacity: 1; transform: none; }
+    }
+    .wm-close {
+      position: absolute; top: 16px; right: 16px;
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid #2a2a2a; background: transparent;
+      color: var(--gray); font-size: 1.1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .wm-close:hover { border-color: var(--gold); color: var(--gold); }
+    .wm-title {
+      font-size: 1.5rem; font-weight: 900; color: var(--white);
+      margin-bottom: 4px;
+    }
+    .wm-title span { color: var(--gold); }
+    .wm-sub { color: var(--gray); font-size: .85rem; margin-bottom: 28px; line-height: 1.6; }
+    .wm-type-tabs {
+      display: flex; gap: 10px; margin-bottom: 28px;
+    }
+    .wm-tab {
+      flex: 1; padding: 14px 10px; border-radius: 12px;
+      border: 2px solid #2a2a2a; background: transparent;
+      color: var(--gray); font-size: .88rem; font-weight: 600;
+      cursor: pointer; transition: all .25s; text-align: center;
+      font-family: inherit;
+    }
+    .wm-tab.active {
+      border-color: var(--gold); color: var(--gold);
+      background: rgba(201,168,76,.08);
+    }
+    .wm-tab svg { display: block; margin: 0 auto 8px; opacity: .7; }
+    .wm-tab.active svg { opacity: 1; }
+    .wm-form { display: flex; flex-direction: column; gap: 14px; }
+    .wm-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .wm-field { display: flex; flex-direction: column; gap: 6px; }
+    .wm-field label { font-size: .78rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .5px; }
+    .wm-field input,
+    .wm-field select,
+    .wm-field textarea {
+      background: #0d0d0d; border: 1px solid #252525; border-radius: 10px;
+      color: var(--white); font-size: .88rem; padding: 12px 14px;
+      font-family: inherit; transition: border-color .25s; outline: none;
+      width: 100%;
+    }
+    .wm-field input:focus,
+    .wm-field select:focus,
+    .wm-field textarea:focus { border-color: var(--gold); }
+    .wm-field textarea { resize: vertical; min-height: 100px; }
+    .wm-field select option { background: #111; }
+    .wm-stage-info {
+      background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.2);
+      border-radius: 10px; padding: 14px 16px; font-size: .82rem;
+      color: rgba(255,255,255,.7); line-height: 1.6; display: none;
+    }
+    .wm-stage-info.show { display: block; }
+    .wm-upload-label {
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 16px; border-radius: 10px;
+      border: 1px dashed #2e2e2e; background: #0d0d0d;
+      cursor: pointer; transition: border-color .25s, background .25s;
+    }
+    .wm-upload-label:hover { border-color: var(--gold); background: rgba(201,168,76,.04); }
+    .wm-upload-label svg { flex-shrink: 0; color: var(--gold); }
+    .wm-upload-label span { font-size: .85rem; color: var(--gray); }
+    .wm-upload-label span strong { color: var(--white); }
+    #wm-cv { display: none; }
+    .wm-cv-name {
+      font-size: .78rem; color: var(--gold); margin-top: 6px;
+      padding-left: 4px; display: none;
+    }
+    .wm-cv-name.show { display: block; }
+
+    .wm-submit {
+      margin-top: 8px; padding: 14px; border-radius: 12px;
+      background: var(--gold); color: #000; font-size: .92rem;
+      font-weight: 800; border: none; cursor: pointer; font-family: inherit;
+      transition: all .3s; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .wm-submit:hover { background: #e8d87a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(201,168,76,.3); }
+    .wm-success {
+      display: none; flex-direction: column; align-items: flex-start;
+      gap: 16px; text-align: left; padding: 20px 0;
+    }
+    .wm-success.show { display: flex; }
+    .wm-success-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: rgba(201,168,76,.12); border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+    }
+    @media (max-width: 540px) {
+      .wm-box { padding: 28px 20px; }
+      .wm-row { grid-template-columns: 1fr; }
+    }
+
+    /* Floating button â&euro;” hidden */
+    .fab {
+      display: none !important;
+      position: fixed; bottom: 26px; right: 26px; z-index: 999;
+      background: var(--gold); color: var(--dark);
+      border: none; border-radius: 50px; padding: 13px 22px;
+      font-family: 'Montserrat', sans-serif; font-size: .88rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center; gap: 8px;
+      box-shadow: 0 6px 24px rgba(201,168,76,.45);
+      animation: glow 2.5s infinite; transition: all .3s;
+    }
+    .fab:hover { background: var(--gold2); transform: scale(1.04); animation: none; }
+    @keyframes glow {
+      0%,100% { box-shadow: 0 6px 24px rgba(201,168,76,.45); }
+      50%      { box-shadow: 0 6px 38px rgba(201,168,76,.75); }
+    }
+    #top-btn {
+      position: fixed; bottom: 26px; right: 26px; z-index: 999;
+      background: var(--dark2); border: 1px solid #2a2a2a; color: var(--gold);
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; opacity: 0; transform: translateY(20px);
+      transition: all .4s; font-size: .85rem;
+    }
+    #top-btn.show { opacity: 1; transform: translateY(0); }
+    #top-btn:hover { background: var(--gold); color: var(--dark); }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       PRICE LIST
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .price-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 28px; max-width: 1100px; margin: 0 auto;
+    }
+    .price-cat {
+      background: var(--dark2); border: 1px solid #252525;
+      border-radius: 14px; overflow: hidden;
+    }
+    .price-cat-head {
+      background: rgba(201,168,76,.1); border-bottom: 1px solid rgba(201,168,76,.18);
+      padding: 18px 24px; display: flex; align-items: center; gap: 12px;
+    }
+    .price-cat-head i { color: var(--gold); font-size: 1.1rem; }
+    .price-cat-head h3 { font-size: .95rem; font-weight: 700; }
+    .price-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 13px 24px; border-bottom: 1px solid #1e1e1e; transition: background .2s;
+    }
+    .price-row:last-child { border-bottom: none; }
+    .price-row:hover { background: rgba(201,168,76,.05); }
+    .price-row .svc { font-size: .87rem; color: rgba(255,255,255,.85); }
+    .price-row .svc small { display: block; font-size: .75rem; color: var(--gray); margin-top: 2px; }
+    .price-row .amt { font-size: .95rem; font-weight: 700; color: var(--gold); white-space: nowrap; padding-left: 16px; }
+    .price-note {
+      text-align: center; margin-top: 28px; font-size: .82rem;
+      color: var(--gray); line-height: 1.7;
+    }
+
+    .pages-hub {
+      padding: 100px 24px;
+      background: var(--dark);
+    }
+    .pages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+    }
+    .page-link-card {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 26px 22px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)), var(--dark2);
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 16px 40px rgba(0,0,0,.22);
+      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+    }
+    .page-link-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201,168,76,.3);
+      box-shadow: 0 22px 48px rgba(0,0,0,.28);
+    }
+    .page-link-card i {
+      width: 46px; height: 46px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(201,168,76,.12);
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .page-link-card h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+    .page-link-card p {
+      color: rgba(255,255,255,.62);
+      line-height: 1.75;
+      font-size: .9rem;
+      flex: 1;
+    }
+    .page-link-card span {
+      color: var(--gold);
+      font-size: .78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    /* â”&euro;â”&euro; Hours table (kept for potential reuse) â”&euro;â”&euro; */
+    .open { color: #4caf50; font-weight: 600; }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       RESPONSIVE
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    @media (max-width: 960px) {
+      .booking-layout { grid-template-columns: 1fr; }
+      .booking-summary { position: static; }
+      .cstrip-item { border-right: none; border-bottom: 1px solid #1e1e1e; }
+      .cstrip-item:last-child { border-bottom: none; }
+    }
+    @media (max-width: 880px) {
+      #nav { padding: 0; }
+      .nav-inner {
+        min-height: 64px;
+        padding: 10px 18px;
+        gap: 10px;
+      }
+      .nav-logo-main { font-size: 1.18rem; }
+      .nav-logo-icon { width: 34px; height: 34px; font-size: .9rem; border-radius: 8px; }
+      .nav-sep, .nav-links, .nav-btn { display: none; }
+      .hamburger { display: flex; }
+      .diensten-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .d-card, .d-card.featured, .d-card.featured-left, .d-card.featured-center, .d-card.compact {
+        grid-column: span 1;
+        grid-row: span 1;
+        min-height: 340px;
+      }
+      .over-wrap { grid-template-columns: 1fr; }
+      .over-img { order: -1; }
+      .port-grid { grid-template-columns: 1fr 1fr; }
+      .port-item.tall { grid-row: span 1; }
+      .port-item.tall img { height: 250px; }
+      .foot-grid { grid-template-columns: 1fr 1fr; }
+      .price-wrap { grid-template-columns: 1fr; }
+      .pages-grid { grid-template-columns: 1fr 1fr; }
+      .wizard-header, .wizard-body { padding-left: 20px; padding-right: 20px; }
+      .hero-trust { gap: 10px; }
+      .hero-pill { font-size: .74rem; }
+    }
+    @media (max-width: 560px) {
+      .reviews-shell { padding: 0 18px; }
+      .rev-card { padding: 24px 22px; }
+      .rev-nav { width: 40px; height: 40px; }
+      .rev-prev { left: -4px; }
+      .rev-next { right: -4px; }
+      .diensten-grid { grid-template-columns: 1fr; }
+      .d-card, .d-card.featured, .d-card.featured-left, .d-card.featured-center, .d-card.compact { min-height: 320px; }
+      .d-card-content { padding: 16px; }
+      .d-card h3 { font-size: 1.2rem; }
+      .port-grid { grid-template-columns: 1fr; }
+      .foot-grid { grid-template-columns: 1fr; }
+      .pages-grid { grid-template-columns: 1fr; }
+      .fg-row { grid-template-columns: 1fr; }
+      .over-feats { grid-template-columns: 1fr; }
+      .svc-select-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
+      .step-bar::before { left: 10px; right: 10px; }
+      .step-label { font-size: .6rem; }
+      .hero-trust { flex-direction: column; align-items: center; }
+      .hero-pill { width: min(100%, 280px); justify-content: center; }
+      .summary-glance { grid-template-columns: 1fr; }
+    }
+
+    /* ══ Extra mobile tweaks ══ */
+    @media (max-width: 880px) {
+      #diensten, #over, #portfolio, #tarieven, #reviews, #contact, .pages-hub {
+        padding-top: 70px;
+        padding-bottom: 70px;
+      }
+      .sec-head { margin-bottom: 40px; }
+      .hero-arr { width: 40px; height: 40px; font-size: .85rem; }
+      .arr-l { left: 12px; }
+      .arr-r { right: 12px; }
+      .over-badge { right: 0; bottom: 0; }
+    }
+    @media (max-width: 560px) {
+      #diensten, #over, #portfolio, #tarieven, #reviews, #contact, .pages-hub {
+        padding-top: 54px;
+        padding-bottom: 54px;
+      }
+      .hero-arr { display: none; }
+    }
+  </style>
+</head>
+<body data-page="index">
+
+<!-- â•â•â•â•â•â•â•â•â•â• NAVBAR â•â•â•â•â•â•â•â•â•â• -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">
+      <div class="nav-logo-icon"><i class="fas fa-cut"></i></div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-main">Magic <em>Hairstyling</em></span>
+        <span class="nav-logo-sub">Alkmaar</span>
+      </div>
+    </a>
+    <div class="nav-sep"></div>
+    <ul class="nav-links">
+      <li><a href="#hero" data-i18n="nav.home">Home</a></li>
+      <li><a href="#diensten" data-i18n="nav.services">Diensten</a></li>
+      <li><a href="over-ons.html" data-i18n="nav.about">Over ons</a></li>
+      <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+      <li><a href="tarieven.html" data-i18n="nav.pricing">Tarieven</a></li>
+      <li><a href="reviews.html" data-i18n="nav.reviews">Reviews</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div data-language-switcher></div>
+    <a class="nav-btn" href="#contact" onclick="scrollAndOpen();return false;"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
+    <button class="hamburger" id="ham" data-i18n-aria-label="ui.menu" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mob-menu" id="mobMenu">
+    <a href="#hero" onclick="closeM()" data-i18n="nav.home">Home</a>
+    <a href="#diensten" onclick="closeM()" data-i18n="nav.services">Diensten</a>
+    <a href="over-ons.html" data-i18n="nav.about">Over ons</a>
+    <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
+    <a href="tarieven.html" data-i18n="nav.pricing">Tarieven</a>
+    <a href="reviews.html" data-i18n="nav.reviews">Reviews</a>
+    <a href="#contact" onclick="closeM()" data-i18n="nav.contact">Contact</a>
+    <div data-language-switcher></div>
+    <a href="#contact" class="nav-btn" onclick="closeM();scrollAndOpen();return false;"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
+  </div>
+</nav>
+
+<!-- â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â• -->
+<section id="hero">
+  <!-- Slide 1 -->
+  <div class="slide active">
+    <div class="slide-bg" style="background-image:url('images/magic_hairstayle.png'); background-size:cover; background-position:center center; filter:brightness(.82) saturate(1.1);"></div>
+    <div class="slide-content">
+      <div class="slide-tag" data-i18n="hero.slide1Tag">Alkmaar · Gedempte Nieuwesloot</div>
+      <h1 data-i18n-html="hero.slide1Title">Knippen met of<br><span>zonder afspraak</span></h1>
+      <p data-i18n="hero.slide1Body">Welkom bij Magic Hairstyling in Alkmaar. Professionele kapsels voor dames, heren en kinderen - altijd welkom.</p>
+      <div class="slide-btns">
+        <a href="#" class="btn btn-gold" onclick="openAfspraakModal();return false;" data-i18n="hero.slide1Primary">Afspraak maken</a>
+        <a href="#diensten" class="btn btn-outline" data-i18n="hero.slide1Secondary">Onze diensten</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-pill"><i class="fas fa-star"></i><span data-i18n="hero.trust1">15+ jaar ervaring</span></div>
+        <div class="hero-pill"><i class="fas fa-users"></i><span data-i18n="hero.trust2">Dames, heren en kinderen</span></div>
+        <div class="hero-pill"><i class="fas fa-calendar-check"></i><span data-i18n="hero.trust3">Snel online reserveren</span></div>
+      </div>
+    </div>
+  </div>
+  <!-- Slide 2 -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1600&q=80');"></div>
+    <div class="slide-content">
+      <div class="slide-tag" data-i18n="hero.slide2Tag">Vakmanschap & Stijl</div>
+      <h1 data-i18n-html="hero.slide2Title">Perfect<br><span>geknipt</span></h1>
+      <p data-i18n="hero.slide2Body">Onze ervaren stylisten kennen elk haartype en elke snijstijl. Kom weg met een look die bij jou past.</p>
+      <div class="slide-btns">
+        <a href="#social" class="btn btn-gold" data-i18n="hero.slide2Primary">Bekijk ons werk</a>
+        <a href="over-ons.html" class="btn btn-outline" data-i18n="hero.slide2Secondary">Over ons</a>
+      </div>
+    </div>
+  </div>
+  <!-- Slide 3 -->
+  <div class="slide">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1600&q=80');"></div>
+    <div class="slide-content">
+      <div class="slide-tag" data-i18n="hero.slide3Tag">Compleet aanbod</div>
+      <h1 data-i18n-html="hero.slide3Title">Professionele<br><span>verzorging</span></h1>
+      <p data-i18n="hero.slide3Body">Van knippen en scheren tot beauty-behandelingen - Magic Hairstyling verzorgt u van top tot teen.</p>
+      <div class="slide-btns">
+        <a href="tarieven.html" class="btn btn-gold" data-i18n="hero.slide3Primary">Bekijk tarieven</a>
+        <a href="#contact"  class="btn btn-outline" data-i18n="hero.slide3Secondary">Bel ons</a>
+      </div>
+    </div>
+  </div>
+
+  <button class="hero-arr arr-l" id="prev"><i class="fas fa-chevron-left"></i></button>
+  <button class="hero-arr arr-r" id="next"><i class="fas fa-chevron-right"></i></button>
+  <div class="hero-dots" id="dots">
+    <span class="active"></span><span></span><span></span>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â• STATS â•â•â•â•â•â•â•â•â•â• -->
+<section id="stats">
+  <div class="stats-row">
+    <div class="stat"><div class="n">7+</div><div class="l" data-i18n="stats.days">Dagen per week</div></div>
+    <div class="stat"><div class="n">2010</div><div class="l" data-i18n="stats.founded">Opgericht in</div></div>
+    <div class="stat"><div class="n">6</div><div class="l" data-i18n="stats.treatments">Behandelingen</div></div>
+    <div class="stat"><div class="n">1000+</div><div class="l" data-i18n="stats.customers">Tevreden klanten</div></div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â• DIENSTEN â•â•â•â•â•â•â•â•â•â• -->
+<section id="diensten">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="showcase.kicker">Wat wij bieden</span>
+      <h2 data-i18n="showcase.title">Onze diensten</h2>
+      <div class="bar"></div>
+      <p data-i18n="showcase.body">Van snelle touch-ups tot complete behandelingen: alles is opgebouwd rond comfort, precisie en een verzorgde uitstraling.</p>
+    </div>
+    <div class="diensten-grid">
+      <div class="d-card featured-left">
+        <img class="d-card-bg" src="images/knippen.jpg" alt="Knippen achtergrond" />
+        <div class="d-card-content">
+          <div class="d-head">
+            <div class="d-title-group">
+              <span class="d-kicker" data-i18n="showcase.cutKicker">Signature</span>
+              <h3 data-i18n="showcase.cutTitle">Knippen</h3>
+            </div>
+            <div class="d-icon"><i data-lucide="scissors"></i></div>
+          </div>
+          <p data-i18n="showcase.cutBody">Kapsels voor dames, heren en kinderen - modern, klassiek of volledig op maat gesneden.</p>
+          <div class="d-meta">
+            <span><i class="fas fa-check"></i> <span data-i18n="showcase.cutMeta1">Op maat</span></span>
+            <span><i class="fas fa-clock"></i> <span data-i18n="showcase.cutMeta2">Snel geholpen</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="d-card featured-center">
+        <img class="d-card-bg" src="images/scheren.jpg" alt="Scheren achtergrond" />
+        <div class="d-card-content">
+          <div class="d-head">
+            <div class="d-title-group">
+              <span class="d-kicker" data-i18n="showcase.shaveKicker">Classic</span>
+              <h3 data-i18n="showcase.shaveTitle">Scheren</h3>
+            </div>
+            <div class="d-icon"><i data-lucide="user-round"></i></div>
+          </div>
+          <p data-i18n="showcase.shaveBody">Traditioneel scheren met warm schuim en een scherp mes voor een glad en verzorgd resultaat.</p>
+          <div class="d-meta">
+            <span><i class="fas fa-fire"></i> <span data-i18n="showcase.shaveMeta1">Warm schuim</span></span>
+            <span><i class="fas fa-gem"></i> <span data-i18n="showcase.shaveMeta2">Klassieke finish</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="d-card compact">
+        <img class="d-card-bg trimmen" src="images/scheren.jpg" alt="Trimmen achtergrond" />
+        <div class="d-card-content">
+          <div class="d-head">
+            <div class="d-title-group">
+              <span class="d-kicker" data-i18n="showcase.trimKicker">Detail</span>
+              <h3 data-i18n="showcase.trimTitle">Trimmen</h3>
+            </div>
+            <div class="d-icon"><i data-lucide="sliders-horizontal"></i></div>
+          </div>
+          <p data-i18n="showcase.trimBody">Nauwkeurig trimmen van baard, snor of contouren voor een nette uitstraling.</p>
+          <div class="d-meta">
+            <span><i class="fas fa-ruler-combined"></i> <span data-i18n="showcase.trimMeta1">Strakke lijnen</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="d-card compact">
+        <img class="d-card-bg" src="images/styling.jpg" alt="Stylen achtergrond" />
+        <div class="d-card-content">
+          <div class="d-head">
+            <div class="d-title-group">
+              <span class="d-kicker" data-i18n="showcase.styleKicker">Finish</span>
+              <h3 data-i18n="showcase.styleTitle">Stylen</h3>
+            </div>
+            <div class="d-icon"><i data-lucide="sparkles"></i></div>
+          </div>
+          <p data-i18n="showcase.styleBody">Professioneel stylen en fohnen met producten die passen bij elk haartype.</p>
+          <div class="d-meta">
+            <span><i class="fas fa-wind"></i> <span data-i18n="showcase.styleMeta1">Volume & finish</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="d-card featured">
+        <img class="d-card-bg" src="images/beauty.jpg" alt="Beauty achtergrond" />
+        <div class="d-card-content">
+          <div class="d-head">
+            <div class="d-title-group">
+              <span class="d-kicker" data-i18n="showcase.beautyKicker">Care</span>
+              <h3 data-i18n="showcase.beautyTitle">Beauty behandelingen</h3>
+            </div>
+            <div class="d-icon"><i data-lucide="flower-2"></i></div>
+          </div>
+          <p data-i18n="showcase.beautyBody">Waxen, threading en verzorgende behandelingen die rust en precisie samenbrengen.</p>
+          <div class="d-meta">
+            <span><i class="fas fa-leaf"></i> <span data-i18n="showcase.beautyMeta1">Verzorgend</span></span>
+            <span><i class="fas fa-spa"></i> <span data-i18n="showcase.beautyMeta2">Ontspannen gevoel</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="d-card featured">
+        <img class="d-card-bg" src="images/haarverf.jpg" alt="Kleuren achtergrond" />
+        <div class="d-card-content">
+          <div class="d-head">
+            <div class="d-title-group">
+              <span class="d-kicker" data-i18n="showcase.colorKicker">Color</span>
+              <h3 data-i18n="showcase.colorTitle">Kleuren & highlights</h3>
+            </div>
+            <div class="d-icon"><i data-lucide="paintbrush-vertical"></i></div>
+          </div>
+          <p data-i18n="showcase.colorBody">Volledig verven, ombre, highlights of balayage voor een frisse, luxueuze uitstraling.</p>
+          <div class="d-meta">
+            <span><i class="fas fa-droplet"></i> <span data-i18n="showcase.colorMeta1">Rijke kleur</span></span>
+            <span><i class="fas fa-sun"></i> <span data-i18n="showcase.colorMeta2">Frisse look</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- â•â•â•â•â•â•â•â•â•â• OVER ONS â•â•â•â•â•â•â•â•â•â• -->
+<section class="pages-hub"><div class="container"><div class="sec-head"><span class="kicker" data-i18n="hub.kicker">Meer ontdekken</span><h2 data-i18n="hub.title">Bekijk meer in aparte pagina's</h2><div class="bar"></div><p data-i18n="hub.body">We hebben de uitgebreide informatie verplaatst naar losse pagina's zodat de homepage rustiger en duidelijker blijft.</p></div><div class="pages-grid"><a class="page-link-card" href="over-ons.html"><i class="fas fa-user-group"></i><h3 data-i18n="nav.about">Over ons</h3><p data-i18n="hub.aboutBody">Lees meer over de salon, onze stijl van werken en waarom klanten al jaren terugkomen.</p><span data-i18n="hub.aboutCta">Open pagina</span></a><a class="page-link-card" href="portfolio.html"><i class="fas fa-images"></i><h3 data-i18n="nav.portfolio">Portfolio</h3><p data-i18n="hub.portfolioBody">Bekijk een losse galerij met looks, afwerking en sfeerbeelden van het werk.</p><span data-i18n="hub.portfolioCta">Bekijk werk</span></a><a class="page-link-card" href="tarieven.html"><i class="fas fa-tags"></i><h3 data-i18n="nav.pricing">Tarieven</h3><p data-i18n="hub.pricingBody">Een duidelijk overzicht van de meest gekozen behandelingen en bijbehorende prijzen.</p><span data-i18n="hub.pricingCta">Zie prijzen</span></a><a class="page-link-card" href="reviews.html"><i class="fas fa-star"></i><h3 data-i18n="nav.reviews">Reviews</h3><p data-i18n="hub.reviewsBody">Lees wat klanten zeggen over hun ervaring, de service en het eindresultaat.</p><span data-i18n="hub.reviewsCta">Lees reviews</span></a><a class="page-link-card" href="werken-bij-ons.html"><i class="fas fa-briefcase"></i><h3 data-i18n="nav.careers">Werken bij ons</h3><p data-i18n="hub.careersBody">Bekijk vacatures, stagekansen en solliciteer via een aparte pagina.</p><span data-i18n="hub.careersCta">Bekijk kansen</span></a></div></div></section><!-- CONTACT --><section id="contact" style="background:var(--dark2);padding:100px 24px;">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="contact.kicker">Online reserveren</span>
+      <h2 data-i18n="contact.title">Boek uw afspraak</h2>
+      <div class="bar"></div>
+    </div>
+
+    <!-- Contact strip -->
+    <div class="contact-strip">
+      <div class="cstrip-item">
+        <div class="cstrip-ic"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <div class="lbl" data-i18n="contact.address">Adres</div>
+          <strong>Gedempte Nieuwesloot 81, 1811 KR Alkmaar</strong>
+        </div>
+      </div>
+      <div class="cstrip-item">
+        <div class="cstrip-ic"><i class="fas fa-phone"></i></div>
+        <div>
+          <div class="lbl" data-i18n="contact.phone">Telefoon</div>
+          <strong><a href="tel:0725127051">072 512 7051</a></strong>
+        </div>
+      </div>
+      <div class="cstrip-item">
+        <div class="cstrip-ic"><i class="fas fa-mobile-alt"></i></div>
+        <div>
+          <div class="lbl" data-i18n="contact.mobile">Mobiel</div>
+          <strong><a href="tel:0687868751">06 878 68751</a></strong>
+        </div>
+      </div>
+      <div class="cstrip-item" style="flex:2;min-width:320px;">
+        <div class="cstrip-ic"><i class="fas fa-clock"></i></div>
+        <div style="width:100%;">
+          <div class="lbl" data-i18n="contact.hours">Openingstijden</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:4px 12px;margin-top:6px;">
+            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursMonTue">Ma - Di</span><span class="day-time">11:00 - 19:00</span></div>
+            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursWed">Woensdag</span><span class="day-time">09:00 - 20:00</span></div>
+            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursThu">Donderdag</span><span class="day-time">09:00 - 21:00</span></div>
+            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursFri">Vrijdag</span><span class="day-time">09:00 - 20:00</span></div>
+            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursSat">Zaterdag</span><span class="day-time">09:00 - 18:00</span></div>
+            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursSun">Zondag</span><span class="day-time">12:00 - 18:00</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Booking knop -->
+    <div style="text-align:center;margin-top:36px;">
+      <button class="btn btn-gold" style="font-size:1rem;padding:16px 44px;" onclick="openAfspraakModal()">
+        <i class="fas fa-calendar-check" style="margin-right:10px;"></i><span data-i18n="contact.bookButton">Maak een afspraak</span>
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â• AFSPRAAK MODAL â•â•â•â•â•â•â•â•â•â• -->
+<div id="afspraak-modal" role="dialog" aria-modal="true">
+  <div class="booking-layout">
+
+      <!-- â•â• Wizard â•â• -->
+      <div class="booking-wizard">
+        <div class="wizard-header">
+          <div class="wizard-title" style="display:flex;align-items:center;justify-content:space-between;">
+            <span><i class="fas fa-calendar-check" style="color:var(--gold);margin-right:10px;"></i><span data-i18n="booking.title">Maak een afspraak</span></span>
+            <button class="wm-close" onclick="closeAfspraakModal()" data-i18n-aria-label="ui.close" aria-label="Sluiten" style="position:static;flex-shrink:0;">&#10005;</button>
+          </div>
+          <div class="step-bar">
+            <div class="step-item active" id="step-ind-1">
+              <div class="step-circle">1</div>
+              <div class="step-label" data-i18n="booking.stepTreatment">Behandeling</div>
+            </div>
+            <div class="step-item" id="step-ind-2">
+              <div class="step-circle">2</div>
+              <div class="step-label" data-i18n="booking.stepDateTime">Datum &amp; Tijd</div>
+            </div>
+            <div class="step-item" id="step-ind-3">
+              <div class="step-circle">3</div>
+              <div class="step-label" data-i18n="booking.stepDetails">Uw gegevens</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wizard-body" id="wizardBody">
+          <form id="bookForm" onsubmit="sendForm(event)">
+
+            <!-- â”&euro;â”&euro; Stap 1: Behandeling â”&euro;â”&euro; -->
+            <div class="step-panel active" id="step1">
+              <div class="cat-tabs">
+                <button type="button" class="cat-tab active" onclick="filterCat(this,'all')" data-i18n="booking.all">Alles</button>
+                <button type="button" class="cat-tab" onclick="filterCat(this,'heren')" data-i18n="booking.men">Heren</button>
+                <button type="button" class="cat-tab" onclick="filterCat(this,'dames')" data-i18n="booking.women">Dames</button>
+                <button type="button" class="cat-tab" onclick="filterCat(this,'kinderen')" data-i18n="booking.children">Kinderen</button>
+                <button type="button" class="cat-tab" onclick="filterCat(this,'beauty')" data-i18n="booking.beauty">Beauty</button>
+              </div>
+              <div class="svc-select-grid">
+                <div class="svc-card" data-cat="heren" data-service-id="men.cut" data-price="25,00" data-duration="35" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-cut"></i></div>
+                  <div class="svc-name" data-i18n="catalog.men.cut.name">Heren knippen</div>
+                  <div class="svc-detail" data-i18n="catalog.men.cut.detail">Knippen + Fohnen + Styling · 35 min</div>
+                  <div class="svc-price">&euro; 25,00</div>
+                </div>
+                <div class="svc-card" data-cat="heren" data-service-id="men.wash" data-price="27,50" data-duration="40" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-cut"></i></div>
+                  <div class="svc-name" data-i18n="catalog.men.wash.name">Heren + Wassen</div>
+                  <div class="svc-detail" data-i18n="catalog.men.wash.detail">Knippen + Wassen + Fohnen + Styling · 40 min</div>
+                  <div class="svc-price">&euro; 27,50</div>
+                </div>
+                <div class="svc-card" data-cat="heren" data-service-id="men.beard" data-price="32,50" data-duration="45" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-user-tie"></i></div>
+                  <div class="svc-name" data-i18n="catalog.men.beard.name">Heren + Baard</div>
+                  <div class="svc-detail" data-i18n="catalog.men.beard.detail">Knippen + Fohnen + Styling + Baard · 45 min</div>
+                  <div class="svc-price">&euro; 32,50</div>
+                </div>
+                <div class="svc-card" data-cat="heren" data-service-id="men.vip" data-price="50,00" data-duration="80" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-crown"></i></div>
+                  <div class="svc-name" data-i18n="catalog.men.vip.name">Heren VIP</div>
+                  <div class="svc-detail" data-i18n="catalog.men.vip.detail">Knippen + Baard + Waxen + Masker · 80 min</div>
+                  <div class="svc-price">&euro; 50,00</div>
+                </div>
+                <div class="svc-card" data-cat="dames" data-service-id="women.cut" data-price="32,50" data-duration="25" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-female"></i></div>
+                  <div class="svc-name" data-i18n="catalog.women.cut.name">Dames knippen</div>
+                  <div class="svc-detail" data-i18n="catalog.women.cut.detail">Knippen + Fohnen + Styling · 25 min</div>
+                  <div class="svc-price">&euro; 32,50</div>
+                </div>
+                <div class="svc-card" data-cat="dames" data-service-id="women.wash" data-price="37,50" data-duration="35" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-female"></i></div>
+                  <div class="svc-name" data-i18n="catalog.women.wash.name">Dames + Wassen</div>
+                  <div class="svc-detail" data-i18n="catalog.women.wash.detail">Knippen + Wassen + Fohnen + Styling · 35 min</div>
+                  <div class="svc-price">&euro; 37,50</div>
+                </div>
+                <div class="svc-card" data-cat="dames" data-service-id="women.outgrowth" data-price="55,00" data-duration="50" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-paint-brush"></i></div>
+                  <div class="svc-name" data-i18n="catalog.women.outgrowth.name">Dames kleuren</div>
+                  <div class="svc-detail" data-i18n="catalog.women.outgrowth.detail">Uitgroei kleuren + Knippen + Styling · 50 min</div>
+                  <div class="svc-price">&euro; 55,00</div>
+                </div>
+                <div class="svc-card" data-cat="kinderen" data-service-id="children.cut" data-price="25,00" data-duration="20" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-child"></i></div>
+                  <div class="svc-name" data-i18n="catalog.children.cut.name">Kinderen knippen</div>
+                  <div class="svc-detail" data-i18n="catalog.children.cut.detail">Knippen + Fohnen + Styling · 20 min</div>
+                  <div class="svc-price">&euro; 25,00</div>
+                </div>
+                <div class="svc-card" data-cat="beauty" data-service-id="beauty.facial" data-price="25,00" data-duration="35" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-spa"></i></div>
+                  <div class="svc-name" data-i18n="catalog.beauty.facial.name">Gezichtsbehandeling</div>
+                  <div class="svc-detail" data-i18n="catalog.beauty.facial.detail">Waxen + Draadje + Masker · 35 min</div>
+                  <div class="svc-price">&euro; 25,00</div>
+                </div>
+                <div class="svc-card" data-cat="beauty" data-service-id="beauty.brows" data-price="15,00" data-duration="10" onclick="selectService(this)">
+                  <i class="fas fa-check svc-check"></i>
+                  <div class="svc-icon"><i class="fas fa-eye"></i></div>
+                  <div class="svc-name" data-i18n="catalog.beauty.brows.name">Wenkbrauwen</div>
+                  <div class="svc-detail" data-i18n="catalog.beauty.brows.detail">Epileren + Dagcreme · 10 min</div>
+                  <div class="svc-price">&euro; 15,00</div>
+                </div>
+              </div>
+              <input type="hidden" id="service" name="service" />
+              <div class="step-nav">
+                <span style="font-size:.78rem;color:var(--gray);" data-i18n="booking.chooseTreatment">Kies een behandeling om door te gaan</span>
+                <div class="step-nav-right">
+                  <button type="button" class="btn btn-gold" id="toStep2Btn" onclick="goToStep(2)" disabled>
+                    <span data-i18n="booking.next">Volgende</span> &nbsp;<i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- â”&euro;â”&euro; Stap 2: Datum & Tijd â”&euro;â”&euro; -->
+            <div class="step-panel" id="step2">
+              <div class="datetime-block">
+                <div class="datetime-row">
+                  <!-- Date half -->
+                  <div class="dt-half">
+                    <div class="dt-label"><i class="fas fa-calendar-alt"></i> <span data-i18n="booking.desiredDate">Gewenste datum</span></div>
+                    <div id="calTrigger" class="cal-trigger" onclick="toggleCal()">
+                      <span id="calDisplay" data-i18n="booking.chooseDate">Kies een datum</span>
+                    </div>
+                    <div class="cal-popup" id="calPopup">
+                      <div class="cal-head">
+                        <button type="button" class="cal-nav" onclick="navCal(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <span class="cal-head-label" id="calMonthYear"></span>
+                        <button type="button" class="cal-nav" onclick="navCal(1)"><i class="fas fa-chevron-right"></i></button>
+                      </div>
+                      <div class="cal-dow">
+                        <span>Ma</span><span>Di</span><span>Wo</span><span>Do</span>
+                        <span>Vr</span><span class="cal-weekend">Za</span><span class="cal-weekend">Zo</span>
+                      </div>
+                      <div class="cal-grid" id="calGrid"></div>
+                      <div class="cal-footer">
+                        <button type="button" class="cal-clear-btn" onclick="clearCalDate()" data-i18n="booking.clear">Wissen</button>
+                        <button type="button" class="cal-today-btn" onclick="selectToday()" data-i18n="booking.today">Vandaag</button>
+                      </div>
+                    </div>
+                    <input type="hidden" id="date" name="date" />
+                  </div>
+                  <div class="dt-divider"></div>
+                  <!-- Time half -->
+                  <div class="dt-half">
+                    <div class="dt-label"><i class="fas fa-clock"></i> <span data-i18n="booking.timeSlot">Tijdslot</span></div>
+                    <div class="custom-select" id="timeSelect">
+                      <div class="cs-trigger disabled" id="csTrigger" onclick="toggleTimeSelect()">
+                        <span class="cs-val" id="csVal" data-i18n="booking.chooseDateFirst">Kies eerst een datum</span>
+                        <i class="fas fa-chevron-down cs-arrow"></i>
+                      </div>
+                      <div class="cs-dropdown" id="csDropdown"></div>
+                    </div>
+                    <div class="cs-warn" id="csWarn"><i class="fas fa-calendar-alt"></i> <span data-i18n="booking.chooseDateFirst">Kies eerst een datum</span></div>
+                  </div>
+                </div>
+              </div>
+              <input type="hidden" id="time" name="time" />
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="goToStep(1)">
+                  <i class="fas fa-arrow-left"></i> &nbsp;<span data-i18n="booking.back">Terug</span>
+                </button>
+                <div class="step-nav-right">
+                  <button type="button" class="btn btn-gold" id="toStep3Btn" onclick="goToStep(3)" disabled>
+                    <span data-i18n="booking.next">Volgende</span> &nbsp;<i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- â”&euro;â”&euro; Stap 3: Uw gegevens â”&euro;â”&euro; -->
+            <div class="step-panel" id="step3">
+              <div class="fg-row">
+                <div class="fg">
+                  <label data-i18n="booking.fullName">Volledige naam</label>
+                  <input id="name" name="name" type="text" placeholder="Uw naam" data-i18n-placeholder="booking.namePlaceholder" required />
+                </div>
+                <div class="fg">
+                  <label data-i18n="booking.phoneLabel">Telefoonnummer</label>
+                  <input id="phone" name="phone" type="tel" placeholder="06 XX XX XX XX" data-i18n-placeholder="booking.phonePlaceholder" required />
+                </div>
+              </div>
+              <div class="fg">
+                <label><span data-i18n="booking.emailLabel">E-mailadres</span> <span style="color:#333;font-weight:400;text-transform:none;" data-i18n="booking.emailOptional">(optioneel)</span></label>
+                <input id="email" name="email" type="email" placeholder="naam@email.nl" data-i18n-placeholder="booking.emailPlaceholder" />
+              </div>
+              <div class="fg">
+                <label><span data-i18n="booking.notesLabel">Opmerkingen</span> <span style="color:#333;font-weight:400;text-transform:none;" data-i18n="booking.emailOptional">(optioneel)</span></label>
+                <textarea id="notes" name="notes" placeholder="Bijzondere wensen of vragen..." data-i18n-placeholder="booking.notesPlaceholder"></textarea>
+              </div>
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="goToStep(2)">
+                  <i class="fas fa-arrow-left"></i> &nbsp;<span data-i18n="booking.back">Terug</span>
+                </button>
+                <div class="step-nav-right">
+                  <button type="submit" class="btn btn-gold" style="padding:13px 28px;">
+                    <i class="fas fa-calendar-check" style="margin-right:8px;"></i><span data-i18n="booking.confirm">Bevestigen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </form>
+
+          <!-- â”&euro;â”&euro; Succes â”&euro;â”&euro; -->
+          <div class="success-overlay" id="successOverlay">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <h3 data-i18n="booking.successTitle">Afspraak vastgelegd!</h3>
+            <p data-i18n-html="booking.successBody">Wij zien u graag op het afgesproken tijdstip.<br>Bewaar uw boekingscode als referentie.</p>
+            <div class="success-code" id="successCode">—</div>
+            <button type="button" class="btn btn-outline" style="margin-top:24px;" onclick="resetWizard()">
+              <i class="fas fa-plus" style="margin-right:6px;"></i><span data-i18n="booking.newBooking">Nieuwe afspraak</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- â•â• Summary panel â•â• -->
+      <div class="booking-summary">
+        <div class="summary-header">
+          <i class="fas fa-receipt"></i>
+          <h4 data-i18n="booking.summaryTitle">Uw reservering</h4>
+        </div>
+        <div class="summary-glance">
+          <div class="glance-item">
+            <strong>30 min</strong>
+            <span data-i18n="booking.glanceSlot">Per tijdslot</span>
+          </div>
+          <div class="glance-item">
+            <strong>3 stappen</strong>
+            <span data-i18n="booking.glanceSteps">Snel boeken</span>
+          </div>
+          <div class="glance-item">
+            <strong>Direct</strong>
+            <span data-i18n="booking.glanceOverview">Overzicht</span>
+          </div>
+        </div>
+        <div class="summary-body">
+          <div class="sum-row">
+            <span class="sum-lbl" data-i18n="booking.summaryTreatment">Behandeling</span>
+            <span class="sum-val" id="sumService" data-i18n="booking.summaryEmpty">Nog niet gekozen</span>
+          </div>
+          <div class="sum-row">
+            <span class="sum-lbl" data-i18n="booking.summaryPrice">Prijs</span>
+            <span class="sum-val gold" id="sumPrice">—</span>
+          </div>
+          <div class="sum-row">
+            <span class="sum-lbl" data-i18n="booking.summaryDate">Datum</span>
+            <span class="sum-val" id="sumDate">—</span>
+          </div>
+          <div class="sum-row">
+            <span class="sum-lbl" data-i18n="booking.summaryTime">Tijd</span>
+            <span class="sum-val" id="sumTime">—</span>
+          </div>
+          <div class="sum-row">
+            <span class="sum-lbl" data-i18n="booking.summaryDuration">Duur</span>
+            <span class="sum-val" id="sumDur">—</span>
+          </div>
+        </div>
+        <div class="sum-tip">
+          <i class="fas fa-info-circle" style="color:var(--gold);margin-right:5px;"></i>
+          <span data-i18n="booking.slotsTip">Tijdsloten per 30 min, aangepast aan uw behandeling.</span>
+        </div>
+        <div class="past-bookings">
+          <h5><i class="fas fa-history" style="margin-right:6px;"></i><span data-i18n="booking.previousBookings">Eerdere afspraken</span></h5>
+          <div id="bookingList">
+            <p class="booking-empty" data-i18n="booking.emptyBookings">Nog geen afspraken op dit apparaat.</p>
+          </div>
+        </div>
+      </div>
+
+  </div><!-- /booking-layout -->
+</div><!-- /afspraak-modal -->
+
+<!-- â•â•â•â•â•â•â•â•â•â• SOCIAL â•â•â•â•â•â•â•â•â•â• -->
+<section id="social">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="social.sectionKicker">Volg ons</span>
+      <h2 data-i18n="social.sectionTitle">Blijf op de hoogte</h2>
+      <div class="bar"></div>
+    </div>
+    <div class="social-cards">
+
+      <a href="https://www.instagram.com/magic_hairstyling072/" class="social-card instagram" target="_blank" rel="noopener noreferrer">
+        <div class="sc-icon">
+          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </div>
+        <span class="sc-name">Instagram</span>
+        <span class="sc-handle">@magic_hairstyling072</span>
+        <span class="sc-follow" data-i18n="social.instagramAction">Volgen</span>
+      </a>
+
+      <a href="https://www.facebook.com/p/barber_magic2019-100063655894767/" class="social-card facebook" target="_blank" rel="noopener noreferrer">
+        <div class="sc-icon">
+          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </div>
+        <span class="sc-name">Facebook</span>
+        <span class="sc-handle">barber_magic2019</span>
+        <span class="sc-follow" data-i18n="social.facebookAction">Liken</span>
+      </a>
+
+      <a href="https://www.tiktok.com/@magichairhu?lang=nl-NL" class="social-card tiktok" target="_blank" rel="noopener noreferrer">
+        <div class="sc-icon">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#25f4ee" d="M33.6 10.4c-1.5-1.7-2.3-3.9-2.3-6.2h-5.1v23.1l-.1 12.7c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.6 0 1.2.1 1.7.2V29c-.6-.1-1.1-.1-1.7-.1-6.1 0-11.1 5-11.1 11.1s5 11.1 11.1 11.1 11.1-5 11.1-11.1l.1-22.5c2.1 1.6 4.7 2.5 7.5 2.5V14c-1.9 0-3.7-.6-5.2-1.6z"/>
+            <path fill="#fe2c55" d="M35.2 9c-.5-.8-.9-1.7-1.2-2.6-.3-1-.5-2-.5-3.1h-4c.4 2.3 1.5 4.3 3.2 5.8.8.7 1.6 1.3 2.5 1.7V9z"/>
+            <path fill="white" d="M20.2 28.9V24c-.6-.1-1.1-.2-1.7-.2-6.1 0-11.1 5-11.1 11.1 0 3.8 1.9 7.1 4.8 9.1-1.9-2-3-4.7-3-7.7 0-5.9 4.6-10.8 10.5-11.4z"/>
+          </svg>
+        </div>
+        <span class="sc-name">TikTok</span>
+        <span class="sc-handle">@magichairhu</span>
+        <span class="sc-follow" data-i18n="social.tiktokAction">Volgen</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â• -->
+<footer id="footer">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="logo">Magic <span>Hairstyling</span></div>
+      <p data-i18n="footer.brandText">Uw vertrouwde kapsalon in het hart van Alkmaar. Al meer dan 15 jaar vakmanschap, stijl en persoonlijke aandacht.</p>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/magic_hairstyling072/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/p/barber_magic2019-100063655894767/" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@magichairhu?lang=nl-NL" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="footer.navTitle">Navigatie</h4>
+      <ul>
+        <li><a href="#hero" data-i18n="nav.home">Home</a></li>
+        <li><a href="#diensten" data-i18n="nav.services">Diensten</a></li>
+        <li><a href="over-ons.html" data-i18n="nav.about">Over ons</a></li>
+        <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
+        <li><a href="tarieven.html" data-i18n="nav.pricing">Tarieven</a></li>
+        <li><a href="reviews.html" data-i18n="nav.reviews">Reviews</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="#contact" onclick="scrollAndOpen();return false;" style="color:var(--gold);font-weight:600;" data-i18n="nav.book">Afspraak maken</a></li>
+        <li><a href="werken-bij-ons.html" class="werken-link" data-i18n="nav.careers">Werken bij ons</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="footer.servicesTitle">Diensten</h4>
+      <ul>
+        <li><a href="#diensten" data-i18n="footer.serviceCut">Knippen</a></li>
+        <li><a href="#diensten" data-i18n="footer.serviceShave">Scheren</a></li>
+        <li><a href="#diensten" data-i18n="footer.serviceTrim">Trimmen</a></li>
+        <li><a href="#diensten" data-i18n="footer.serviceStyle">Stylen</a></li>
+        <li><a href="#diensten" data-i18n="footer.serviceBeauty">Beauty behandelingen</a></li>
+        <li><a href="#diensten" data-i18n="footer.serviceColor">Kleuren</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p data-i18n-html="footer.rights">&copy; 2025 <span>Magic Hairstyling</span> &middot; Alkmaar &middot; Alle rechten voorbehouden</p>
+    <p data-i18n-html="footer.metaLine">Gedempte Nieuwesloot 81 &middot; <span>072 512 7051</span> &middot; <a href="admin.html">Admin</a></p>
+  </div>
+</footer>
+
+<!-- â•â•â•â•â•â•â•â•â•â• WERKEN BIJ MODAL â•â•â•â•â•â•â•â•â•â• -->
+<div id="werken-modal" role="dialog" aria-modal="true" aria-labelledby="wm-title">
+  <div class="wm-box">
+    <button class="wm-close" onclick="closeWerkenModal()" aria-label="Sluiten">&#10005;</button>
+
+    <!-- Intro -->
+    <div id="wm-intro">
+      <div class="wm-title" data-i18n-html="worksModal.title">Werken bij <span>Magic</span></div>
+      <p class="wm-sub" data-i18n="worksModal.subtitle">Ben jij gepassioneerd door haarstyling? Versterk ons team als medewerker of loop stage bij ons. Vul het formulier in en we nemen contact met je op.</p>
+
+      <!-- Type tabs -->
+      <div class="wm-type-tabs">
+        <button class="wm-tab active" id="tab-werk" onclick="setTab('werk')">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+          <span data-i18n="worksModal.employee">Medewerker</span>
+        </button>
+        <button class="wm-tab" id="tab-stage" onclick="setTab('stage')">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          <span data-i18n="worksModal.internship">Stage</span>
+        </button>
+      </div>
+
+      <!-- Stage info banner -->
+      <div class="wm-stage-info" id="stage-info" data-i18n-html="worksModal.stageInfo">
+        Wij bieden stageplaatsen aan voor studenten <strong>Kapper / Haarstylist</strong>. Minimale stageduur is 2 maanden. Begeleiding door een ervaren vakman.
+      </div>
+
+      <!-- Form -->
+      <form class="wm-form" id="wm-form" onsubmit="submitWerken(event)">
+        <input type="hidden" id="wm-type" value="Medewerker">
+        <div class="wm-row">
+          <div class="wm-field">
+            <label data-i18n="worksModal.firstName">Voornaam *</label>
+            <input type="text" id="wm-voornaam" placeholder="Jouw voornaam" data-i18n-placeholder="worksModal.firstNamePlaceholder" required>
+          </div>
+          <div class="wm-field">
+            <label data-i18n="worksModal.lastName">Achternaam *</label>
+            <input type="text" id="wm-achternaam" placeholder="Jouw achternaam" data-i18n-placeholder="worksModal.lastNamePlaceholder" required>
+          </div>
+        </div>
+        <div class="wm-field">
+          <label data-i18n="worksModal.email">E-mailadres *</label>
+          <input type="email" id="wm-email" placeholder="jouw@email.nl" data-i18n-placeholder="worksModal.emailPlaceholder" required>
+        </div>
+        <div class="wm-field">
+          <label data-i18n="worksModal.phone">Telefoonnummer</label>
+          <input type="tel" id="wm-tel" placeholder="+31 6 ..." data-i18n-placeholder="worksModal.phonePlaceholder">
+        </div>
+        <div class="wm-field" id="opleiding-field" style="display:none">
+          <label data-i18n="worksModal.education">Opleiding / School *</label>
+          <input type="text" id="wm-opleiding" placeholder="Bijv. ROC Noord-Holland - Kapper niveau 3" data-i18n-placeholder="worksModal.educationPlaceholder">
+        </div>
+        <div class="wm-field" id="periode-field" style="display:none">
+          <label data-i18n="worksModal.period">Gewenste stageperiode *</label>
+          <select id="wm-periode">
+            <option value="" disabled selected data-i18n="worksModal.periodPlaceholder">Kies een periode...</option>
+            <option data-i18n="worksModal.period1">September 2025 - Januari 2026</option>
+            <option data-i18n="worksModal.period2">Februari 2026 - Juni 2026</option>
+            <option data-i18n="worksModal.period3">September 2026 - Januari 2027</option>
+            <option data-i18n="worksModal.period4">Februari 2027 - Juni 2027</option>
+            <option data-i18n="worksModal.period5">Anders / In overleg</option>
+          </select>
+        </div>
+        <div class="wm-field">
+          <label data-i18n="worksModal.motivation">Ervaring / Motivatie *</label>
+          <textarea id="wm-motivatie" placeholder="Vertel iets over jezelf, je ervaring en waarom je bij ons wilt werken..." data-i18n-placeholder="worksModal.motivationPlaceholder" required></textarea>
+        </div>
+        <div class="wm-field">
+          <label data-i18n-html="worksModal.cvLabel">CV uploaden <span style="color:#555;font-weight:400;text-transform:none">(optioneel · PDF of Word)</span></label>
+          <label class="wm-upload-label" for="wm-cv">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span id="wm-cv-label" data-i18n-html="worksModal.cvUpload"><strong>Klik om te uploaden</strong> of sleep hier</span>
+          </label>
+          <input type="file" id="wm-cv" accept=".pdf,.doc,.docx" onchange="updateCvName(this)">
+          <div class="wm-cv-name" id="wm-cv-name"></div>
+        </div>
+        <button type="submit" class="wm-submit" data-i18n="worksModal.submit">Aanmelding versturen</button>
+      </form>
+    </div>
+
+    <!-- Success state -->
+    <div class="wm-success" id="wm-success">
+      <div class="wm-success-icon">&#10003;</div>
+      <div class="wm-title" style="font-size:1.2rem" data-i18n="worksModal.successTitle">Aanmelding ontvangen!</div>
+      <p style="color:var(--gray);font-size:.85rem;line-height:1.7" data-i18n-html="worksModal.successBody">Bedankt voor je interesse.<br>We nemen zo snel mogelijk contact met je op.</p>
+      <button class="wm-submit" style="width:auto;padding:12px 32px" onclick="closeWerkenModal()" data-i18n="worksModal.close">Sluiten</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating CTA -->
+<button class="fab" onclick="openAfspraakModal()">
+  <i class="fas fa-calendar-plus"></i> <span data-i18n="ui.fabAppointment">Afspraak</span>
+</button>
+
+<!-- Back to top -->
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-i18n-aria-label="ui.backToTop" aria-label="Naar boven">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- â•â•â•â•â•â•â•â•â•â• JS â•â•â•â•â•â•â•â•â•â• -->
+<script src="site-i18n.js"></script>
+<script src="booking-store.js"></script>
+<script>
+  if (window.lucide) lucide.createIcons();
+
+  /* â”&euro;â”&euro; Afspraak Modal â”&euro;â”&euro; */
+  function openAfspraakModal() {
+    document.getElementById('afspraak-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAfspraakModal() {
+    document.getElementById('afspraak-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function scrollAndOpen() {
+    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(openAfspraakModal, 700);
+  }
+  document.getElementById('afspraak-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeAfspraakModal();
+  });
+
+  /* â”&euro;â”&euro; Werken bij Modal â”&euro;â”&euro; */
+  function openWerkenModal() {
+    document.getElementById('werken-modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeWerkenModal() {
+    document.getElementById('werken-modal').classList.remove('open');
+    document.body.style.overflow = '';
+    // reset after close
+    setTimeout(() => {
+      document.getElementById('wm-success').classList.remove('show');
+      document.getElementById('wm-intro').style.display = '';
+      document.getElementById('wm-form').reset();
+      setTab('werk');
+    }, 300);
+  }
+  function setTab(type) {
+    const isStage = type === 'stage';
+    document.getElementById('tab-werk').classList.toggle('active', !isStage);
+    document.getElementById('tab-stage').classList.toggle('active', isStage);
+    document.getElementById('wm-type').value = isStage ? 'internship' : 'employee';
+    document.getElementById('stage-info').classList.toggle('show', isStage);
+    document.getElementById('opleiding-field').style.display = isStage ? '' : 'none';
+    document.getElementById('periode-field').style.display  = isStage ? '' : 'none';
+    if (isStage) {
+      document.getElementById('wm-opleiding').required = true;
+      document.getElementById('wm-periode').required   = true;
+    } else {
+      document.getElementById('wm-opleiding').required = false;
+      document.getElementById('wm-periode').required   = false;
+    }
+  }
+  function updateCvName(input) {
+    const nameEl = document.getElementById('wm-cv-name');
+    const labelEl = document.getElementById('wm-cv-label');
+    if (input.files && input.files[0]) {
+      const name = input.files[0].name;
+      nameEl.textContent = '✓ ' + name;
+      nameEl.classList.add('show');
+      labelEl.innerHTML = i18nText('worksModal.cvChosen', '<strong>Bestand gekozen</strong> - klik om te wijzigen');
+    } else {
+      nameEl.classList.remove('show');
+      labelEl.innerHTML = i18nText('worksModal.cvUpload', '<strong>Klik om te uploaden</strong> of sleep hier');
+    }
+  }
+
+  function submitWerken(e) {
+    e.preventDefault();
+    // In a real project, send data to a backend or EmailJS here
+    document.getElementById('wm-intro').style.display = 'none';
+    document.getElementById('wm-success').classList.add('show');
+  }
+  // Close on backdrop click
+  document.getElementById('werken-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeWerkenModal();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeWerkenModal(); closeAfspraakModal(); }
+  });
+
+  /* Navbar */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', scrollY > 55);
+    document.getElementById('top-btn').classList.toggle('show', scrollY > 380);
+  });
+
+  /* Mobile menu */
+  const ham = document.getElementById('ham');
+  const mobMenu = document.getElementById('mobMenu');
+  ham.addEventListener('click', () => {
+    mobMenu.classList.toggle('open');
+    ham.classList.toggle('open');
+  });
+  function closeM() {
+    mobMenu.classList.remove('open');
+    ham.classList.remove('open');
+  }
+
+  /* Hero carousel */
+  const slides = document.querySelectorAll('.slide');
+  const dots   = document.querySelectorAll('#dots span');
+  let cur = 0, timer;
+
+  function goTo(i) {
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (i + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }
+  function restart() { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 4000); }
+
+  document.getElementById('prev').addEventListener('click', () => { goTo(cur - 1); restart(); });
+  document.getElementById('next').addEventListener('click', () => { goTo(cur + 1); restart(); });
+  dots.forEach((d, i) => d.addEventListener('click', () => { goTo(i); restart(); }));
+  restart();
+
+  /* Hero swipe (touch) */
+  (function() {
+    const hero = document.getElementById('hero');
+    let tx = 0;
+    hero.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - tx;
+      if (Math.abs(dx) > 50) { goTo(dx < 0 ? cur + 1 : cur - 1); restart(); }
+    }, { passive: true });
+  })();
+
+  /* Reviews slider */
+  const revTrack = document.getElementById('revTrack');
+  const revSlides = revTrack ? Array.from(revTrack.children) : [];
+  const revDotsWrap = document.getElementById('revDots');
+  let revIndex = 0;
+  let revTimer;
+
+  function renderRevDots() {
+    if (!revDotsWrap) return;
+    revDotsWrap.innerHTML = revSlides.map((_, i) =>
+      `<button class="rev-dot ${i === revIndex ? 'active' : ''}" type="button" data-rev-dot="${i}" aria-label="Ga naar beoordeling ${i + 1}"></button>`
+    ).join('');
+    revDotsWrap.querySelectorAll('[data-rev-dot]').forEach(dot => {
+      dot.addEventListener('click', () => {
+        goToReview(Number(dot.dataset.revDot));
+        restartReviews();
+      });
+    });
+  }
+
+  function goToReview(i) {
+    if (!revTrack || !revSlides.length) return;
+    revIndex = (i + revSlides.length) % revSlides.length;
+    revTrack.style.transform = `translateX(-${revIndex * 100}%)`;
+    renderRevDots();
+  }
+
+  function restartReviews() {
+    clearInterval(revTimer);
+    revTimer = setInterval(() => goToReview(revIndex + 1), 4000);
+  }
+
+  if (revTrack && revSlides.length) {
+    document.getElementById('revPrev').addEventListener('click', () => {
+      goToReview(revIndex - 1);
+      restartReviews();
+    });
+    document.getElementById('revNext').addEventListener('click', () => {
+      goToReview(revIndex + 1);
+      restartReviews();
+    });
+
+    /* Reviews swipe (touch) */
+    let revTx = 0;
+    revTrack.addEventListener('touchstart', e => { revTx = e.touches[0].clientX; }, { passive: true });
+    revTrack.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - revTx;
+      if (Math.abs(dx) > 50) { goToReview(dx < 0 ? revIndex + 1 : revIndex - 1); restartReviews(); }
+    }, { passive: true });
+
+    renderRevDots();
+    restartReviews();
+  }
+
+  /* â•â• Booking Wizard â•â• */
+  const bookForm     = document.getElementById('bookForm');
+  const serviceField = document.getElementById('service');
+  const dateField    = document.getElementById('date');
+  const timeField    = document.getElementById('time');
+
+  let selDuration = 0, selPrice = '', selServiceId = '';
+  let bookingSuccessTimer = null;
+  const EMPTY_VALUE = '—';
+  const DEFAULT_CALENDAR_MONTHS = ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+
+  // dateField is now a hidden input â&euro;” min enforced via custom calendar
+
+  const toMin = v => { const [h,m]=v.split(':').map(Number); return h*60+m; };
+  const toTime = v => `${String(Math.floor(v/60)).padStart(2,'0')}:${String(v%60).padStart(2,'0')}`;
+  const i18nText = (key, fallback) => window.MagicI18n && typeof window.MagicI18n.t === 'function'
+    ? window.MagicI18n.t(key, null, fallback)
+    : fallback;
+  const i18nGet = (key, fallback, lang) => {
+    if (window.MagicI18n && typeof window.MagicI18n.get === 'function') {
+      const value = window.MagicI18n.get(key, lang);
+      return value === undefined ? fallback : value;
+    }
+    return fallback;
+  };
+  const activeLocale = () => window.MagicI18n && typeof window.MagicI18n.getLocale === 'function'
+    ? window.MagicI18n.getLocale()
+    : 'nl-NL';
+  const getServiceData = (serviceId, lang) => i18nGet(`catalog.${serviceId}`, null, lang);
+  const getServiceName = (serviceId, fallback) => {
+    const data = serviceId ? getServiceData(serviceId) : null;
+    return data && data.name ? data.name : (fallback || '');
+  };
+  const getServiceFull = (serviceId, lang, fallback) => {
+    const data = serviceId ? getServiceData(serviceId, lang) : null;
+    return data && data.full ? data.full : (fallback || '');
+  };
+  function formatEuro(value) {
+    if (value === null || value === undefined) return '';
+    const raw = String(value).trim();
+    if (!raw) return '';
+    const normalized = raw
+      .replaceAll('â‚¬', '')
+      .replaceAll('€', '')
+      .replaceAll('EUR', '')
+      .replace(/\s+/g, '')
+      .replace(/\./g, '')
+      .replace(',', '.');
+    const amount = Number.parseFloat(normalized);
+    if (!Number.isFinite(amount)) return raw;
+    return new Intl.NumberFormat(activeLocale(), {
+      style: 'currency',
+      currency: 'EUR',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(amount);
+  }
+  function getServiceLabel(service, serviceId) {
+    if (serviceId) {
+      const translated = getServiceName(serviceId);
+      if (translated) return translated;
+    }
+    const raw = String(service || '').trim();
+    if (!raw) return '';
+    if (raw.includes(' - ')) return raw.split(' - ').pop().trim();
+    if (raw.includes('â&euro;“')) return raw.split('â&euro;“').pop().trim();
+    return raw;
+  }
+  function formatDateLabel(value) {
+    if (!value) return EMPTY_VALUE;
+    return new Intl.DateTimeFormat(activeLocale(), { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date(`${value}T12:00:00`));
+  }
+  const fmtDate = v => v
+    ? new Intl.DateTimeFormat(activeLocale(), { weekday:'long', day:'numeric', month:'long' }).format(new Date(`${v}T12:00:00`))
+    : EMPTY_VALUE;
+
+  /* Category filter */
+  function filterCat(btn, cat) {
+    document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.svc-card').forEach(c => {
+      c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+
+  /* Select a service card */
+  function selectService(card) {
+    document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selServiceId = card.dataset.serviceId || '';
+    serviceField.value = getServiceFull(selServiceId, 'nl', selServiceId);
+    selDuration = Number(card.dataset.duration) || 0;
+    selPrice = formatEuro(card.dataset.price || '');
+    document.getElementById('toStep2Btn').disabled = false;
+    updateSummary();
+  }
+
+  /* Step navigation */
+  function goToStep(n) {
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('step' + n).classList.add('active');
+    [1,2,3].forEach(i => {
+      const el = document.getElementById('step-ind-' + i);
+      el.classList.remove('active','done');
+      if (i < n) el.classList.add('done');
+      else if (i === n) el.classList.add('active');
+    });
+    /* scroll de wizard body naar boven, niet de pagina */
+    const wb = document.getElementById('wizardBody');
+    if (wb) wb.scrollTop = 0;
+  }
+
+  /* Live summary */
+  function updateSummary() {
+    document.getElementById('sumService').textContent = selServiceId
+      ? getServiceName(selServiceId, serviceField.value)
+      : i18nText('booking.summaryEmpty', 'Nog niet gekozen');
+    document.getElementById('sumPrice').textContent   = selPrice || EMPTY_VALUE;
+    document.getElementById('sumDate').textContent    = fmtDate(dateField.value);
+    document.getElementById('sumTime').textContent    = timeField.value || EMPTY_VALUE;
+    document.getElementById('sumDur').textContent     = selDuration ? selDuration + ' min' : EMPTY_VALUE;
+  }
+
+  /* â”&euro;â”&euro; Custom time dropdown â”&euro;â”&euro; */
+  function toggleTimeSelect() {
+    const wrap  = document.getElementById('timeSelect');
+    const block = document.querySelector('.datetime-block');
+    const warn  = document.getElementById('csWarn');
+
+    // No date selected â†’ show warning
+    if (!dateField.value) {
+      warn.classList.add('show');
+      setTimeout(() => warn.classList.remove('show'), 2500);
+      return;
+    }
+
+    const opening = !wrap.classList.contains('open');
+    wrap.classList.toggle('open');
+    block.classList.toggle('ts-open', opening);
+  }
+
+  function closeTimeSelect() {
+    document.getElementById('timeSelect').classList.remove('open');
+    document.querySelector('.datetime-block').classList.remove('ts-open');
+  }
+
+  function selectTimeOpt(t, dur, el) {
+    // Update hidden input
+    timeField.value = t;
+    // Visual
+    document.querySelectorAll('.cs-option').forEach(o => o.classList.remove('active'));
+    el.classList.add('active');
+    const val = document.getElementById('csVal');
+    val.textContent = `${t} · ${dur} min`;
+    val.classList.add('picked');
+    // Close dropdown
+    closeTimeSelect();
+    // Enable next
+    document.getElementById('toStep3Btn').disabled = false;
+    updateSummary();
+  }
+
+  function populateTimeSlots() {
+    const trigger  = document.getElementById('csTrigger');
+    const dropdown = document.getElementById('csDropdown');
+    const val      = document.getElementById('csVal');
+
+    timeField.value = '';
+    document.getElementById('toStep3Btn').disabled = true;
+    closeTimeSelect();
+
+    if (!dateField.value) {
+      dropdown.innerHTML = '';
+      trigger.classList.add('disabled');
+      val.textContent = i18nText('booking.chooseDateFirst', 'Kies eerst een datum');
+      val.classList.remove('picked');
+      updateSummary(); return;
+    }
+
+    const dur = selDuration || 30;
+    const slots = BookingStore.getAvailableSlots(dateField.value, dur);
+
+    if (!slots.length) {
+      const message = BookingStore.isBlockedDate(dateField.value)
+        ? i18nText('booking.dayClosed', 'Deze dag is gesloten voor nieuwe afspraken.')
+        : i18nText('booking.noTimesDay', 'Geen tijden beschikbaar voor deze dag.');
+      dropdown.innerHTML = `<div style="padding:14px 16px;font-size:.82rem;color:var(--gray);">${message}</div>`;
+      trigger.classList.add('disabled');
+      val.textContent = i18nText('booking.noTimes', 'Geen tijden beschikbaar');
+      val.classList.remove('picked');
+      updateSummary(); return;
+    }
+
+    dropdown.innerHTML = slots.map(t => `
+      <div class="cs-option" onclick="selectTimeOpt('${t}',${dur},this)">
+        <span class="cs-t">${t}</span>
+        <span class="cs-d">${dur} min</span>
+      </div>`).join('');
+
+    trigger.classList.remove('disabled');
+    val.textContent = i18nText('booking.chooseSlot', 'Kies een tijdslot');
+    val.classList.remove('picked');
+    updateSummary();
+  }
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', e => {
+    const wrap = document.getElementById('timeSelect');
+    if (wrap && wrap.classList.contains('open') && !wrap.contains(e.target)) closeTimeSelect();
+  });
+
+  // date change now handled by pickCalDate() directly
+
+  /* LocalStorage helpers */
+  const getBookings  = () => BookingStore.getBookings();
+
+  function renderBookings() {
+    const list = document.getElementById('bookingList');
+    const bookings = getBookings();
+    if (!bookings.length) {
+      list.innerHTML = `<p class="booking-empty">${i18nText('booking.emptyBookings', 'Nog geen afspraken op dit apparaat.')}</p>`; return;
+    }
+    list.innerHTML = bookings.slice(-3).reverse().map(b => `
+      <div class="booking-item">
+        <strong>${b.name} · ${getServiceLabel(b.service, b.serviceId)}</strong>
+        <p>${fmtDate(b.date)} · ${b.time} · ${formatEuro(b.price) || EMPTY_VALUE}<br>${b.phone}</p>
+        <span class="booking-code">${i18nText('booking.code', 'Code')}: ${b.code}</span>
+      </div>`).join('');
+  }
+
+  /* Submit */
+  function sendForm(e) {
+    e.preventDefault();
+    if (!serviceField.value || !dateField.value || !timeField.value) {
+      alert(i18nText('booking.alertMissing', 'Kies een behandeling, datum en tijdslot om door te gaan.'));
+      return;
+    }
+    try {
+      const fd = new FormData(bookForm);
+      const booking = BookingStore.createBooking({
+        name: fd.get('name').trim(),
+        phone: fd.get('phone').trim(),
+        email: (fd.get('email')||'').trim(),
+        service: serviceField.value,
+        serviceId: selServiceId,
+        price: selPrice,
+        date: dateField.value,
+        time: timeField.value,
+        duration: selDuration || 30,
+        notes: (fd.get('notes')||'').trim(),
+        status: 'pending'
+      });
+      renderBookings();
+      populateTimeSlots();
+      document.getElementById('wizardBody').querySelectorAll('form').forEach(f => f.style.display = 'none');
+      const overlay = document.getElementById('successOverlay');
+      document.getElementById('successCode').textContent = booking.code;
+      overlay.classList.add('show');
+      clearTimeout(bookingSuccessTimer);
+      bookingSuccessTimer = setTimeout(() => {
+        closeAfspraakModal();
+        resetWizard();
+      }, 1800);
+    } catch (error) {
+      alert(error.message || i18nText('booking.alertGeneric', 'Er ging iets mis bij het vastleggen van de afspraak.'));
+      populateTimeSlots();
+    }
+  }
+
+  /* Reset wizard */
+  function resetWizard() {
+    clearTimeout(bookingSuccessTimer);
+    bookingSuccessTimer = null;
+    document.getElementById('successOverlay').classList.remove('show');
+    document.querySelector('#wizardBody form').style.display = '';
+    bookForm.reset();
+    serviceField.value = '';
+    selServiceId = '';
+    selDuration = 0; selPrice = '';
+    document.querySelectorAll('.svc-card').forEach(c => c.classList.remove('selected'));
+    // Reset custom dropdown
+    timeField.value = '';
+    const csVal = document.getElementById('csVal');
+    if (csVal) { csVal.textContent = i18nText('booking.chooseDateFirst', 'Kies eerst een datum'); csVal.classList.remove('picked'); }
+    const csDrop = document.getElementById('csDropdown');
+    if (csDrop) csDrop.innerHTML = '';
+    const csTrig = document.getElementById('csTrigger');
+    if (csTrig) csTrig.classList.add('disabled');
+    const csWrap = document.getElementById('timeSelect');
+    if (csWrap) csWrap.classList.remove('open');
+    document.getElementById('toStep2Btn').disabled = true;
+    document.getElementById('toStep3Btn').disabled = true;
+    goToStep(1);
+    updateSummary();
+  }
+
+  renderBookings();
+  updateSummary();
+  window.addEventListener('storage', () => {
+    renderBookings();
+    if (dateField.value) populateTimeSlots();
+  });
+  document.addEventListener('magic:languagechange', () => {
+    updateSummary();
+    renderBookings();
+    renderCal();
+    if (dateField.value) {
+      document.getElementById('calDisplay').textContent = formatDateLabel(dateField.value);
+    } else {
+      document.getElementById('calDisplay').textContent = i18nText('booking.chooseDate', 'Kies een datum');
+    }
+    if (timeField.value) {
+      document.getElementById('csVal').textContent = `${timeField.value} · ${selDuration || 30} min`;
+    } else if (dateField.value) {
+      document.getElementById('csVal').textContent = i18nText('booking.chooseSlot', 'Kies een tijdslot');
+    } else {
+      document.getElementById('csVal').textContent = i18nText('booking.chooseDateFirst', 'Kies eerst een datum');
+    }
+    const wmCv = document.getElementById('wm-cv');
+    if (wmCv && (!wmCv.files || !wmCv.files.length)) {
+      document.getElementById('wm-cv-label').innerHTML = i18nText('worksModal.cvUpload', '<strong>Klik om te uploaden</strong> of sleep hier');
+    }
+  });
+
+  /* Scroll-in animation */
+  /* â•â• Custom Calendar â•â• */
+  let calViewYear, calViewMonth, calSelectedDate = null;
+
+  function initCal() {
+    const t = new Date();
+    calViewYear  = t.getFullYear();
+    calViewMonth = t.getMonth();
+    renderCal();
+  }
+
+  function toggleCal() {
+    const popup = document.getElementById('calPopup');
+    const block = document.querySelector('.datetime-block');
+    const opening = !popup.classList.contains('open');
+    popup.classList.toggle('open');
+    block.classList.toggle('cal-open', opening);
+  }
+
+  function closeCal() {
+    document.getElementById('calPopup').classList.remove('open');
+    document.querySelector('.datetime-block').classList.remove('cal-open');
+  }
+
+  function navCal(dir) {
+    calViewMonth += dir;
+    if (calViewMonth > 11) { calViewMonth = 0; calViewYear++; }
+    if (calViewMonth < 0)  { calViewMonth = 11; calViewYear--; }
+    renderCal();
+  }
+
+  function renderCal() {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const months = i18nGet('booking.calendarMonths', DEFAULT_CALENDAR_MONTHS);
+    document.getElementById('calMonthYear').textContent =
+      `${months[calViewMonth]} ${calViewYear}`;
+
+    const grid = document.getElementById('calGrid');
+    grid.innerHTML = '';
+
+    let dow = new Date(calViewYear, calViewMonth, 1).getDay();
+    dow = (dow + 6) % 7; // Mon = 0
+
+    const daysInMonth = new Date(calViewYear, calViewMonth + 1, 0).getDate();
+
+    // Leading empty cells for day-of-week alignment
+    for (let i = 0; i < dow; i++) {
+      const empty = document.createElement('span');
+      empty.className = 'cal-day';
+      grid.appendChild(empty);
+    }
+
+    // Only current month days
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dt = new Date(calViewYear, calViewMonth, d); dt.setHours(0,0,0,0);
+      const iso = `${calViewYear}-${String(calViewMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cal-day';
+      btn.textContent = d;
+      const isPast    = dt < today;
+      const isToday   = dt.getTime() === today.getTime();
+      const isWeekend = dt.getDay() === 6 || dt.getDay() === 0;
+      const isBlocked = BookingStore.isBlockedDate(iso);
+      if (isPast || isBlocked) btn.disabled = true;
+      if (isToday)   btn.classList.add('cal-today');
+      if (isWeekend) btn.classList.add('cal-weekend');
+      if (isBlocked) btn.title = i18nText('booking.calendarClosed', 'Deze dag is gesloten');
+      if (iso === calSelectedDate) btn.classList.add('cal-selected');
+      if (!isPast && !isBlocked) btn.onclick = () => pickCalDate(iso);
+      grid.appendChild(btn);
+    }
+  }
+
+  function pickCalDate(iso) {
+    calSelectedDate = iso;
+    dateField.value = iso;
+    const trig = document.getElementById('calTrigger');
+    trig.querySelector('#calDisplay').textContent = formatDateLabel(iso);
+    trig.classList.add('has-date');
+    renderCal();
+    closeCal();
+    populateTimeSlots();
+  }
+
+  function selectToday() {
+    const t = new Date();
+    calViewYear = t.getFullYear(); calViewMonth = t.getMonth();
+    const iso = `${t.getFullYear()}-${String(t.getMonth()+1).padStart(2,'0')}-${String(t.getDate()).padStart(2,'0')}`;
+    pickCalDate(iso);
+  }
+
+  function clearCalDate() {
+    calSelectedDate = null;
+    dateField.value = '';
+    const trig = document.getElementById('calTrigger');
+    trig.querySelector('#calDisplay').textContent = i18nText('booking.chooseDate', 'Kies een datum');
+    trig.classList.remove('has-date');
+    renderCal();
+    populateTimeSlots();
+  }
+
+  document.addEventListener('click', e => {
+    const popup = document.getElementById('calPopup');
+    const trig  = document.getElementById('calTrigger');
+    if (popup && !popup.contains(e.target) && !trig.contains(e.target))
+      closeCal();
+  });
+
+  initCal();
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) { en.target.style.opacity='1'; en.target.style.transform='translateY(0)'; }
+    });
+  }, {threshold:0.1});
+  document.querySelectorAll('.d-card, .rev-card, .port-item, .price-cat, .booking-wizard').forEach(el => {
+    el.style.opacity='0'; el.style.transform='translateY(28px)';
+    el.style.transition='opacity .55s ease, transform .55s ease';
+    obs.observe(el);
+  });
+
+</script>
+</body>
+</html>
+
+
+
+

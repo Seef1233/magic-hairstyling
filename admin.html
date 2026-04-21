@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Magic Hairstyling · Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --gold:#c9a84c; --gold2:#e8c96e;
+      --gbg:rgba(201,168,76,.12); --gbd:rgba(201,168,76,.28);
+      --bg:#f5f3ee; --s1:#ffffff; --s2:#faf8f4; --s3:#f2ede5; --s4:#ebe4d9;
+      --ln:#ddd4c7; --ln2:#cec3b3;
+      --tx:#1f1a14; --tx2:#5f564a; --mu:#8a7f71; --mu2:#b7ad9f;
+      --rd:#c84c4c;  --rd-bg:rgba(200,76,76,.1);  --rd-bd:rgba(200,76,76,.2);
+      --gn:#2f9d62; --gn-bg:rgba(47,157,98,.12); --gn-bd:rgba(47,157,98,.22);
+      --or:#c78a1d; --or-bg:rgba(199,138,29,.12); --or-bd:rgba(199,138,29,.22);
+      --bl:#3f82d6; --bl-bg:rgba(63,130,214,.12);  --bl-bd:rgba(63,130,214,.22);
+      --ease:cubic-bezier(.4,0,.2,1);
+      --px:60; /* px per hour */
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);font-size:13px}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit;color:inherit}
+    button{cursor:pointer;background:none;border:none}
+    ::-webkit-scrollbar{width:4px;height:4px}
+    ::-webkit-scrollbar-thumb{background:#cabfae;border-radius:4px}
+
+    @keyframes fadeUp {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    @keyframes shake  {0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+    @keyframes fadeIn {from{opacity:0}to{opacity:1}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+
+    /* ════ LOGIN ════ */
+    .login-screen{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:var(--bg)}
+    .login-screen::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 60% 30%,rgba(201,168,76,.08),transparent)}
+    .login-box{width:min(360px,100% - 32px);animation:fadeUp .4s var(--ease) both}
+    .login-top{background:var(--s1);border:1px solid var(--ln2);border-radius:16px 16px 0 0;padding:32px 28px 24px;border-bottom:none}
+    .login-bottom{background:var(--s2);border:1px solid var(--ln2);border-radius:0 0 16px 16px;padding:20px 28px 24px}
+    .login-icon{width:40px;height:40px;border-radius:10px;margin-bottom:18px;background:var(--gbg);border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+    .login-brand{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+    .login-title{font-size:1.35rem;font-weight:900;letter-spacing:-.3px;margin-bottom:20px}
+    .pin-row{display:flex;gap:7px}
+    .pin-c{flex:1;height:48px;border-radius:9px;background:var(--s2);border:1.5px solid var(--ln2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:var(--gold);font-weight:900;transition:border-color .18s,background .18s}
+    .pin-c.on{border-color:var(--gbd);background:var(--gbg)}
+    .pin-row.shake{animation:shake .35s var(--ease)}
+    .numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
+    .nk{background:var(--s1);border:1px solid var(--ln2);border-radius:8px;padding:11px 4px;font-size:.98rem;font-weight:700;display:flex;align-items:center;justify-content:center;transition:background .12s,border-color .12s,transform .08s}
+    .nk:hover{background:var(--s3);border-color:var(--ln)}
+    .nk:active{transform:scale(.91)}
+    .nk.del{color:var(--rd)}
+    .nk.z{grid-column:2}
+    .btn-in{width:100%;padding:11px;border-radius:9px;border:none;background:linear-gradient(135deg,var(--gold),#a8782a);color:#000;font-weight:800;font-size:.8rem;letter-spacing:.5px;text-transform:uppercase;transition:filter .2s,transform .15s,box-shadow .2s;box-shadow:0 3px 14px rgba(201,168,76,.18)}
+    .btn-in:hover{filter:brightness(1.1);transform:translateY(-1px);box-shadow:0 7px 22px rgba(201,168,76,.28)}
+    .btn-in:disabled{opacity:.3;transform:none;filter:none;cursor:not-allowed;box-shadow:none}
+    .login-err{margin-top:10px;padding:8px 11px;border-radius:8px;background:var(--rd-bg);border:1px solid var(--rd-bd);color:var(--rd);font-size:.73rem;font-weight:600;display:none;align-items:center;gap:6px}
+    .login-err.on{display:flex}
+
+    /* ════ SHELL ════ */
+    .shell{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+
+    /* ════ TOP NAV ════ */
+    .topnav{
+      display:flex;align-items:center;min-height:68px;padding:12px 20px;gap:16px;flex-shrink:0;
+      background:linear-gradient(180deg, rgba(255,255,255,.96), rgba(250,248,244,.92));
+      border-bottom:1px solid var(--ln);z-index:50;
+      box-shadow:0 8px 24px rgba(93,72,38,.08);
+      backdrop-filter:blur(12px);
+    }
+    .tn-logo{display:flex;align-items:center;gap:12px;margin-right:12px;flex-shrink:0;padding-right:14px;border-right:1px solid rgba(206,195,179,.7)}
+    .tn-logo-icon{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg, rgba(201,168,76,.18), rgba(201,168,76,.08));border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;color:var(--gold);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+    .tn-logo-name{font-size:.96rem;font-weight:900;letter-spacing:-.02em;color:var(--tx)}
+    .tn-logo-tag{font-size:.58rem;font-weight:800;color:var(--gold);letter-spacing:.18em;text-transform:uppercase;margin-top:2px}
+    .tn-tabs{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+    .tn-tab{padding:9px 14px;border-radius:999px;font-size:.74rem;font-weight:700;color:var(--mu);transition:all .15s;display:flex;align-items:center;gap:7px;border:1px solid transparent}
+    .tn-tab svg{opacity:.85}
+    .tn-tab:hover{color:var(--tx);background:var(--s2);border-color:var(--ln)}
+    .tn-tab.active{color:var(--gold);background:linear-gradient(180deg, rgba(201,168,76,.14), rgba(201,168,76,.07));border-color:var(--gbd);box-shadow:0 6px 18px rgba(201,168,76,.08)}
+    .tn-badge{background:var(--gold);color:#000;font-size:.54rem;font-weight:900;border-radius:999px;padding:2px 6px;min-width:16px;text-align:center;box-shadow:0 4px 12px rgba(201,168,76,.18)}
+    .tn-right{display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+    .tn-date{font-size:.68rem;color:var(--mu);margin-right:2px;padding:0 8px}
+    .tn-btn{padding:8px 12px;border-radius:12px;border:1px solid var(--ln2);background:linear-gradient(180deg, #fff, var(--s2));font-size:.68rem;font-weight:700;color:var(--tx2);display:flex;align-items:center;gap:6px;transition:all .15s;box-shadow:0 2px 8px rgba(93,72,38,.04)}
+    .tn-btn:hover{border-color:var(--ln);color:var(--tx);transform:translateY(-1px);box-shadow:0 8px 18px rgba(93,72,38,.08)}
+    .tn-btn.logout:hover{border-color:var(--rd-bd);background:var(--rd-bg);color:var(--rd)}
+
+    /* ════ PAGE ════ */
+    .page-wrap{flex:1;overflow:hidden;display:flex;flex-direction:column}
+    .tab-view{display:none;flex:1;overflow:hidden;flex-direction:column}
+    .tab-view.active{display:flex;animation:fadeUp .2s var(--ease) both}
+    .hidden{display:none!important}
+
+    /* ════ CALENDAR ════ */
+    .cal-toolbar{
+      display:flex;align-items:center;gap:10px;padding:10px 20px;
+      border-bottom:1px solid var(--ln);flex-shrink:0;
+      background:var(--s1);
+    }
+    .cal-nav{display:flex;align-items:center;gap:4px}
+    .cal-nav-btn{
+      width:28px;height:28px;border-radius:7px;border:1px solid var(--ln2);
+      background:var(--s2);color:var(--tx2);display:flex;align-items:center;justify-content:center;
+      transition:all .15s;
+    }
+    .cal-nav-btn:hover{border-color:var(--gbd);color:var(--gold)}
+    .cal-today-btn{
+      padding:4px 12px;border-radius:7px;border:1px solid var(--gbd);
+      background:var(--gbg);color:var(--gold);font-size:.7rem;font-weight:700;
+      transition:all .15s;
+    }
+    .cal-today-btn:hover{background:rgba(201,168,76,.14)}
+    .cal-week-label{font-size:.8rem;font-weight:700;color:var(--tx);min-width:200px;text-align:center}
+
+    /* status filter chips */
+    .chips{display:flex;gap:4px;margin-left:auto}
+    .chip{border:1px solid var(--ln2);background:transparent;color:var(--mu);border-radius:999px;padding:3px 10px;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.4px;transition:all .12s;cursor:pointer}
+    .chip:hover{border-color:var(--gbd);color:var(--tx2)}
+    .chip.on{background:var(--gbg);color:var(--gold);border-color:var(--gbd)}
+
+    /* Stats mini bar */
+    .cal-stats{display:flex;gap:16px;align-items:center;padding:0 20px;height:36px;border-bottom:1px solid var(--ln);flex-shrink:0;background:var(--s1)}
+    .cstat{display:flex;align-items:center;gap:5px;font-size:.66rem;font-weight:600;color:var(--mu)}
+    .cstat-dot{width:6px;height:6px;border-radius:50%}
+    .cstat-num{font-size:.82rem;font-weight:800;color:var(--tx)}
+
+    /* Grid wrapper */
+    .cal-grid-wrap{flex:1;overflow:auto;display:flex;flex-direction:column}
+
+    /* Day header row */
+    .cal-head-row{
+      display:grid;position:sticky;top:0;z-index:20;
+      background:var(--s1);border-bottom:1px solid var(--ln);flex-shrink:0;
+    }
+    .cal-corner{width:54px;flex-shrink:0;border-right:1px solid var(--ln)}
+    .cal-day-hdr{
+      padding:8px 6px 6px;text-align:center;border-right:1px solid var(--ln);
+      cursor:pointer;transition:background .15s;
+    }
+    .cal-day-hdr:hover{background:var(--s2)}
+    .cal-day-hdr.today{background:var(--gbg)}
+    .cal-day-name{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--mu)}
+    .cal-day-num{font-size:1.2rem;font-weight:900;letter-spacing:-.5px;color:var(--tx);margin-top:1px}
+    .cal-day-hdr.today .cal-day-num{color:var(--gold)}
+    .cal-day-count{font-size:.58rem;font-weight:600;color:var(--mu);margin-top:1px}
+
+    /* Body */
+    .cal-body{display:flex;flex:1}
+    .cal-times-col{
+      width:54px;flex-shrink:0;border-right:1px solid var(--ln);
+      position:relative;
+    }
+    .cal-time-lbl{
+      position:absolute;right:8px;font-size:.6rem;color:var(--mu);
+      transform:translateY(-50%);
+    }
+
+    .cal-days-wrap{
+      flex:1;display:grid;position:relative;
+    }
+    .cal-day-col{
+      border-right:1px solid var(--ln);
+      position:relative;
+    }
+    .cal-day-col:last-child{border-right:none}
+
+    /* Hour lines */
+    .cal-hline{
+      position:absolute;left:0;right:0;border-top:1px solid var(--ln);
+      pointer-events:none;
+    }
+    .cal-hline.half{border-top-style:dashed;border-top-color:var(--mu2);opacity:.5}
+
+    /* Now line */
+    .now-line{
+      position:absolute;left:0;right:0;height:2px;
+      background:var(--rd);z-index:10;pointer-events:none;
+    }
+    .now-line::before{
+      content:'';position:absolute;left:-4px;top:-4px;
+      width:10px;height:10px;border-radius:50%;background:var(--rd);
+    }
+
+    /* Appointment block */
+    .appt-block{
+      position:absolute;left:3px;right:3px;border-radius:7px;
+      padding:5px 8px;cursor:pointer;overflow:hidden;
+      transition:filter .15s,transform .15s,box-shadow .15s;
+      z-index:5;border:none;text-align:left;
+    }
+    .appt-block:hover{filter:brightness(1.03);transform:translateY(-1px) scale(1.01);box-shadow:0 10px 26px rgba(76,57,30,.14);z-index:6}
+    .appt-block.pending {background:#fff4da;border:1px solid #efd29e;border-left:3px solid var(--or)}
+    .appt-block.approved{background:#e7f6ed;border:1px solid #b9e2c8;border-left:3px solid var(--gn)}
+    .appt-block.rejected{background:#fde9e9;border:1px solid #efbcbc;border-left:3px solid var(--rd)}
+    .appt-block.completed{background:#e8f1fe;border:1px solid #bfd3f4;border-left:3px solid var(--bl)}
+    .appt-time{font-size:.6rem;font-weight:700;opacity:.7;margin-bottom:2px}
+    .appt-name{font-size:.72rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .appt-svc{font-size:.62rem;opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
+    .pending  .appt-time,.pending  .appt-name,.pending  .appt-svc{color:#8e5f07}
+    .approved .appt-time,.approved .appt-name,.approved .appt-svc{color:#1f7a48}
+    .rejected .appt-time,.rejected .appt-name,.rejected .appt-svc{color:#a33e3e}
+    .completed .appt-time,.completed .appt-name,.completed .appt-svc{color:#2d67b3}
+
+    .cal-empty-day{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+      color:var(--mu2);font-size:.65rem;pointer-events:none;
+    }
+
+    /* ════ SETTINGS TABS ════ */
+    .settings-wrap{flex:1;overflow-y:auto;padding:20px}
+    .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .sc{background:var(--s1);border:1px solid var(--ln);border-radius:12px;overflow:hidden}
+    .sc-head{padding:12px 15px;border-bottom:1px solid var(--ln);display:flex;align-items:center;gap:9px}
+    .sc-icon{width:28px;height:28px;border-radius:7px;flex-shrink:0;background:var(--gbg);border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;color:var(--gold)}
+    .sc-head h3{font-size:.78rem;font-weight:700}
+    .sc-body{padding:14px 15px}
+    .hours-row{display:grid;grid-template-columns:42px 54px 1fr 1fr;gap:7px;align-items:center;margin-bottom:7px}
+    .hours-row span{font-size:.7rem;color:var(--mu);font-weight:700}
+    .toggle{position:relative;width:34px;height:19px}
+    .toggle input{opacity:0;width:0;height:0}
+    .tslider{position:absolute;inset:0;background:var(--ln2);border-radius:999px;cursor:pointer;transition:.25s}
+    .tslider::after{content:'';position:absolute;left:2.5px;top:2px;width:15px;height:15px;background:#fff;border-radius:50%;transition:.25s;box-shadow:0 1px 3px rgba(0,0,0,.5)}
+    .toggle input:checked+.tslider{background:var(--gold)}
+    .toggle input:checked+.tslider::after{transform:translateX(15px)}
+    .htime{background:var(--s2);border:1px solid var(--ln2);border-radius:6px;color:var(--tx);padding:5px 7px;font-size:.7rem;outline:none;width:100%;transition:border-color .12s}
+    .htime:focus{border-color:var(--gbd)}
+    .htime:disabled{opacity:.2;cursor:not-allowed}
+    .mini-list{display:flex;flex-direction:column;gap:5px;margin-top:9px}
+    .mini-row{background:var(--s2);border:1px solid var(--ln);border-radius:7px;padding:7px 11px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .mini-row strong{font-size:.73rem;display:block;margin-bottom:1px}
+    .mini-row span{font-size:.63rem;color:var(--mu)}
+    .notif{padding:7px 11px;border-radius:7px;font-size:.7rem;font-weight:600;margin-top:8px;display:none}
+    .notif.ok{background:var(--gn-bg);border:1px solid var(--gn-bd);color:var(--gn);display:flex;align-items:center;gap:6px}
+    .notif.err{background:var(--rd-bg);border:1px solid var(--rd-bd);color:var(--rd);display:flex;align-items:center;gap:6px}
+
+    /* Form */
+    .fg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+    .fg.c1{grid-template-columns:1fr}
+    .fld{display:flex;flex-direction:column;gap:3px}
+    .fld label{font-size:.59rem;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.5px}
+    .fld input,.fld select,.fld textarea{background:var(--s2);border:1px solid var(--ln2);border-radius:8px;color:var(--tx);padding:7px 10px;font-size:.78rem;outline:none;transition:border-color .12s}
+    .fld input:focus,.fld select:focus,.fld textarea:focus{border-color:var(--gbd)}
+    .fld textarea{min-height:56px;resize:vertical}
+    .fld select option{background:var(--s1)}
+
+    /* Buttons */
+    .btn{border:1px solid var(--ln2);background:var(--s2);color:var(--tx);border-radius:8px;padding:7px 13px;font-size:.73rem;font-weight:700;display:inline-flex;align-items:center;gap:5px;transition:all .13s}
+    .btn:hover{border-color:var(--ln);transform:translateY(-1px)}
+    .btn:active{transform:none}
+    .btn-gold{background:linear-gradient(135deg,var(--gold),#a8782a);color:#000;border-color:transparent;box-shadow:0 2px 10px rgba(201,168,76,.15)}
+    .btn-gold:hover{filter:brightness(1.08);box-shadow:0 5px 18px rgba(201,168,76,.28)}
+    .btn-danger{background:var(--rd-bg);border-color:var(--rd-bd);color:#ff9999}
+    .btn-danger:hover{background:rgba(255,85,85,.14)}
+    .btn-sm{padding:4px 9px;font-size:.66rem}
+
+    /* ════ MODAL ════ */
+    .modal-backdrop{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:16px;animation:fadeIn .2s var(--ease) both}
+    .modal{background:var(--s1);border:1px solid var(--ln2);border-radius:18px;width:min(540px,100%);max-height:calc(100vh - 40px);overflow-y:auto;box-shadow:0 28px 70px rgba(76,57,30,.18);animation:slideUp .25s var(--ease) both}
+    .modal-head{padding:16px 18px 12px;border-bottom:1px solid var(--ln);display:flex;align-items:center;justify-content:space-between;gap:12px;position:sticky;top:0;background:var(--s1);z-index:1;border-radius:18px 18px 0 0}
+    .modal-av{width:40px;height:40px;border-radius:10px;flex-shrink:0;background:var(--gbg);border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:900;color:var(--gold)}
+    .modal-name{font-size:.9rem;font-weight:800;letter-spacing:-.2px}
+    .modal-code{font-size:.62rem;color:var(--mu);font-family:monospace;background:var(--s2);border:1px solid var(--ln2);padding:2px 7px;border-radius:4px;display:inline-block;margin-top:2px}
+    .modal-close{width:28px;height:28px;border-radius:7px;border:1px solid var(--ln2);background:var(--s2);color:var(--mu);display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0}
+    .modal-close:hover{border-color:var(--rd-bd);background:var(--rd-bg);color:var(--rd)}
+    .modal-body{padding:14px 18px 18px}
+    .badge{display:inline-flex;align-items:center;gap:3px;border-radius:999px;padding:2px 8px;font-size:.59rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;border:1px solid transparent}
+    .badge::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0}
+    .status-pending {background:var(--or-bg);color:#8e5f07;border-color:var(--or-bd)} .status-pending::before{background:var(--or)}
+    .status-approved{background:var(--gn-bg);color:#1f7a48;border-color:var(--gn-bd)} .status-approved::before{background:var(--gn)}
+    .status-rejected{background:var(--rd-bg);color:#a33e3e;border-color:var(--rd-bd)} .status-rejected::before{background:var(--rd)}
+    .status-completed{background:var(--bl-bg);color:#2d67b3;border-color:var(--bl-bd)} .status-completed::before{background:var(--bl)}
+    .qact{display:flex;gap:6px;margin-bottom:12px}
+    .qa{flex:1;padding:7px 4px;border-radius:8px;border:1px solid var(--ln2);background:var(--s2);color:var(--mu);font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.3px;transition:all .13s}
+    .qa:hover{color:var(--tx2)}
+    .qa.approve:hover,.qa.approve.on{background:var(--gn-bg);border-color:var(--gn-bd);color:var(--gn)}
+    .qa.reject:hover, .qa.reject.on {background:var(--rd-bg);border-color:var(--rd-bd);color:var(--rd)}
+    .qa.done:hover,   .qa.done.on   {background:var(--bl-bg);border-color:var(--bl-bd);color:var(--bl)}
+    .modal-meta{font-size:.62rem;color:var(--mu2);margin-bottom:10px;line-height:1.6}
+    .modal-actions{display:flex;gap:7px;padding-top:10px;border-top:1px solid var(--ln)}
+
+    @media(max-width:860px){
+      .topnav{padding:10px 14px;align-items:flex-start}
+      .tn-logo{border-right:none;padding-right:0;margin-right:0}
+      .tn-tabs{width:100%}
+      .tn-right{width:100%;justify-content:flex-start}
+      .settings-grid{grid-template-columns:1fr}
+      .cal-day-name{display:none}
+    }
+    @media(max-width:600px){
+      .fg{grid-template-columns:1fr}
+      .chips{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════ LOGIN ════ -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-top">
+      <div class="login-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="login-brand">Magic Hairstyling</div>
+      <div class="login-title">Beheerderspaneel</div>
+      <div class="pin-row" id="pinRow">
+        <div class="pin-c" id="d0">·</div><div class="pin-c" id="d1">·</div>
+        <div class="pin-c" id="d2">·</div><div class="pin-c" id="d3">·</div>
+      </div>
+    </div>
+    <div class="login-bottom">
+      <div class="numpad">
+        <button class="nk" data-n="1">1</button><button class="nk" data-n="2">2</button><button class="nk" data-n="3">3</button>
+        <button class="nk" data-n="4">4</button><button class="nk" data-n="5">5</button><button class="nk" data-n="6">6</button>
+        <button class="nk" data-n="7">7</button><button class="nk" data-n="8">8</button><button class="nk" data-n="9">9</button>
+        <button class="nk del" data-n="del"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg></button>
+        <button class="nk z" data-n="0">0</button>
+      </div>
+      <button class="btn-in" id="loginBtn" disabled>Inloggen</button>
+      <div class="login-err" id="loginErr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg><span id="loginErrTxt"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ APP ════ -->
+<div class="shell hidden" id="appShell">
+
+  <!-- TOP NAV -->
+  <header class="topnav">
+    <div class="tn-logo">
+      <div class="tn-logo-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div><div class="tn-logo-name">Magic Hairstyling</div><div class="tn-logo-tag">Admin</div></div>
+    </div>
+    <nav class="tn-tabs">
+      <button class="tn-tab active" data-tab="bookings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Agenda
+        <span class="tn-badge" id="pendingCount" style="display:none">0</span>
+      </button>
+      <button class="tn-tab" data-tab="availability">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Beschikbaarheid
+      </button>
+      <button class="tn-tab" data-tab="security">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Beveiliging
+      </button>
+    </nav>
+    <div class="tn-right">
+      <span class="tn-date" id="topbarDate"></span>
+      <button class="tn-btn" id="refreshBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Vernieuwen</button>
+      <a class="tn-btn" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Website</a>
+      <button class="tn-btn logout" id="logoutBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Uitloggen</button>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+
+    <!-- ── AGENDA (Calendar) ── -->
+    <div class="tab-view active" id="tab-bookings">
+
+      <!-- Toolbar -->
+      <div class="cal-toolbar">
+        <div class="cal-nav">
+          <button class="cal-nav-btn" id="prevWeek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <button class="cal-today-btn" id="todayBtn">Vandaag</button>
+          <button class="cal-nav-btn" id="nextWeek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+        <span class="cal-week-label" id="weekLabel"></span>
+        <div class="chips" id="statusFilters"></div>
+      </div>
+
+      <!-- Stats mini -->
+      <div class="cal-stats" id="calStats"></div>
+
+      <!-- Calendar grid (built by JS) -->
+      <div class="cal-grid-wrap" id="calGridWrap"></div>
+
+    </div>
+
+    <!-- ── BESCHIKBAARHEID ── -->
+    <div class="tab-view" id="tab-availability">
+      <div class="settings-wrap">
+        <div class="settings-grid">
+          <div class="sc">
+            <div class="sc-head"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h3>Wekelijkse openingstijden</h3></div>
+            <div class="sc-body"><form id="hoursForm"></form><button class="btn btn-gold" id="saveHoursBtn" style="margin-top:12px;width:100%;justify-content:center">Opslaan</button><div class="notif" id="hoursNotif"></div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="sc">
+              <div class="sc-head"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="16" x2="15" y2="16"/></svg></div><h3>Hele dag sluiten</h3></div>
+              <div class="sc-body"><div style="display:flex;gap:7px;align-items:flex-end"><div class="fld" style="flex:1"><label>Datum</label><input id="blockedDateInput" type="date"/></div><button class="btn btn-gold btn-sm" id="addBlockedDateBtn">Blokkeren</button></div><div class="mini-list" id="blockedDatesList"></div></div>
+            </div>
+            <div class="sc">
+              <div class="sc-head"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><h3>Tijdslot blokkeren</h3></div>
+              <div class="sc-body">
+                <div class="fg"><div class="fld"><label>Datum</label><input id="slotDateInput" type="date"/></div><div class="fld"><label>Starttijd</label><input id="slotTimeInput" type="time" step="1800"/></div><div class="fld"><label>Duur (min)</label><input id="slotDurationInput" type="number" min="30" step="30" value="30"/></div><div class="fld"><label>Reden</label><input id="slotReasonInput" type="text" placeholder="Lunch, vakantie…"/></div></div>
+                <button class="btn btn-gold btn-sm" id="addBlockedSlotBtn">Blokkeren</button>
+                <div class="mini-list" id="blockedSlotsList"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BEVEILIGING ── -->
+    <div class="tab-view" id="tab-security">
+      <div class="settings-wrap">
+        <div class="settings-grid">
+          <div class="sc">
+            <div class="sc-head"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>Pincode wijzigen</h3></div>
+            <div class="sc-body">
+              <p style="font-size:.72rem;color:var(--mu);line-height:1.6;margin-bottom:12px">Kies een nieuwe pincode. Laat leeg om de huidige te bewaren.</p>
+              <div class="fld" style="margin-bottom:8px"><label>Nieuwe pincode</label><input id="newPinInput" type="password" inputmode="numeric" placeholder="••••"/></div>
+              <div class="fld" style="margin-bottom:12px"><label>Bevestig pincode</label><input id="confirmPinInput" type="password" inputmode="numeric" placeholder="••••"/></div>
+              <button class="btn btn-gold" id="savePinBtn" style="width:100%;justify-content:center">Opslaan</button>
+              <div class="notif" id="pinNotif"></div>
+            </div>
+          </div>
+          <div class="sc">
+            <div class="sc-head"><div class="sc-icon" style="background:var(--rd-bg);border-color:var(--rd-bd);color:var(--rd)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg></div><h3>Gegevens wissen</h3></div>
+            <div class="sc-body">
+              <p style="font-size:.72rem;color:var(--mu);line-height:1.6;margin-bottom:12px">Verwijder alle afspraken permanent. <strong style="color:var(--rd)">Niet ongedaan</strong> te maken.</p>
+              <button class="btn btn-danger" id="clearAllBtn" style="width:100%;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>Alle afspraken wissen</button>
+              <div class="notif" id="clearNotif"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ MODAL ════ -->
+<div class="modal-backdrop hidden" id="modalBackdrop">
+  <div class="modal">
+    <div class="modal-head">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="modal-av" id="modalAv"></div>
+        <div><div class="modal-name" id="modalName"></div><div class="modal-code" id="modalCode"></div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div id="modalBadge"></div>
+        <button class="modal-close" id="modalClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      </div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script src="booking-store.js"></script>
+<script>
+  /* ── Constants ── */
+  const DAY_ORDER  = [1,2,3,4,5,6,0];
+  const DAY_LABELS = {0:'Zo',1:'Ma',2:'Di',3:'Wo',4:'Do',5:'Vr',6:'Za'};
+  const DAY_FULL   = {0:'Zondag',1:'Maandag',2:'Dinsdag',3:'Woensdag',4:'Donderdag',5:'Vrijdag',6:'Zaterdag'};
+  const SL = {all:'Alle',pending:'Afwachting',approved:'Goedgekeurd',rejected:'Geweigerd',completed:'Afgerond'};
+
+  /* Calendar config */
+  const CAL_START = 8;   /* first hour shown */
+  const CAL_END   = 21;  /* last hour (exclusive) */
+  const PX_PER_HR = 64;  /* pixels per hour */
+  const PX_PER_MIN = PX_PER_HR / 60;
+
+  const state = {
+    loggedIn: sessionStorage.getItem('magic-admin-auth')==='true',
+    status:'all', pin:'',
+    weekStart: getMonday(new Date())
+  };
+
+  /* DOM */
+  const loginScreen  = document.getElementById('loginScreen');
+  const appShell     = document.getElementById('appShell');
+  const loginErr     = document.getElementById('loginErr');
+  const loginErrTxt  = document.getElementById('loginErrTxt');
+  const loginBtn     = document.getElementById('loginBtn');
+  const calGridWrap  = document.getElementById('calGridWrap');
+  const statusFilters= document.getElementById('statusFilters');
+  const pendingCount = document.getElementById('pendingCount');
+  const calStats     = document.getElementById('calStats');
+  const hoursForm    = document.getElementById('hoursForm');
+  const blockedDatesList = document.getElementById('blockedDatesList');
+  const blockedSlotsList = document.getElementById('blockedSlotsList');
+  const modalBackdrop= document.getElementById('modalBackdrop');
+
+  /* Helpers */
+  function getMonday(d){
+    const dt=new Date(d); dt.setHours(12,0,0,0);
+    const day=dt.getDay(); const diff=day===0?-6:1-day;
+    dt.setDate(dt.getDate()+diff); return dt;
+  }
+  function dateStr(d){ return d.toISOString().slice(0,10); }
+  function addDays(d,n){ const r=new Date(d); r.setDate(r.getDate()+n); return r; }
+  function fmtShort(d){ return new Intl.DateTimeFormat('nl-NL',{day:'numeric',month:'short'}).format(d); }
+  function fmtFull(d){ return new Intl.DateTimeFormat('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(d); }
+  function esc(v){ return String(v||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function escA(v){ return esc(v).replace(/'/g,'&#39;'); }
+  function opt(val,lbl,cur){ return '<option value="'+val+'" '+(val===cur?'selected':'')+'>'+lbl+'</option>'; }
+  function badge(s){ return '<span class="badge status-'+s+'">'+SL[s]+'</span>'; }
+  function initials(name){ return (name||'?').trim().split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase(); }
+  function timeToMin(t){ if(!t)return 0; const [h,m]=t.split(':').map(Number); return h*60+m; }
+  function notif(id,msg,type){
+    const el=document.getElementById(id);if(!el)return;
+    el.className='notif '+(type==='success'?'ok':'err');
+    el.innerHTML=(type==='success'
+      ?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="20 6 9 17 4 12"/></svg>'
+      :'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>')+msg;
+    setTimeout(()=>{el.className='notif';},3500);
+  }
+
+  /* PIN */
+  document.querySelectorAll('[data-n]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const n=btn.dataset.n;
+      if(n==='del') state.pin=state.pin.slice(0,-1);
+      else if(state.pin.length<4) state.pin+=n;
+      updatePinUI();
+    });
+  });
+  document.addEventListener('keydown',e=>{
+    if(!loginScreen.classList.contains('hidden')){
+      if(/^[0-9]$/.test(e.key)&&state.pin.length<4){state.pin+=e.key;updatePinUI();}
+      if(e.key==='Backspace'){state.pin=state.pin.slice(0,-1);updatePinUI();}
+      if(e.key==='Enter'&&state.pin.length===4) doLogin();
+    }
+    if(e.key==='Escape') closeModal();
+  });
+  function updatePinUI(){
+    for(let i=0;i<4;i++){
+      const c=document.getElementById('d'+i);
+      if(i<state.pin.length){c.textContent='●';c.classList.add('on');}
+      else{c.textContent='·';c.classList.remove('on');}
+    }
+    loginBtn.disabled=state.pin.length!==4;
+    loginErr.classList.remove('on');
+  }
+  loginBtn.addEventListener('click',doLogin);
+  function doLogin(){
+    if(state.pin!==BookingStore.getSettings().adminPin){
+      loginErrTxt.textContent='Onjuiste pincode. Probeer opnieuw.';
+      loginErr.classList.add('on');
+      const pr=document.getElementById('pinRow');
+      pr.classList.add('shake'); setTimeout(()=>pr.classList.remove('shake'),400);
+      state.pin=''; updatePinUI(); return;
+    }
+    loginErr.classList.remove('on');
+    sessionStorage.setItem('magic-admin-auth','true');
+    state.loggedIn=true; boot();
+  }
+
+  /* Tabs */
+  document.querySelectorAll('[data-tab]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('[data-tab]').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-view').forEach(v=>v.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  /* Week nav */
+  document.getElementById('prevWeek').addEventListener('click',()=>{ state.weekStart=addDays(state.weekStart,-7); renderCalendar(); });
+  document.getElementById('nextWeek').addEventListener('click',()=>{ state.weekStart=addDays(state.weekStart,7);  renderCalendar(); });
+  document.getElementById('todayBtn').addEventListener('click', ()=>{ state.weekStart=getMonday(new Date());        renderCalendar(); });
+
+  /* Filters */
+  function renderFilters(){
+    statusFilters.innerHTML=['all','pending','approved','rejected','completed'].map(s=>
+      '<button class="chip '+(state.status===s?'on':'')+'" data-status="'+s+'">'+SL[s]+'</button>'
+    ).join('');
+    statusFilters.querySelectorAll('[data-status]').forEach(b=>{
+      b.addEventListener('click',()=>{state.status=b.dataset.status; renderCalendar();});
+    });
+  }
+
+  /* Stats */
+  function renderStats(){
+    const all=BookingStore.getBookings();
+    const today=new Date().toISOString().slice(0,10);
+    const p=all.filter(b=>b.status==='pending').length;
+    pendingCount.textContent=p; pendingCount.style.display=p?'':'none';
+    calStats.innerHTML=[
+      {n:all.length,                                   lbl:'Totaal',      dot:'var(--gold)'},
+      {n:p,                                             lbl:'Afwachting',  dot:'var(--or)'},
+      {n:all.filter(b=>b.status==='approved').length,  lbl:'Goedgekeurd', dot:'var(--gn)'},
+      {n:all.filter(b=>b.date===today).length,         lbl:'Vandaag',     dot:'var(--bl)'},
+    ].map(it=>'<div class="cstat"><div class="cstat-dot" style="background:'+it.dot+'"></div><div class="cstat-num">'+it.n+'</div><div>'+it.lbl+'</div></div>').join('');
+  }
+
+  /* ── CALENDAR RENDER ── */
+  function renderCalendar(){
+    renderFilters();
+    renderStats();
+
+    const today     = dateStr(new Date());
+    const days      = Array.from({length:7},(_,i)=>addDays(state.weekStart,i));
+    const totalH    = (CAL_END - CAL_START) * PX_PER_HR;
+    const allBooks  = BookingStore.getBookings();
+
+    /* Week label */
+    document.getElementById('weekLabel').textContent =
+      fmtShort(days[0]) + ' – ' + fmtShort(days[6]) + ' ' + days[0].getFullYear();
+
+    /* Filter bookings */
+    const filtered = allBooks.filter(b=>state.status==='all'||b.status===state.status);
+
+    /* Group by date */
+    const byDate={};
+    filtered.forEach(b=>{ (byDate[b.date]=byDate[b.date]||[]).push(b); });
+
+    /* Build hour labels */
+    let timesHtml='';
+    for(let h=CAL_START;h<=CAL_END;h++){
+      const top=(h-CAL_START)*PX_PER_HR;
+      timesHtml+=`<div class="cal-time-lbl" style="top:${top}px">${String(h).padStart(2,'0')}:00</div>`;
+    }
+
+    /* Build day columns */
+    let daysHtml='';
+    days.forEach(day=>{
+      const ds=dateStr(day);
+      const isToday=ds===today;
+      const dayBooks=(byDate[ds]||[]).sort((a,b)=>a.time.localeCompare(b.time));
+
+      /* Hour/half lines */
+      let linesHtml='';
+      for(let h=CAL_START;h<CAL_END;h++){
+        const topH=(h-CAL_START)*PX_PER_HR;
+        const topHalf=topH+PX_PER_HR/2;
+        linesHtml+=`<div class="cal-hline" style="top:${topH}px"></div>`;
+        linesHtml+=`<div class="cal-hline half" style="top:${topHalf}px"></div>`;
+      }
+
+      /* Now line (only today) */
+      let nowHtml='';
+      if(isToday){
+        const now=new Date();
+        const nowMin=(now.getHours()-CAL_START)*60+now.getMinutes();
+        if(nowMin>=0&&nowMin<=(CAL_END-CAL_START)*60){
+          nowHtml=`<div class="now-line" style="top:${nowMin*PX_PER_MIN}px"></div>`;
+        }
+      }
+
+      /* Appointment blocks — simple overlap handling */
+      const blocks=dayBooks.map(b=>{
+        const startMin=timeToMin(b.time)-CAL_START*60;
+        const dur=b.duration||30;
+        const top=Math.max(0,startMin*PX_PER_MIN);
+        const height=Math.max(dur*PX_PER_MIN,28);
+        const init=initials(b.name);
+        const endH=Math.floor((timeToMin(b.time)+dur)/60);
+        const endM=(timeToMin(b.time)+dur)%60;
+        const endStr=`${String(endH).padStart(2,'0')}:${String(endM).padStart(2,'0')}`;
+        return {b,top,height,startMin,dur,init,endStr};
+      });
+
+      /* Simple overlap columns */
+      blocks.forEach((bl,i)=>{
+        bl.col=0; bl.cols=1;
+        for(let j=0;j<i;j++){
+          const prev=blocks[j];
+          if(bl.startMin<prev.startMin+prev.dur && bl.startMin+bl.dur>prev.startMin){
+            bl.col=prev.col+1;
+            bl.cols=Math.max(bl.cols,bl.col+1);
+            prev.cols=Math.max(prev.cols,bl.col+1);
+          }
+        }
+      });
+
+      const blocksHtml=blocks.map(({b,top,height,init,endStr,col,cols})=>{
+        const pct=100/cols;
+        const left=col*pct;
+        return `<button class="appt-block ${b.status}" data-id="${b.id}"
+          style="top:${top}px;height:${height}px;left:calc(${left}% + 3px);width:calc(${pct}% - 6px)">
+          <div class="appt-time">${esc(b.time)} – ${endStr}</div>
+          <div class="appt-name">${esc(b.name||'–')}</div>
+          ${height>44?`<div class="appt-svc">${esc(b.service||'')}</div>`:''}
+        </button>`;
+      }).join('');
+
+      daysHtml+=`<div class="cal-day-col" style="min-height:${totalH}px">
+        ${linesHtml}${nowHtml}${blocksHtml}
+        ${!dayBooks.length?'<div class="cal-empty-day"></div>':''}
+      </div>`;
+    });
+
+    /* Day header row */
+    const headerCols=days.map(day=>{
+      const ds=dateStr(day);
+      const isToday=ds===today;
+      const cnt=(byDate[ds]||[]).length;
+      const wd=day.getDay();
+      return `<div class="cal-day-hdr${isToday?' today':''}" data-date="${ds}">
+        <div class="cal-day-name">${DAY_FULL[wd]}</div>
+        <div class="cal-day-num">${day.getDate()}</div>
+        <div class="cal-day-count">${cnt?cnt+' afspraak':'–'}</div>
+      </div>`;
+    }).join('');
+
+    /* Assemble */
+    const colsTemplate=`54px repeat(7,1fr)`;
+    calGridWrap.innerHTML=`
+      <div class="cal-head-row" style="display:grid;grid-template-columns:${colsTemplate}">
+        <div class="cal-corner"></div>
+        ${headerCols}
+      </div>
+      <div class="cal-body" style="flex:1">
+        <div class="cal-times-col" style="min-height:${totalH}px">${timesHtml}</div>
+        <div class="cal-days-wrap" style="display:grid;grid-template-columns:repeat(7,1fr)">
+          ${daysHtml}
+        </div>
+      </div>`;
+
+    /* Events */
+    calGridWrap.querySelectorAll('.appt-block').forEach(el=>{
+      el.addEventListener('click',()=>openModal(el.dataset.id));
+    });
+  }
+
+  /* Modal */
+  function openModal(id){
+    const b=BookingStore.getBookings().find(x=>x.id===id);
+    if(!b)return;
+    const init=initials(b.name);
+    document.getElementById('modalAv').textContent=init;
+    document.getElementById('modalName').textContent=b.name||'–';
+    document.getElementById('modalCode').textContent=b.code||'–';
+    document.getElementById('modalBadge').innerHTML=badge(b.status);
+    document.getElementById('modalBody').innerHTML=
+      '<div class="qact">'
+        +'<button class="qa approve'+(b.status==='approved'?' on':'')+'" id="approveBtn">✓ Goedkeuren</button>'
+        +'<button class="qa reject'+(b.status==='rejected'?' on':'')+'" id="rejectBtn">✕ Weigeren</button>'
+        +'<button class="qa done'+(b.status==='completed'?' on':'')+'" id="completeBtn">✓ Afgerond</button>'
+      +'</div>'
+      +'<form id="editorForm">'
+        +'<div class="fg">'
+          +'<div class="fld"><label>Naam</label><input name="name" value="'+escA(b.name)+'" required></div>'
+          +'<div class="fld"><label>Telefoon</label><input name="phone" value="'+escA(b.phone)+'" required></div>'
+          +'<div class="fld"><label>E-mail</label><input name="email" type="email" value="'+escA(b.email||'')+'"></div>'
+          +'<div class="fld"><label>Status</label><select name="status">'+opt('pending','In afwachting',b.status)+opt('approved','Goedgekeurd',b.status)+opt('rejected','Geweigerd',b.status)+opt('completed','Afgerond',b.status)+'</select></div>'
+          +'<div class="fld"><label>Datum</label><input name="date" type="date" value="'+escA(b.date)+'" required></div>'
+          +'<div class="fld"><label>Tijd</label><input name="time" type="time" step="1800" value="'+escA(b.time)+'" required></div>'
+          +'<div class="fld"><label>Duur (min)</label><input name="duration" type="number" min="10" step="5" value="'+(b.duration||30)+'" required></div>'
+          +'<div class="fld"><label>Prijs</label><input name="price" value="'+escA(b.price||'')+'"></div>'
+        +'</div>'
+        +'<div class="fg c1">'
+          +'<div class="fld"><label>Behandeling</label><input name="service" value="'+escA(b.service)+'" required></div>'
+          +'<div class="fld"><label>Opmerkingen</label><textarea name="notes">'+esc(b.notes||'')+'</textarea></div>'
+        +'</div>'
+        +'<div class="modal-meta">Aangemaakt: '+new Date(b.createdAt).toLocaleString('nl-NL')+'</div>'
+        +'<div class="modal-actions">'
+          +'<button class="btn btn-gold" type="submit" style="flex:1;justify-content:center">'
+            +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>'
+            +'Opslaan'
+          +'</button>'
+          +'<button class="btn btn-danger" type="button" id="deleteBtn">'
+            +'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>Wissen'
+          +'</button>'
+        +'</div>'
+      +'</form>';
+
+    modalBackdrop.classList.remove('hidden');
+    document.body.style.overflow='hidden';
+
+    document.getElementById('editorForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const fd=new FormData(e.target);
+      try{
+        BookingStore.updateBooking(b.id,{
+          name:fd.get('name'),phone:fd.get('phone'),email:fd.get('email'),
+          service:fd.get('service'),status:fd.get('status'),date:fd.get('date'),
+          time:fd.get('time'),duration:Number(fd.get('duration')),
+          price:fd.get('price'),notes:fd.get('notes')
+        });
+        closeModal(); refreshAll();
+      }catch(err){alert(err.message||'Opslaan mislukt.');}
+    });
+    document.getElementById('approveBtn').addEventListener('click', ()=>{quickStatus(b.id,'approved'); closeModal();});
+    document.getElementById('rejectBtn').addEventListener('click',  ()=>{quickStatus(b.id,'rejected'); closeModal();});
+    document.getElementById('completeBtn').addEventListener('click',()=>{quickStatus(b.id,'completed');closeModal();});
+    document.getElementById('deleteBtn').addEventListener('click',()=>{
+      if(!confirm('Afspraak definitief verwijderen?'))return;
+      try{BookingStore.deleteBooking(b.id);closeModal();refreshAll();}catch(err){alert(err.message);}
+    });
+  }
+
+  function closeModal(){
+    modalBackdrop.classList.add('hidden');
+    document.body.style.overflow='';
+  }
+  document.getElementById('modalClose').addEventListener('click',closeModal);
+  modalBackdrop.addEventListener('click',e=>{if(e.target===modalBackdrop)closeModal();});
+
+  function quickStatus(id,status){
+    try{BookingStore.setBookingStatus(id,status);refreshAll();}catch(err){alert(err.message);}
+  }
+
+  /* Hours */
+  function renderHours(){
+    const s=BookingStore.getSettings();
+    hoursForm.innerHTML=DAY_ORDER.map(day=>{
+      const h=s.weeklyHours[String(day)]||['',''];
+      const closed=!h[0]||!h[1];
+      return '<div class="hours-row"><span>'+DAY_LABELS[day]+'</span>'
+        +'<label class="toggle"><input type="checkbox" data-day-open="'+day+'" '+((!closed)?'checked':'')+'/><span class="tslider"></span></label>'
+        +'<input class="htime" type="time" data-day-start="'+day+'" value="'+escA(h[0]||'')+'" '+(closed?'disabled':'')+'>'
+        +'<input class="htime" type="time" data-day-end="'+day+'" value="'+escA(h[1]||'')+'" '+(closed?'disabled':'')+'></div>';
+    }).join('');
+    hoursForm.querySelectorAll('[data-day-open]').forEach(t=>{
+      t.addEventListener('change',()=>{
+        const d=t.dataset.dayOpen;
+        hoursForm.querySelector('[data-day-start="'+d+'"]').disabled=!t.checked;
+        hoursForm.querySelector('[data-day-end="'+d+'"]').disabled=!t.checked;
+      });
+    });
+  }
+
+  function renderBlockedDates(){
+    const dates=BookingStore.getSettings().blockedDates;
+    const fmt=d=>new Intl.DateTimeFormat('nl-NL',{weekday:'short',day:'numeric',month:'short'}).format(new Date(d+'T12:00:00'));
+    blockedDatesList.innerHTML=dates.length?dates.map(d=>
+      '<div class="mini-row"><div><strong>'+fmt(d)+'</strong><span>Hele dag gesloten</span></div>'
+      +'<button class="btn btn-sm" data-unblock-date="'+d+'">Openen</button></div>'
+    ).join(''):'<p style="font-size:.68rem;color:var(--mu);margin-top:8px">Geen gesloten dagen.</p>';
+    blockedDatesList.querySelectorAll('[data-unblock-date]').forEach(b=>{
+      b.addEventListener('click',()=>{BookingStore.unblockDate(b.dataset.unblockDate);refreshAll();});
+    });
+  }
+
+  function renderBlockedSlots(){
+    const slots=BookingStore.getSettings().blockedSlots;
+    const fmt=d=>new Intl.DateTimeFormat('nl-NL',{weekday:'short',day:'numeric',month:'short'}).format(new Date(d+'T12:00:00'));
+    blockedSlotsList.innerHTML=slots.length?slots.map(s=>
+      '<div class="mini-row"><div><strong>'+fmt(s.date)+' · '+esc(s.time)+'</strong><span>'+(s.duration||30)+' min · '+esc(s.reason||'Gesloten')+'</span></div>'
+      +'<button class="btn btn-sm btn-danger" data-unblock-slot="'+s.id+'">Wissen</button></div>'
+    ).join(''):'<p style="font-size:.68rem;color:var(--mu);margin-top:8px">Geen geblokkeerde tijdsloten.</p>';
+    blockedSlotsList.querySelectorAll('[data-unblock-slot]').forEach(b=>{
+      b.addEventListener('click',()=>{BookingStore.unblockSlot(b.dataset.unblockSlot);refreshAll();});
+    });
+  }
+
+  document.getElementById('saveHoursBtn').addEventListener('click',()=>{
+    try{
+      DAY_ORDER.forEach(day=>{
+        const open=hoursForm.querySelector('[data-day-open="'+day+'"]').checked;
+        const start=hoursForm.querySelector('[data-day-start="'+day+'"]').value;
+        const end=hoursForm.querySelector('[data-day-end="'+day+'"]').value;
+        BookingStore.updateWeeklyHours(day,open?[start,end]:['','']);
+      });
+      notif('hoursNotif','Openingstijden opgeslagen!','success'); refreshAll();
+    }catch(err){notif('hoursNotif',err.message||'Mislukt.','error');}
+  });
+  document.getElementById('addBlockedDateBtn').addEventListener('click',()=>{
+    const v=document.getElementById('blockedDateInput').value; if(!v)return;
+    BookingStore.blockDate(v); document.getElementById('blockedDateInput').value=''; refreshAll();
+  });
+  document.getElementById('addBlockedSlotBtn').addEventListener('click',()=>{
+    const date=document.getElementById('slotDateInput').value;
+    const time=document.getElementById('slotTimeInput').value;
+    const dur=document.getElementById('slotDurationInput').value;
+    const rsn=document.getElementById('slotReasonInput').value;
+    if(!date||!time)return;
+    BookingStore.blockSlot({date,time,duration:Number(dur)||30,reason:rsn});
+    document.getElementById('slotTimeInput').value='';
+    document.getElementById('slotReasonInput').value='';
+    refreshAll();
+  });
+  document.getElementById('savePinBtn').addEventListener('click',()=>{
+    const np=document.getElementById('newPinInput').value.trim();
+    const cp=document.getElementById('confirmPinInput').value.trim();
+    if(!np){notif('pinNotif','Voer een pincode in.','error');return;}
+    if(np!==cp){notif('pinNotif','Pincodes komen niet overeen.','error');return;}
+    BookingStore.setAdminPin(np);
+    document.getElementById('newPinInput').value='';
+    document.getElementById('confirmPinInput').value='';
+    notif('pinNotif','Pincode bijgewerkt!','success');
+  });
+  document.getElementById('clearAllBtn').addEventListener('click',()=>{
+    if(!confirm('Weet u zeker dat u ALLE afspraken wilt verwijderen?'))return;
+    try{
+      BookingStore.getBookings().forEach(b=>{try{BookingStore.deleteBooking(b.id);}catch(e){}});
+      notif('clearNotif','Alle afspraken verwijderd.','success'); refreshAll();
+    }catch(err){notif('clearNotif',err.message||'Mislukt.','error');}
+  });
+  document.getElementById('refreshBtn').addEventListener('click',refreshAll);
+  document.getElementById('logoutBtn').addEventListener('click',()=>{
+    sessionStorage.removeItem('magic-admin-auth'); state.loggedIn=false; boot();
+  });
+
+  document.getElementById('topbarDate').textContent=
+    new Intl.DateTimeFormat('nl-NL',{weekday:'short',day:'numeric',month:'long',year:'numeric'}).format(new Date());
+
+  function refreshAll(){ renderCalendar(); renderHours(); renderBlockedDates(); renderBlockedSlots(); }
+  function boot(){
+    loginScreen.classList.toggle('hidden',state.loggedIn);
+    appShell.classList.toggle('hidden',!state.loggedIn);
+    if(state.loggedIn) refreshAll();
+  }
+
+  /* Update now-line every minute */
+  setInterval(()=>{ if(state.loggedIn) renderCalendar(); }, 60000);
+  window.addEventListener('storage',refreshAll);
+  boot();
+</script>
+</body>
+</html>

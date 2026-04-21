@@ -1,0 +1,232 @@
+#nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: background .4s, box-shadow .4s;
+  padding: 0;
+  background: linear-gradient(180deg, rgba(8, 8, 8, .88), rgba(8, 8, 8, .58));
+  box-shadow: 0 10px 34px rgba(0, 0, 0, .24);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+#nav.scrolled {
+  background: linear-gradient(180deg, rgba(8, 8, 8, .96), rgba(8, 8, 8, .78));
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .3);
+}
+
+.nav-inner {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 78px;
+  padding: 14px 34px;
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 170px;
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: .95;
+  color: var(--gold);
+  letter-spacing: .4px;
+  text-transform: none;
+}
+
+.nav-logo span {
+  color: var(--white);
+}
+
+.nav-logo small {
+  font-size: .6rem;
+  font-weight: 700;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .52);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0 16px;
+  list-style: none;
+}
+
+.nav-links a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 0;
+  color: rgba(255, 255, 255, .92);
+  font-size: .83rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color .3s ease, transform .3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transition: width .3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-btn {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, .08);
+  background: linear-gradient(135deg, var(--gold2), var(--gold));
+  box-shadow: 0 14px 28px rgba(201, 168, 76, .22);
+  color: var(--dark);
+  font-size: .88rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.nav-btn i {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .14);
+  font-size: .82rem;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(201, 168, 76, .3);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--white);
+  transition: all .3s ease;
+}
+
+.mob-menu {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  max-width: 100%;
+  padding: 18px 20px 20px;
+  background: linear-gradient(180deg, rgba(22, 22, 22, .96), rgba(18, 18, 18, .92));
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .24);
+  backdrop-filter: blur(12px);
+}
+
+.mob-menu.open {
+  display: flex;
+}
+
+.mob-menu a {
+  padding: 9px 0;
+  border-bottom: 1px solid #2a2a2a;
+  color: var(--white);
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.mob-menu a:hover,
+.mob-menu a.active {
+  color: var(--gold);
+}
+
+.mob-menu .nav-btn {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+  margin-left: 0;
+  padding: 14px 18px;
+}
+
+html {
+  scroll-padding-top: 110px;
+}
+
+body[data-page]:not([data-page="index"]) .page-hero {
+  padding-top: 148px !important;
+}
+
+@media (max-width: 880px) {
+  .nav-inner {
+    min-height: 70px;
+    padding: 10px 16px;
+  }
+
+  .nav-logo {
+    min-width: auto;
+    font-size: 1.3rem;
+  }
+
+  .nav-logo small {
+    font-size: .52rem;
+    letter-spacing: .28em;
+  }
+
+  .nav-links,
+  .nav-btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  body[data-page]:not([data-page="index"]) .page-hero {
+    padding-top: 124px !important;
+  }
+}

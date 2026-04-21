@@ -1,0 +1,988 @@
+{
+  "nl": {
+    "common": {
+      "nav": {
+        "home": "Home",
+        "services": "Diensten",
+        "about": "Over ons",
+        "portfolio": "Portfolio",
+        "pricing": "Tarieven",
+        "reviews": "Reviews",
+        "contact": "Contact",
+        "book": "Afspraak maken",
+        "careers": "Werken bij ons"
+      },
+      "footer": {
+        "brandText": "Uw vertrouwde kapsalon in het hart van Alkmaar. Al meer dan 15 jaar vakmanschap, stijl en persoonlijke aandacht.",
+        "navTitle": "Navigatie",
+        "servicesTitle": "Diensten",
+        "serviceCut": "Knippen",
+        "serviceShave": "Scheren",
+        "serviceTrim": "Trimmen",
+        "serviceStyle": "Stylen",
+        "serviceBeauty": "Beauty behandelingen",
+        "serviceColor": "Kleuren",
+        "rights": "&copy; 2025 <span>Magic Hairstyling</span> &middot; Alkmaar &middot; Alle rechten voorbehouden",
+        "metaLine": "Gedempte Nieuwesloot 81 &middot; <span>072 512 7051</span> &middot; <a href=\"admin.html\">Admin</a>"
+      },
+      "social": {
+        "sectionKicker": "Volg ons",
+        "sectionTitle": "Blijf op de hoogte",
+        "instagramAction": "Volgen",
+        "facebookAction": "Liken",
+        "tiktokAction": "Volgen"
+      },
+      "ui": {
+        "menu": "Menu",
+        "close": "Sluiten",
+        "backToTop": "Naar boven",
+        "fabAppointment": "Afspraak"
+      },
+      "bookingStore": {
+        "chooseDateTime": "Kies eerst een datum en tijd.",
+        "closedDay": "Deze dag is gesloten voor nieuwe afspraken.",
+        "blockedSlot": "Dit tijdslot is door de salon geblokkeerd.",
+        "slotTaken": "Dit tijdslot is al bezet. Kies een ander tijdstip.",
+        "bookingNotFound": "Afspraak niet gevonden."
+      },
+      "booking": {
+        "title": "Maak een afspraak",
+        "stepTreatment": "Behandeling",
+        "stepDateTime": "Datum & Tijd",
+        "stepDetails": "Uw gegevens",
+        "all": "Alles",
+        "men": "Heren",
+        "women": "Dames",
+        "children": "Kinderen",
+        "beauty": "Beauty",
+        "chooseTreatment": "Kies een behandeling om door te gaan",
+        "next": "Volgende",
+        "back": "Terug",
+        "desiredDate": "Gewenste datum",
+        "chooseDate": "Kies een datum",
+        "timeSlot": "Tijdslot",
+        "chooseDateFirst": "Kies eerst een datum",
+        "chooseSlot": "Kies een tijdslot",
+        "clear": "Wissen",
+        "today": "Vandaag",
+        "dayClosed": "Deze dag is gesloten voor nieuwe afspraken.",
+        "noTimesDay": "Geen tijden beschikbaar voor deze dag.",
+        "noTimes": "Geen tijden beschikbaar",
+        "fullName": "Volledige naam",
+        "namePlaceholder": "Uw naam",
+        "phoneLabel": "Telefoonnummer",
+        "phonePlaceholder": "06 XX XX XX XX",
+        "emailLabel": "E-mailadres",
+        "emailOptional": "(optioneel)",
+        "emailPlaceholder": "naam@email.nl",
+        "notesLabel": "Opmerkingen",
+        "notesPlaceholder": "Bijzondere wensen of vragen...",
+        "confirm": "Bevestigen",
+        "summaryTitle": "Uw reservering",
+        "glanceSlot": "Per tijdslot",
+        "glanceSteps": "Snel boeken",
+        "glanceOverview": "Overzicht",
+        "summaryTreatment": "Behandeling",
+        "summaryPrice": "Prijs",
+        "summaryDate": "Datum",
+        "summaryTime": "Tijd",
+        "summaryDuration": "Duur",
+        "summaryEmpty": "Nog niet gekozen",
+        "slotsTip": "Tijdsloten per 30 min, aangepast aan uw behandeling.",
+        "previousBookings": "Eerdere afspraken",
+        "emptyBookings": "Nog geen afspraken op dit apparaat.",
+        "code": "Code",
+        "alertMissing": "Kies een behandeling, datum en tijdslot om door te gaan.",
+        "alertGeneric": "Er ging iets mis bij het vastleggen van de afspraak.",
+        "successTitle": "Afspraak vastgelegd!",
+        "successBody": "Wij zien u graag op het afgesproken tijdstip.<br>Bewaar uw boekingscode als referentie.",
+        "newBooking": "Nieuwe afspraak",
+        "calendarClosed": "Deze dag is gesloten",
+        "calendarMonths": [
+          "Januari",
+          "Februari",
+          "Maart",
+          "April",
+          "Mei",
+          "Juni",
+          "Juli",
+          "Augustus",
+          "September",
+          "Oktober",
+          "November",
+          "December"
+        ]
+      },
+      "catalog": {
+        "men": {
+          "cut": {
+            "name": "Heren knippen",
+            "detail": "Knippen + Fohnen + Styling · 35 min",
+            "full": "Heren - Knippen + Fohnen + Styling",
+            "row": "Knippen + Styling<small>35 min</small>"
+          },
+          "wash": {
+            "name": "Heren + Wassen",
+            "detail": "Knippen + Wassen + Fohnen + Styling · 40 min",
+            "full": "Heren - Knippen + Wassen + Fohnen + Styling",
+            "row": "Knippen + Wassen + Styling<small>40 min</small>"
+          },
+          "beard": {
+            "name": "Heren + Baard",
+            "detail": "Knippen + Fohnen + Styling + Baard · 45 min",
+            "full": "Heren - Knippen + Fohnen + Styling + Baard",
+            "row": "Knippen + Styling + Baard<small>45 min</small>"
+          },
+          "fade": {
+            "name": "Heren + Overloop",
+            "detail": "Knippen + Overloop + Lange baard · 45 min",
+            "full": "Heren - Knippen + Overloop + Lange baard",
+            "row": "Knippen + Overloop + Lange baard<small>45 min</small>"
+          },
+          "vip": {
+            "name": "Heren VIP",
+            "detail": "Knippen + Baard + Waxen + Masker · 80 min",
+            "full": "Heren VIP - Knippen + Wassen + Baard + Waxen + Masker",
+            "row": "VIP behandeling<small>80 min</small>"
+          }
+        },
+        "women": {
+          "cut": {
+            "name": "Dames knippen",
+            "detail": "Knippen + Fohnen + Styling · 25 min",
+            "full": "Dames - Knippen + Fohnen + Styling",
+            "row": "Knippen + Fohnen + Styling<small>25 min</small>"
+          },
+          "wash": {
+            "name": "Dames + Wassen",
+            "detail": "Knippen + Wassen + Fohnen + Styling · 35 min",
+            "full": "Dames - Knippen + Wassen + Fohnen + Styling",
+            "row": "Knippen + Wassen + Fohnen + Styling<small>35 min</small>"
+          },
+          "outgrowth": {
+            "name": "Dames kleuren",
+            "detail": "Uitgroei kleuren + Knippen + Styling · 50 min",
+            "full": "Dames - Uitgroei kleuren + Knippen + Styling",
+            "row": "Uitgroei kleuren + Knippen + Styling<small>50 min</small>"
+          },
+          "fullColor": {
+            "name": "Dames full color",
+            "detail": "Hele haar kleuren + Knippen + Styling · Vanaf 60 min",
+            "full": "Dames - Hele haar kleuren + Knippen + Styling",
+            "row": "Hele haar kleuren + Knippen + Styling<small>Vanaf 60 min</small>"
+          }
+        },
+        "children": {
+          "cut": {
+            "name": "Kinderen knippen",
+            "detail": "Knippen + Fohnen + Styling · 20 min",
+            "full": "Kinderen - Knippen + Fohnen + Styling",
+            "row": "Knippen + Styling<small>1 t/m 15 jaar</small>"
+          },
+          "design": {
+            "name": "Extra design",
+            "detail": "Extra haar design / kleurdetail",
+            "full": "Kinderen - Extra haar design / kleurdetail",
+            "row": "Extra haar design / kleurdetail"
+          }
+        },
+        "beauty": {
+          "facial": {
+            "name": "Gezichtsbehandeling",
+            "detail": "Waxen + Draadje + Masker · 35 min",
+            "full": "Waxen + Draadje + Neus masker + Gezichtsmasker",
+            "row": "Waxen + Draadje + Masker<small>35 min</small>"
+          },
+          "brows": {
+            "name": "Wenkbrauwen",
+            "detail": "Epileren + Dagcreme · 10 min",
+            "full": "Wenkbrauwen epileren + Dagcreme",
+            "row": "Wenkbrauwen epileren + dagcreme<small>10 min</small>"
+          }
+        }
+      }
+    },
+    "index": {
+      "meta": {
+        "title": "Magic Hairstyling - Alkmaar"
+      },
+      "hero": {
+        "slide1Tag": "Alkmaar · Gedempte Nieuwesloot",
+        "slide1Title": "Knippen met of<br><span>zonder afspraak</span>",
+        "slide1Body": "Welkom bij Magic Hairstyling in Alkmaar. Professionele kapsels voor dames, heren en kinderen - altijd welkom.",
+        "slide1Primary": "Afspraak maken",
+        "slide1Secondary": "Onze diensten",
+        "trust1": "15+ jaar ervaring",
+        "trust2": "Dames, heren en kinderen",
+        "trust3": "Snel online reserveren",
+        "slide2Tag": "Vakmanschap & Stijl",
+        "slide2Title": "Perfect<br><span>geknipt</span>",
+        "slide2Body": "Onze ervaren stylisten kennen elk haartype en elke snijstijl. Kom weg met een look die bij jou past.",
+        "slide2Primary": "Bekijk ons werk",
+        "slide2Secondary": "Over ons",
+        "slide3Tag": "Compleet aanbod",
+        "slide3Title": "Professionele<br><span>verzorging</span>",
+        "slide3Body": "Van knippen en scheren tot beauty-behandelingen - Magic Hairstyling verzorgt u van top tot teen.",
+        "slide3Primary": "Bekijk tarieven",
+        "slide3Secondary": "Bel ons"
+      },
+      "stats": {
+        "days": "Dagen per week",
+        "founded": "Opgericht in",
+        "treatments": "Behandelingen",
+        "customers": "Tevreden klanten"
+      },
+      "showcase": {
+        "kicker": "Wat wij bieden",
+        "title": "Onze diensten",
+        "body": "Van snelle touch-ups tot complete behandelingen: alles is opgebouwd rond comfort, precisie en een verzorgde uitstraling.",
+        "cutKicker": "Signature",
+        "cutTitle": "Knippen",
+        "cutBody": "Kapsels voor dames, heren en kinderen - modern, klassiek of volledig op maat gesneden.",
+        "cutMeta1": "Op maat",
+        "cutMeta2": "Snel geholpen",
+        "shaveKicker": "Classic",
+        "shaveTitle": "Scheren",
+        "shaveBody": "Traditioneel scheren met warm schuim en een scherp mes voor een glad en verzorgd resultaat.",
+        "shaveMeta1": "Warm schuim",
+        "shaveMeta2": "Klassieke finish",
+        "trimKicker": "Detail",
+        "trimTitle": "Trimmen",
+        "trimBody": "Nauwkeurig trimmen van baard, snor of contouren voor een nette uitstraling.",
+        "trimMeta1": "Strakke lijnen",
+        "styleKicker": "Finish",
+        "styleTitle": "Stylen",
+        "styleBody": "Professioneel stylen en fohnen met producten die passen bij elk haartype.",
+        "styleMeta1": "Volume & finish",
+        "beautyKicker": "Care",
+        "beautyTitle": "Beauty behandelingen",
+        "beautyBody": "Waxen, threading en verzorgende behandelingen die rust en precisie samenbrengen.",
+        "beautyMeta1": "Verzorgend",
+        "beautyMeta2": "Ontspannen gevoel",
+        "colorKicker": "Color",
+        "colorTitle": "Kleuren & highlights",
+        "colorBody": "Volledig verven, ombre, highlights of balayage voor een frisse, luxueuze uitstraling.",
+        "colorMeta1": "Rijke kleur",
+        "colorMeta2": "Frisse look"
+      },
+      "hub": {
+        "kicker": "Meer ontdekken",
+        "title": "Bekijk meer in aparte pagina's",
+        "body": "We hebben de uitgebreide informatie verplaatst naar losse pagina's zodat de homepage rustiger en duidelijker blijft.",
+        "aboutBody": "Lees meer over de salon, onze stijl van werken en waarom klanten al jaren terugkomen.",
+        "aboutCta": "Open pagina",
+        "portfolioBody": "Bekijk een losse galerij met looks, afwerking en sfeerbeelden van het werk.",
+        "portfolioCta": "Bekijk werk",
+        "pricingBody": "Een duidelijk overzicht van de meest gekozen behandelingen en bijbehorende prijzen.",
+        "pricingCta": "Zie prijzen",
+        "reviewsBody": "Lees wat klanten zeggen over hun ervaring, de service en het eindresultaat.",
+        "reviewsCta": "Lees reviews",
+        "careersBody": "Bekijk vacatures, stagekansen en solliciteer via een aparte pagina.",
+        "careersCta": "Bekijk kansen"
+      },
+      "contact": {
+        "kicker": "Online reserveren",
+        "title": "Boek uw afspraak",
+        "address": "Adres",
+        "phone": "Telefoon",
+        "mobile": "Mobiel",
+        "hours": "Openingstijden",
+        "hoursMonTue": "Ma - Di",
+        "hoursWed": "Woensdag",
+        "hoursThu": "Donderdag",
+        "hoursFri": "Vrijdag",
+        "hoursSat": "Zaterdag",
+        "hoursSun": "Zondag",
+        "bookButton": "Maak een afspraak"
+      },
+      "worksModal": {
+        "title": "Werken bij <span>Magic</span>",
+        "subtitle": "Ben jij gepassioneerd door haarstyling? Versterk ons team als medewerker of loop stage bij ons. Vul het formulier in en we nemen contact met je op.",
+        "employee": "Medewerker",
+        "internship": "Stage",
+        "stageInfo": "Wij bieden stageplaatsen aan voor studenten <strong>Kapper / Haarstylist</strong>. Minimale stageduur is 2 maanden. Begeleiding door een ervaren vakman.",
+        "firstName": "Voornaam *",
+        "firstNamePlaceholder": "Jouw voornaam",
+        "lastName": "Achternaam *",
+        "lastNamePlaceholder": "Jouw achternaam",
+        "email": "E-mailadres *",
+        "emailPlaceholder": "jouw@email.nl",
+        "phone": "Telefoonnummer",
+        "phonePlaceholder": "+31 6 ...",
+        "education": "Opleiding / School *",
+        "educationPlaceholder": "Bijv. ROC Noord-Holland - Kapper niveau 3",
+        "period": "Gewenste stageperiode *",
+        "periodPlaceholder": "Kies een periode...",
+        "period1": "September 2025 - Januari 2026",
+        "period2": "Februari 2026 - Juni 2026",
+        "period3": "September 2026 - Januari 2027",
+        "period4": "Februari 2027 - Juni 2027",
+        "period5": "Anders / In overleg",
+        "motivation": "Ervaring / Motivatie *",
+        "motivationPlaceholder": "Vertel iets over jezelf, je ervaring en waarom je bij ons wilt werken...",
+        "cvLabel": "CV uploaden <span style=\"color:#555;font-weight:400;text-transform:none\">(optioneel · PDF of Word)</span>",
+        "cvUpload": "<strong>Klik om te uploaden</strong> of sleep hier",
+        "cvChosen": "<strong>Bestand gekozen</strong> - klik om te wijzigen",
+        "submit": "Aanmelding versturen",
+        "successTitle": "Aanmelding ontvangen!",
+        "successBody": "Bedankt voor je interesse.<br>We nemen zo snel mogelijk contact met je op.",
+        "close": "Sluiten"
+      }
+    },
+    "tarieven": {
+      "meta": {
+        "title": "Tarieven | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Tarieven",
+        "title": "Duidelijke prijzen per behandeling",
+        "body": "Hier vindt u een helder overzicht van de meest gekozen behandelingen en richtprijzen. Twijfelt u over de juiste keuze? Dan helpen we u graag verder vanuit de homepage of telefonisch."
+      },
+      "categories": {
+        "men": "Heren",
+        "women": "Dames",
+        "children": "Kinderen",
+        "beauty": "Beauty"
+      },
+      "note": "Alle prijzen zijn inclusief btw. Voor uitgebreid kleurwerk of advies verwijzen we bezoekers door naar de homepage om eenvoudig contact op te nemen of direct een afspraak te maken."
+    },
+    "over-ons": {
+      "meta": {
+        "title": "Over Ons | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Over Ons",
+        "title": "Vakmanschap met een persoonlijk tintje",
+        "body": "Magic Hairstyling is al meer dan 15 jaar een vertrouwd adres in Alkmaar voor dames, heren en kinderen. We combineren moderne looks, klassieke precisie en oprechte aandacht voor iedere klant die binnenstapt.",
+        "book": "Afspraak maken",
+        "portfolio": "Bekijk portfolio"
+      },
+      "about": {
+        "title": "Meer dan alleen knippen",
+        "p1": "Bij ons draait het niet alleen om een goed kapsel, maar om het complete gevoel van verzorgd, gezien en welkom zijn. Of het nu gaat om een snelle knipbeurt, een strakke baardlijn of een beautybehandeling: we nemen de tijd voor kwaliteit.",
+        "p2": "We werken met betrouwbare producten, een schone werkomgeving en een ontspannen sfeer waarin klanten makkelijk terugkomen. Dat zie je terug in onze vaste klantenkring en de vele positieve ervaringen.",
+        "feature1Title": "15+ jaar ervaring",
+        "feature1Body": "Ervaren handen met oog voor detail en stijl.",
+        "feature2Title": "Voor iedereen",
+        "feature2Body": "Dames, heren en kinderen zijn allemaal welkom.",
+        "feature3Title": "Persoonlijk advies",
+        "feature3Body": "We kijken naar gezicht, haar en gewenste uitstraling."
+      },
+      "values": {
+        "title": "Waar wij voor staan",
+        "body": "De sfeer van de salon is warm en toegankelijk, maar het werk zelf nemen we serieus. Die combinatie maakt Magic Hairstyling herkenbaar.",
+        "precision": "Precisie",
+        "precisionBody": "Van fade tot kleurbehandeling: afwerking en balans maken het verschil, en daar letten we scherp op.",
+        "comfort": "Comfort",
+        "comfortBody": "We willen dat iedere afspraak prettig voelt, van ontvangst tot het moment dat je de deur weer uitstapt.",
+        "trust": "Vertrouwen",
+        "trustBody": "Veel klanten komen al jaren terug. Dat vertrouwen is voor ons net zo belangrijk als het kapsel zelf."
+      }
+    },
+    "portfolio": {
+      "meta": {
+        "title": "Portfolio | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Portfolio",
+        "title": "Ons werk in beeld",
+        "body": "Een selectie van stijlen, snits en verzorgde resultaten uit de sfeer van Magic Hairstyling. Van strakke herensnit tot kleur en beauty, alles draait om afwerking en uitstraling."
+      },
+      "section": {
+        "title": "Looks, details en afwerking",
+        "body": "Deze galerij geeft een indruk van de stijl en kwaliteit die we in de salon nastreven."
+      },
+      "cards": {
+        "freshBody": "Strakke afwerking met moderne vorm.",
+        "classicBody": "Klassiek werk met nette contouren.",
+        "signatureBody": "Combinatie van vorm, glans en balans voor een verzorgde uitstraling.",
+        "volumeBody": "Gestyled voor beweging en karakter.",
+        "colorBody": "Rijke kleurtonen met frisse uitstraling.",
+        "beautyBody": "Verzorgende details die het totaalplaatje afmaken."
+      }
+    },
+    "reviews": {
+      "meta": {
+        "title": "Reviews | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Reviews",
+        "title": "Wat klanten over ons zeggen",
+        "body": "De beste indruk ontstaat vaak na een bezoek. Deze beoordelingen laten zien hoe klanten de sfeer, service en resultaten van Magic Hairstyling ervaren."
+      },
+      "items": {
+        "source": "Google review",
+        "review1": "\"Majid's Hair Salon is de beste kapper van Alkmaar. Ik wil gewoon dat mijn haar door Majid zelf wordt gedaan.\"",
+        "review1Time": "4 maanden geleden",
+        "review2": "\"Bij binnenkomst lekker bakkie koffie gekregen. De barber vraagt goed naar wat je wilt en neemt de tijd voor je.\"",
+        "review2Time": "een jaar geleden",
+        "review3": "\"Absoluut een top kapper, mijn zoon Max wil alleen nog daar geknipt worden. Een aanrader als je voor je zoon een gaaf kapsel wilt.\"",
+        "review3Time": "een jaar geleden",
+        "review4": "\"Een echte aanrader! Ik kom er al jaren en nooit met een ontevreden gevoel naar huis gegaan.\"",
+        "review4Time": "2 jaar geleden"
+      }
+    },
+    "werken-bij-ons": {
+      "meta": {
+        "title": "Werken Bij Ons | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Werken bij ons",
+        "title": "Bouw mee aan stijl, service en sfeer in Alkmaar",
+        "body": "Ben jij gepassioneerd door haarstyling, gastvrijheid en kwaliteit? Bij Magic Hairstyling zoeken we mensen die energie krijgen van mooi werk, tevreden klanten en een sterke salonbeleving.",
+        "apply": "Direct solliciteren",
+        "about": "Meer over de salon"
+      },
+      "intro": {
+        "title": "Waarom werken bij Magic Hairstyling?",
+        "p1": "We combineren een warme sfeer met professioneel vakmanschap. In de salon draait het niet alleen om knippen of stylen, maar ook om aandacht, uitstraling en het vertrouwen dat klanten voelen zodra ze binnenstappen.",
+        "p2": "Of je nu ervaren bent of nog leert in de praktijk, we zoeken mensen die gemotiveerd zijn, verzorgd werken en trots zijn op kwaliteit.",
+        "benefit1Title": "Warm team",
+        "benefit1Body": "Een fijne werksfeer waarin samenwerken en gastvrijheid centraal staan.",
+        "benefit2Title": "Ruimte voor groei",
+        "benefit2Body": "Ontwikkel je techniek, tempo en klantcommunicatie in de salonpraktijk.",
+        "benefit3Title": "Hoog serviceniveau",
+        "benefit3Body": "Werk mee aan een ervaring waar klanten graag voor terugkomen.",
+        "benefit4Title": "Centrale locatie",
+        "benefit4Body": "Onze salon ligt in het hart van Alkmaar, goed bereikbaar en levendig."
+      },
+      "roles": {
+        "employeeTag": "Medewerker",
+        "employeeTitle": "Voor wie al in het vak zit",
+        "employeeItem1": "Ervaring met knippen, stylen of salonwerk is een plus.",
+        "employeeItem2": "Klantgericht, verzorgd en zelfstandig kunnen werken.",
+        "employeeItem3": "Passie voor uitstraling en afwerking.",
+        "internTag": "Stage",
+        "internTitle": "Voor studenten die willen leren",
+        "internItem1": "Geschikt voor opleiding kapper of haarstylist.",
+        "internItem2": "Praktijkervaring onder begeleiding van een ervaren vakman.",
+        "internItem3": "Focus op houding, techniek en klantcontact."
+      },
+      "form": {
+        "title": "Solliciteer direct",
+        "body": "Kies of je solliciteert als medewerker of stage zoekt. Vul het formulier in en we nemen zo snel mogelijk contact met je op.",
+        "employee": "Medewerker",
+        "internship": "Stage",
+        "stageNote": "Wij bieden stageplaatsen aan voor studenten kapper / haarstylist. Een minimale stageduur van twee maanden heeft de voorkeur.",
+        "successTitle": "Aanmelding ontvangen!",
+        "successBody": "Bedankt voor je interesse in Magic Hairstyling. We bekijken je gegevens en nemen zo snel mogelijk contact met je op.",
+        "firstName": "Voornaam *",
+        "firstNamePlaceholder": "Jouw voornaam",
+        "lastName": "Achternaam *",
+        "lastNamePlaceholder": "Jouw achternaam",
+        "email": "E-mailadres *",
+        "emailPlaceholder": "jouw@email.nl",
+        "phone": "Telefoonnummer",
+        "phonePlaceholder": "+31 6 ...",
+        "education": "Opleiding / School *",
+        "educationPlaceholder": "Bijv. ROC Noord-Holland - Kapper niveau 3",
+        "period": "Gewenste stageperiode *",
+        "periodPlaceholder": "Kies een periode...",
+        "period1": "September 2025 - Januari 2026",
+        "period2": "Februari 2026 - Juni 2026",
+        "period3": "September 2026 - Januari 2027",
+        "period4": "Februari 2027 - Juni 2027",
+        "period5": "Anders / In overleg",
+        "motivation": "Ervaring / Motivatie *",
+        "motivationPlaceholder": "Vertel iets over jezelf, je ervaring en waarom je bij ons wilt werken...",
+        "cvLabel": "CV uploaden <span style=\"color:#555;font-weight:400;text-transform:none\">(optioneel · PDF of Word)</span>",
+        "cvUpload": "<strong>Klik om te uploaden</strong> of sleep hier",
+        "cvChosen": "<strong>Bestand gekozen</strong> klik om te wijzigen",
+        "submit": "Aanmelding versturen"
+      }
+    }
+  },
+  "en": {
+    "common": {
+      "nav": {
+        "home": "Home",
+        "services": "Services",
+        "about": "About us",
+        "portfolio": "Portfolio",
+        "pricing": "Prices",
+        "reviews": "Reviews",
+        "contact": "Contact",
+        "book": "Book now",
+        "careers": "Work with us"
+      },
+      "footer": {
+        "brandText": "Your trusted hair salon in the heart of Alkmaar. More than 15 years of craftsmanship, style and personal attention.",
+        "navTitle": "Navigation",
+        "servicesTitle": "Services",
+        "serviceCut": "Haircuts",
+        "serviceShave": "Shaving",
+        "serviceTrim": "Trimming",
+        "serviceStyle": "Styling",
+        "serviceBeauty": "Beauty treatments",
+        "serviceColor": "Colouring",
+        "rights": "&copy; 2025 <span>Magic Hairstyling</span> &middot; Alkmaar &middot; All rights reserved",
+        "metaLine": "Gedempte Nieuwesloot 81 &middot; <span>072 512 7051</span> &middot; <a href=\"admin.html\">Admin</a>"
+      },
+      "social": {
+        "sectionKicker": "Follow us",
+        "sectionTitle": "Stay up to date",
+        "instagramAction": "Follow",
+        "facebookAction": "Like",
+        "tiktokAction": "Follow"
+      },
+      "ui": {
+        "menu": "Menu",
+        "close": "Close",
+        "backToTop": "Back to top",
+        "fabAppointment": "Book"
+      },
+      "bookingStore": {
+        "chooseDateTime": "Please choose a date and time first.",
+        "closedDay": "This day is closed for new appointments.",
+        "blockedSlot": "This time slot has been blocked by the salon.",
+        "slotTaken": "This time slot is already taken. Please choose another time.",
+        "bookingNotFound": "Appointment not found."
+      },
+      "booking": {
+        "title": "Book an appointment",
+        "stepTreatment": "Treatment",
+        "stepDateTime": "Date & Time",
+        "stepDetails": "Your details",
+        "all": "All",
+        "men": "Men",
+        "women": "Women",
+        "children": "Children",
+        "beauty": "Beauty",
+        "chooseTreatment": "Choose a treatment to continue",
+        "next": "Next",
+        "back": "Back",
+        "desiredDate": "Preferred date",
+        "chooseDate": "Choose a date",
+        "timeSlot": "Time slot",
+        "chooseDateFirst": "Choose a date first",
+        "chooseSlot": "Choose a time slot",
+        "clear": "Clear",
+        "today": "Today",
+        "dayClosed": "This day is closed for new appointments.",
+        "noTimesDay": "No times available for this day.",
+        "noTimes": "No times available",
+        "fullName": "Full name",
+        "namePlaceholder": "Your name",
+        "phoneLabel": "Phone number",
+        "phonePlaceholder": "06 XX XX XX XX",
+        "emailLabel": "Email address",
+        "emailOptional": "(optional)",
+        "emailPlaceholder": "name@email.com",
+        "notesLabel": "Notes",
+        "notesPlaceholder": "Any special requests or questions...",
+        "confirm": "Confirm",
+        "summaryTitle": "Your booking",
+        "glanceSlot": "Per time slot",
+        "glanceSteps": "Fast booking",
+        "glanceOverview": "Overview",
+        "summaryTreatment": "Treatment",
+        "summaryPrice": "Price",
+        "summaryDate": "Date",
+        "summaryTime": "Time",
+        "summaryDuration": "Duration",
+        "summaryEmpty": "Not selected yet",
+        "slotsTip": "30-minute slots, adjusted to your treatment.",
+        "previousBookings": "Previous appointments",
+        "emptyBookings": "No appointments on this device yet.",
+        "code": "Code",
+        "alertMissing": "Choose a treatment, date and time slot to continue.",
+        "alertGeneric": "Something went wrong while saving the appointment.",
+        "successTitle": "Appointment confirmed!",
+        "successBody": "We look forward to seeing you at the scheduled time.<br>Please keep your booking code for reference.",
+        "newBooking": "New appointment",
+        "calendarClosed": "This day is closed",
+        "calendarMonths": [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December"
+        ]
+      },
+      "catalog": {
+        "men": {
+          "cut": {
+            "name": "Men's haircut",
+            "detail": "Cut + blow-dry + styling · 35 min",
+            "full": "Men - Cut + blow-dry + styling",
+            "row": "Cut + styling<small>35 min</small>"
+          },
+          "wash": {
+            "name": "Men + wash",
+            "detail": "Cut + wash + blow-dry + styling · 40 min",
+            "full": "Men - Cut + wash + blow-dry + styling",
+            "row": "Cut + wash + styling<small>40 min</small>"
+          },
+          "beard": {
+            "name": "Men + beard",
+            "detail": "Cut + blow-dry + styling + beard · 45 min",
+            "full": "Men - Cut + blow-dry + styling + beard",
+            "row": "Cut + styling + beard<small>45 min</small>"
+          },
+          "fade": {
+            "name": "Men + fade",
+            "detail": "Cut + fade + long beard · 45 min",
+            "full": "Men - Cut + fade + long beard",
+            "row": "Cut + fade + long beard<small>45 min</small>"
+          },
+          "vip": {
+            "name": "Men VIP",
+            "detail": "Cut + beard + waxing + mask · 80 min",
+            "full": "Men VIP - Cut + wash + beard + waxing + mask",
+            "row": "VIP treatment<small>80 min</small>"
+          }
+        },
+        "women": {
+          "cut": {
+            "name": "Women's haircut",
+            "detail": "Cut + blow-dry + styling · 25 min",
+            "full": "Women - Cut + blow-dry + styling",
+            "row": "Cut + blow-dry + styling<small>25 min</small>"
+          },
+          "wash": {
+            "name": "Women + wash",
+            "detail": "Cut + wash + blow-dry + styling · 35 min",
+            "full": "Women - Cut + wash + blow-dry + styling",
+            "row": "Cut + wash + blow-dry + styling<small>35 min</small>"
+          },
+          "outgrowth": {
+            "name": "Women colouring",
+            "detail": "Root colour + cut + styling · 50 min",
+            "full": "Women - Root colour + cut + styling",
+            "row": "Root colour + cut + styling<small>50 min</small>"
+          },
+          "fullColor": {
+            "name": "Women full colour",
+            "detail": "Full colour + cut + styling · From 60 min",
+            "full": "Women - Full colour + cut + styling",
+            "row": "Full hair colour + cut + styling<small>From 60 min</small>"
+          }
+        },
+        "children": {
+          "cut": {
+            "name": "Children's haircut",
+            "detail": "Cut + blow-dry + styling · 20 min",
+            "full": "Children - Cut + blow-dry + styling",
+            "row": "Cut + styling<small>Ages 1 to 15</small>"
+          },
+          "design": {
+            "name": "Extra design",
+            "detail": "Extra hair design / colour detail",
+            "full": "Children - Extra hair design / colour detail",
+            "row": "Extra hair design / colour detail"
+          }
+        },
+        "beauty": {
+          "facial": {
+            "name": "Facial treatment",
+            "detail": "Waxing + threading + mask · 35 min",
+            "full": "Waxing + threading + nose mask + facial mask",
+            "row": "Waxing + threading + mask<small>35 min</small>"
+          },
+          "brows": {
+            "name": "Eyebrows",
+            "detail": "Shaping + day cream · 10 min",
+            "full": "Eyebrow shaping + day cream",
+            "row": "Eyebrow shaping + day cream<small>10 min</small>"
+          }
+        }
+      }
+    },
+    "index": {
+      "meta": {
+        "title": "Magic Hairstyling - Alkmaar"
+      },
+      "hero": {
+        "slide1Tag": "Alkmaar · Gedempte Nieuwesloot",
+        "slide1Title": "Haircuts with or<br><span>without an appointment</span>",
+        "slide1Body": "Welcome to Magic Hairstyling in Alkmaar. Professional hairstyles for women, men and children - everyone is welcome.",
+        "slide1Primary": "Book now",
+        "slide1Secondary": "Our services",
+        "trust1": "15+ years of experience",
+        "trust2": "Women, men and children",
+        "trust3": "Quick online booking",
+        "slide2Tag": "Craftsmanship & Style",
+        "slide2Title": "Perfectly<br><span>cut</span>",
+        "slide2Body": "Our experienced stylists understand every hair type and every cutting style. Leave with a look that suits you.",
+        "slide2Primary": "See our work",
+        "slide2Secondary": "About us",
+        "slide3Tag": "Complete range",
+        "slide3Title": "Professional<br><span>care</span>",
+        "slide3Body": "From cutting and shaving to beauty treatments - Magic Hairstyling takes care of you from head to toe.",
+        "slide3Primary": "See prices",
+        "slide3Secondary": "Call us"
+      },
+      "stats": {
+        "days": "Days per week",
+        "founded": "Founded in",
+        "treatments": "Treatments",
+        "customers": "Happy customers"
+      },
+      "showcase": {
+        "kicker": "What we offer",
+        "title": "Our services",
+        "body": "From quick touch-ups to complete treatments: everything is built around comfort, precision and a polished result.",
+        "cutKicker": "Signature",
+        "cutTitle": "Haircuts",
+        "cutBody": "Hairstyles for women, men and children - modern, classic or fully tailored.",
+        "cutMeta1": "Tailored",
+        "cutMeta2": "Quick service",
+        "shaveKicker": "Classic",
+        "shaveTitle": "Shaving",
+        "shaveBody": "Traditional shaving with warm foam and a sharp blade for a smooth, polished finish.",
+        "shaveMeta1": "Warm foam",
+        "shaveMeta2": "Classic finish",
+        "trimKicker": "Detail",
+        "trimTitle": "Trimming",
+        "trimBody": "Precise trimming of beard, moustache or contours for a clean look.",
+        "trimMeta1": "Sharp lines",
+        "styleKicker": "Finish",
+        "styleTitle": "Styling",
+        "styleBody": "Professional styling and blow-drying with products suited to every hair type.",
+        "styleMeta1": "Volume & finish",
+        "beautyKicker": "Care",
+        "beautyTitle": "Beauty treatments",
+        "beautyBody": "Waxing, threading and caring treatments that combine calm and precision.",
+        "beautyMeta1": "Caring",
+        "beautyMeta2": "Relaxed feeling",
+        "colorKicker": "Color",
+        "colorTitle": "Colour & highlights",
+        "colorBody": "Full colouring, ombre, highlights or balayage for a fresh and luxurious look.",
+        "colorMeta1": "Rich colour",
+        "colorMeta2": "Fresh look"
+      },
+      "hub": {
+        "kicker": "Discover more",
+        "title": "Explore more on separate pages",
+        "body": "We moved the detailed information to dedicated pages so the homepage stays calmer and clearer.",
+        "aboutBody": "Read more about the salon, our way of working and why clients keep coming back.",
+        "aboutCta": "Open page",
+        "portfolioBody": "See a separate gallery with looks, finishing details and atmosphere shots of our work.",
+        "portfolioCta": "See work",
+        "pricingBody": "A clear overview of the most popular treatments and their prices.",
+        "pricingCta": "See prices",
+        "reviewsBody": "Read what clients say about their experience, the service and the final result.",
+        "reviewsCta": "Read reviews",
+        "careersBody": "See vacancies, internship opportunities and apply on a dedicated page.",
+        "careersCta": "View opportunities"
+      },
+      "contact": {
+        "kicker": "Online booking",
+        "title": "Book your appointment",
+        "address": "Address",
+        "phone": "Phone",
+        "mobile": "Mobile",
+        "hours": "Opening hours",
+        "hoursMonTue": "Mon - Tue",
+        "hoursWed": "Wednesday",
+        "hoursThu": "Thursday",
+        "hoursFri": "Friday",
+        "hoursSat": "Saturday",
+        "hoursSun": "Sunday",
+        "bookButton": "Book an appointment"
+      },
+      "worksModal": {
+        "title": "Work at <span>Magic</span>",
+        "subtitle": "Are you passionate about hairstyling? Join our team as an employee or apply for an internship. Fill in the form and we will contact you.",
+        "employee": "Employee",
+        "internship": "Internship",
+        "stageInfo": "We offer internships for hairdressing / hairstyling students. The preferred minimum internship period is 2 months. Guidance by an experienced professional.",
+        "firstName": "First name *",
+        "firstNamePlaceholder": "Your first name",
+        "lastName": "Last name *",
+        "lastNamePlaceholder": "Your last name",
+        "email": "Email address *",
+        "emailPlaceholder": "your@email.com",
+        "phone": "Phone number",
+        "phonePlaceholder": "+31 6 ...",
+        "education": "Education / School *",
+        "educationPlaceholder": "For example ROC Noord-Holland - Hairdresser level 3",
+        "period": "Preferred internship period *",
+        "periodPlaceholder": "Choose a period...",
+        "period1": "September 2025 - January 2026",
+        "period2": "February 2026 - June 2026",
+        "period3": "September 2026 - January 2027",
+        "period4": "February 2027 - June 2027",
+        "period5": "Other / To be discussed",
+        "motivation": "Experience / Motivation *",
+        "motivationPlaceholder": "Tell us about yourself, your experience and why you would like to work with us...",
+        "cvLabel": "Upload CV <span style=\"color:#555;font-weight:400;text-transform:none\">(optional · PDF or Word)</span>",
+        "cvUpload": "<strong>Click to upload</strong> or drop it here",
+        "cvChosen": "<strong>File selected</strong> - click to change",
+        "submit": "Send application",
+        "successTitle": "Application received!",
+        "successBody": "Thank you for your interest.<br>We will contact you as soon as possible.",
+        "close": "Close"
+      }
+    },
+    "tarieven": {
+      "meta": {
+        "title": "Prices | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Prices",
+        "title": "Clear prices per treatment",
+        "body": "Here you will find a clear overview of the most chosen treatments and guideline prices. Not sure which option is right for you? We are happy to help from the homepage or by phone."
+      },
+      "categories": {
+        "men": "Men",
+        "women": "Women",
+        "children": "Children",
+        "beauty": "Beauty"
+      },
+      "note": "All prices include VAT. For extensive colour work or advice, we guide visitors back to the homepage to get in touch easily or book directly."
+    },
+    "over-ons": {
+      "meta": {
+        "title": "About Us | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "About Us",
+        "title": "Craftsmanship with a personal touch",
+        "body": "For more than 15 years, Magic Hairstyling has been a trusted address in Alkmaar for women, men and children. We combine modern looks, classic precision and genuine attention for every client who walks in.",
+        "book": "Book now",
+        "portfolio": "View portfolio"
+      },
+      "about": {
+        "title": "More than just a haircut",
+        "p1": "For us, it is not only about a good haircut, but about the complete feeling of being cared for, seen and welcomed. Whether it is a quick trim, a sharp beard line or a beauty treatment: we make time for quality.",
+        "p2": "We work with reliable products, a clean working environment and a relaxed atmosphere that makes clients want to come back. You can see it in our loyal client base and the many positive experiences.",
+        "feature1Title": "15+ years of experience",
+        "feature1Body": "Experienced hands with an eye for detail and style.",
+        "feature2Title": "For everyone",
+        "feature2Body": "Women, men and children are all welcome.",
+        "feature3Title": "Personal advice",
+        "feature3Body": "We look at face shape, hair and the look you want."
+      },
+      "values": {
+        "title": "What we stand for",
+        "body": "The atmosphere in the salon is warm and welcoming, but we take the work itself seriously. That combination makes Magic Hairstyling recognisable.",
+        "precision": "Precision",
+        "precisionBody": "From fades to colour treatments: finishing and balance make the difference, and we pay close attention to both.",
+        "comfort": "Comfort",
+        "comfortBody": "We want every appointment to feel pleasant, from the welcome to the moment you walk back out the door.",
+        "trust": "Trust",
+        "trustBody": "Many clients have been coming back for years. That trust matters just as much to us as the haircut itself."
+      }
+    },
+    "portfolio": {
+      "meta": {
+        "title": "Portfolio | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Portfolio",
+        "title": "Our work in focus",
+        "body": "A selection of styles, cuts and polished results from the atmosphere of Magic Hairstyling. From sharp men's cuts to colour and beauty, everything revolves around finishing and appearance."
+      },
+      "section": {
+        "title": "Looks, details and finishing",
+        "body": "This gallery gives an impression of the style and quality we pursue in the salon."
+      },
+      "cards": {
+        "freshBody": "Sharp finishing with a modern shape.",
+        "classicBody": "Classic work with clean contours.",
+        "signatureBody": "A combination of shape, shine and balance for a polished appearance.",
+        "volumeBody": "Styled for movement and character.",
+        "colorBody": "Rich colour tones with a fresh feel.",
+        "beautyBody": "Finishing care details that complete the full look."
+      }
+    },
+    "reviews": {
+      "meta": {
+        "title": "Reviews | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Reviews",
+        "title": "What clients say about us",
+        "body": "The best impression often comes after a visit. These reviews show how clients experience the atmosphere, service and results at Magic Hairstyling."
+      },
+      "items": {
+        "source": "Google review",
+        "review1": "\"Majid's Hair Salon is the best barber in Alkmaar. I only want Majid himself to do my hair.\"",
+        "review1Time": "4 months ago",
+        "review2": "\"I got a nice cup of coffee when I walked in. The barber really asks what you want and takes time for you.\"",
+        "review2Time": "1 year ago",
+        "review3": "\"Absolutely a top barber. My son Max only wants to get his hair cut there now. Highly recommended if you want a cool haircut for your son.\"",
+        "review3Time": "1 year ago",
+        "review4": "\"Highly recommended! I have been going there for years and I have never gone home dissatisfied.\"",
+        "review4Time": "2 years ago"
+      }
+    },
+    "werken-bij-ons": {
+      "meta": {
+        "title": "Work With Us | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Work with us",
+        "title": "Help shape style, service and atmosphere in Alkmaar",
+        "body": "Are you passionate about hairstyling, hospitality and quality? At Magic Hairstyling we are looking for people who get energy from beautiful work, happy clients and a strong salon experience.",
+        "apply": "Apply now",
+        "about": "More about the salon"
+      },
+      "intro": {
+        "title": "Why work at Magic Hairstyling?",
+        "p1": "We combine a warm atmosphere with professional craftsmanship. In the salon, it is not only about cutting or styling, but also about attention, appearance and the trust clients feel as soon as they walk in.",
+        "p2": "Whether you are experienced or still learning in practice, we are looking for people who are motivated, work neatly and take pride in quality.",
+        "benefit1Title": "Warm team",
+        "benefit1Body": "A pleasant working atmosphere where teamwork and hospitality come first.",
+        "benefit2Title": "Room to grow",
+        "benefit2Body": "Develop your technique, speed and client communication in daily salon practice.",
+        "benefit3Title": "High service level",
+        "benefit3Body": "Help create an experience clients are happy to return for.",
+        "benefit4Title": "Central location",
+        "benefit4Body": "Our salon is in the heart of Alkmaar, easy to reach and full of energy."
+      },
+      "roles": {
+        "employeeTag": "Employee",
+        "employeeTitle": "For people already in the trade",
+        "employeeItem1": "Experience with cutting, styling or salon work is a plus.",
+        "employeeItem2": "Client-focused, well presented and able to work independently.",
+        "employeeItem3": "Passion for appearance and finishing.",
+        "internTag": "Internship",
+        "internTitle": "For students who want to learn",
+        "internItem1": "Suitable for hairdressing or hairstyling students.",
+        "internItem2": "Hands-on experience under the guidance of an experienced professional.",
+        "internItem3": "Focus on attitude, technique and client contact."
+      },
+      "form": {
+        "title": "Apply directly",
+        "body": "Choose whether you are applying as an employee or looking for an internship. Fill in the form and we will contact you as soon as possible.",
+        "employee": "Employee",
+        "internship": "Internship",
+        "stageNote": "We offer internships for hairdressing / hairstyling students. A minimum period of two months is preferred.",
+        "successTitle": "Application received!",
+        "successBody": "Thank you for your interest in Magic Hairstyling. We will review your details and contact you as soon as possible.",
+        "firstName": "First name *",
+        "firstNamePlaceholder": "Your first name",
+        "lastName": "Last name *",
+        "lastNamePlaceholder": "Your last name",
+        "email": "Email address *",
+        "emailPlaceholder": "your@email.com",
+        "phone": "Phone number",
+        "phonePlaceholder": "+31 6 ...",
+        "education": "Education / School *",
+        "educationPlaceholder": "For example ROC Noord-Holland - Hairdresser level 3",
+        "period": "Preferred internship period *",
+        "periodPlaceholder": "Choose a period...",
+        "period1": "September 2025 - January 2026",
+        "period2": "February 2026 - June 2026",
+        "period3": "September 2026 - January 2027",
+        "period4": "February 2027 - June 2027",
+        "period5": "Other / To be discussed",
+        "motivation": "Experience / Motivation *",
+        "motivationPlaceholder": "Tell us about yourself, your experience and why you would like to work with us...",
+        "cvLabel": "Upload CV <span style=\"color:#555;font-weight:400;text-transform:none\">(optional · PDF or Word)</span>",
+        "cvUpload": "<strong>Click to upload</strong> or drop it here",
+        "cvChosen": "<strong>File selected</strong> click to change",
+        "submit": "Send application"
+      }
+    }
+  }
+}
