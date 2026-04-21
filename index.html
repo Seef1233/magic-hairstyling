@@ -1763,15 +1763,17 @@
       }
       #afspraak-modal {
         align-items: flex-start;
-        padding: 10px 10px calc(84px + env(safe-area-inset-bottom));
+        padding: max(8px, env(safe-area-inset-top)) 8px calc(82px + env(safe-area-inset-bottom));
         overflow-y: auto;
         overflow-x: hidden;
+        background: rgba(0,0,0,.9);
       }
       #afspraak-modal .booking-layout {
-        width: 100%;
-        max-width: 100%;
+        width: min(100%, 430px);
+        max-width: 430px;
+        margin: 0 auto;
         grid-template-columns: 1fr !important;
-        gap: 12px;
+        gap: 10px;
         height: auto;
         max-height: none;
         min-height: 0;
@@ -1782,30 +1784,84 @@
         height: auto;
         max-height: none;
         min-width: 0;
+        border-radius: 24px;
+      }
+      #afspraak-modal .booking-wizard {
+        overflow: hidden;
       }
       #afspraak-modal .booking-summary {
         position: static;
         overflow: hidden;
+        background:
+          radial-gradient(circle at top right, rgba(201,168,76,.14), transparent 35%),
+          linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+          #121212;
       }
       #afspraak-modal .wizard-header {
-        padding: 14px 16px 12px;
+        position: sticky;
+        top: 0;
+        z-index: 4;
+        padding: 14px 14px 12px;
+        background:
+          linear-gradient(180deg, rgba(21,21,21,.98), rgba(21,21,21,.92)),
+          #151515;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+      }
+      #afspraak-modal .wizard-title {
+        margin-bottom: 12px;
+        font-size: 1rem;
       }
       #afspraak-modal .wizard-body {
-        padding: 12px 14px 14px;
+        padding: 14px;
         overflow: visible;
+        background: linear-gradient(180deg, rgba(255,255,255,.015), rgba(255,255,255,0));
       }
       #afspraak-modal .step-bar {
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+      #afspraak-modal .step-bar::before {
+        display: none;
+      }
+      #afspraak-modal .step-item {
+        min-width: 0;
+        padding: 10px 6px 8px;
+        border-radius: 16px;
+        border: 1px solid #232323;
+        background: #141414;
+      }
+      #afspraak-modal .step-item.active {
+        border-color: rgba(201,168,76,.4);
+        background: rgba(201,168,76,.08);
+      }
+      #afspraak-modal .step-item.done {
+        border-color: rgba(201,168,76,.24);
+        background: rgba(201,168,76,.05);
+      }
+      #afspraak-modal .step-circle {
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        font-size: .76rem;
+      }
+      #afspraak-modal .step-item.active .step-circle {
+        box-shadow: 0 0 0 4px rgba(201,168,76,.14);
       }
       #afspraak-modal .step-label {
+        margin-top: 7px;
         font-size: .58rem;
-        letter-spacing: .04em;
+        line-height: 1.25;
+        letter-spacing: .02em;
+        text-transform: none;
+        word-break: break-word;
       }
       #afspraak-modal .cat-tabs {
         flex-wrap: nowrap;
         overflow-x: auto;
-        padding-bottom: 6px;
-        margin: 0 -2px 10px;
+        gap: 8px;
+        padding-bottom: 4px;
+        margin: 0 0 12px;
         scrollbar-width: none;
       }
       #afspraak-modal .cat-tabs::-webkit-scrollbar {
@@ -1813,7 +1869,8 @@
       }
       #afspraak-modal .cat-tab {
         flex: 0 0 auto;
-        padding: 8px 14px;
+        padding: 9px 14px;
+        border-radius: 999px;
       }
       #afspraak-modal #step1.active,
       #afspraak-modal #step2.active,
@@ -1822,6 +1879,8 @@
       }
       #afspraak-modal .datetime-block {
         margin-bottom: 12px;
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), #121212;
       }
       #afspraak-modal .datetime-block.cal-open,
       #afspraak-modal .datetime-block.ts-open {
@@ -1833,16 +1892,17 @@
       }
       #afspraak-modal .datetime-row .dt-half {
         width: 100%;
-        padding: 15px 16px;
+        padding: 16px 14px;
       }
       #afspraak-modal .datetime-row .dt-divider {
         width: auto;
         height: 1px;
-        margin: 0 16px;
+        margin: 0 14px;
       }
       #afspraak-modal .cal-trigger,
       #afspraak-modal .cs-trigger {
         width: 100%;
+        min-height: 44px;
       }
       #afspraak-modal .cal-popup,
       #afspraak-modal .cs-dropdown {
@@ -1855,13 +1915,15 @@
         margin-top: 12px;
         transform: none;
         box-sizing: border-box;
+        border-radius: 18px;
       }
       #afspraak-modal .cal-popup {
         display: none;
-        padding: 16px 14px 14px;
+        padding: 16px 12px 14px;
       }
       #afspraak-modal .cs-dropdown {
         display: none;
+        max-height: 220px;
       }
       #afspraak-modal .cal-popup.open {
         display: block;
@@ -1873,41 +1935,76 @@
         opacity: 1;
         pointer-events: auto;
       }
-      #afspraak-modal .cs-dropdown {
-        max-height: 220px;
+      #afspraak-modal .cal-head-label {
+        font-size: .82rem;
+      }
+      #afspraak-modal .cs-option {
+        padding: 14px 14px;
       }
       #afspraak-modal .svc-select-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        grid-template-columns: 1fr !important;
         grid-template-rows: none;
         gap: 10px;
         margin-bottom: 12px;
         flex: initial;
       }
       #afspraak-modal .svc-card {
-        min-height: 156px;
-        padding: 14px 12px;
-        justify-content: flex-start;
+        min-height: 0;
+        display: grid;
+        grid-template-columns: 44px minmax(0, 1fr);
+        grid-template-areas:
+          "icon name"
+          "icon detail"
+          "icon price";
+        gap: 6px 12px;
+        padding: 14px 14px 14px 12px;
+        justify-content: initial;
+        border-radius: 18px;
+      }
+      #afspraak-modal .svc-check {
+        top: 12px;
+        right: 12px;
+      }
+      #afspraak-modal .svc-icon {
+        grid-area: icon;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        border-radius: 14px;
+        background: rgba(201,168,76,.1);
+        font-size: 1rem;
       }
       #afspraak-modal .svc-name {
-        font-size: .86rem;
+        grid-area: name;
+        font-size: .98rem;
         line-height: 1.25;
+        padding-right: 28px;
       }
       #afspraak-modal .svc-detail {
-        font-size: .72rem;
+        grid-area: detail;
+        font-size: .78rem;
         line-height: 1.45;
       }
       #afspraak-modal .svc-price {
-        margin-top: auto;
-        padding-top: 8px;
-        font-size: .88rem;
+        grid-area: price;
+        margin-top: 2px;
+        padding-top: 10px;
+        font-size: 1rem;
       }
       #afspraak-modal .datetime-row,
       #afspraak-modal .fg-row,
-      #afspraak-modal .summary-glance {
+      #afspraak-modal .summary-glance,
+      #afspraak-modal .summary-body {
         grid-template-columns: 1fr;
       }
       #afspraak-modal .dt-half {
         min-width: 0;
+      }
+      #afspraak-modal .fg-row {
+        gap: 10px;
       }
       #afspraak-modal .summary-header,
       #afspraak-modal .summary-body,
@@ -1929,26 +2026,53 @@
         margin-right: 14px;
       }
       #afspraak-modal .step-nav {
-        position: sticky;
-        bottom: 0;
-        background: linear-gradient(180deg, rgba(18,18,18,.88), #121212 34%);
-        margin: 10px 0 0;
-        padding: 12px 0 calc(12px + env(safe-area-inset-bottom));
-        z-index: 3;
+        position: static;
+        display: grid;
+        gap: 10px;
+        margin: 14px 0 0;
+        padding: 0;
+        border-top: none;
+        background: transparent;
         width: 100%;
         max-width: 100%;
-        overflow: hidden;
+      }
+      #afspraak-modal #step1 .step-nav {
+        grid-template-columns: 1fr;
+      }
+      #afspraak-modal #step2 .step-nav,
+      #afspraak-modal #step3 .step-nav {
+        grid-template-columns: 1fr 1fr;
+        align-items: stretch;
+      }
+      #afspraak-modal #step1 .step-nav > span {
+        display: block;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.05);
+        line-height: 1.55;
       }
       #afspraak-modal .step-nav-right {
-        width: auto;
+        width: 100%;
         min-width: 0;
       }
-      #afspraak-modal .step-nav .btn {
+      #afspraak-modal .step-nav .btn,
+      #afspraak-modal .step-nav-right .btn {
+        width: 100%;
         min-width: 0;
+        min-height: 52px;
+        justify-content: center;
+        padding: 0 16px;
+        border-radius: 16px;
+        font-size: .95rem;
       }
-      #afspraak-modal .step-btn,
-      #afspraak-modal .step-next {
-        min-height: 44px;
+      #afspraak-modal .success-overlay {
+        padding: 34px 20px 40px;
+      }
+      #afspraak-modal .success-overlay .btn {
+        width: 100%;
+        justify-content: center;
       }
     }
 
@@ -1957,41 +2081,35 @@
         padding-left: 8px;
         padding-right: 8px;
       }
-      #afspraak-modal .booking-wizard,
-      #afspraak-modal .booking-summary {
-        border-radius: 18px;
-      }
       #afspraak-modal .wizard-title {
         font-size: .96rem;
       }
       #afspraak-modal .step-circle {
-        width: 28px;
-        height: 28px;
+        width: 29px;
+        height: 29px;
         font-size: .74rem;
       }
-      #afspraak-modal .step-bar::before {
-        top: 13px;
-      }
-      #afspraak-modal .svc-select-grid {
-        grid-template-columns: 1fr !important;
+      #afspraak-modal .step-label {
+        font-size: .55rem;
       }
       #afspraak-modal .svc-card {
-        min-height: 0;
+        grid-template-columns: 40px minmax(0, 1fr);
+        padding: 13px 12px;
       }
-      #afspraak-modal .step-nav {
-        flex-direction: column;
-        align-items: stretch;
+      #afspraak-modal .svc-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
       }
-      #afspraak-modal .step-nav > span {
-        width: 100%;
+      #afspraak-modal .svc-name {
+        font-size: .92rem;
       }
-      #afspraak-modal .step-nav-right {
-        width: 100%;
+      #afspraak-modal .svc-detail {
+        font-size: .75rem;
       }
-      #afspraak-modal .step-nav .btn,
-      #afspraak-modal .step-nav-right .btn {
-        width: 100%;
-        justify-content: center;
+      #afspraak-modal #step2 .step-nav,
+      #afspraak-modal #step3 .step-nav {
+        grid-template-columns: 1fr;
       }
       #afspraak-modal .glance-item strong {
         font-size: .82rem;
@@ -3613,4 +3731,3 @@
 </script>
 </body>
 </html>
-
