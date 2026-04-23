@@ -184,25 +184,119 @@
       width:10px;height:10px;border-radius:50%;background:var(--rd);
     }
 
-    /* Appointment block */
+    /* ── Appointment block — "Filled Color" design ── */
     .appt-block{
-      position:absolute;left:3px;right:3px;border-radius:7px;
-      padding:5px 8px;cursor:pointer;overflow:hidden;
-      transition:filter .15s,transform .15s,box-shadow .15s;
+      position:absolute;left:3px;right:3px;border-radius:11px;
+      padding:6px 10px 7px;cursor:pointer;overflow:hidden;
+      transition:transform .18s,box-shadow .18s,opacity .18s;
       z-index:5;border:none;text-align:left;
     }
-    .appt-block:hover{filter:brightness(1.03);transform:translateY(-1px) scale(1.01);box-shadow:0 10px 26px rgba(76,57,30,.14);z-index:6}
-    .appt-block.pending {background:#fff4da;border:1px solid #efd29e;border-left:3px solid var(--or)}
-    .appt-block.approved{background:#e7f6ed;border:1px solid #b9e2c8;border-left:3px solid var(--gn)}
-    .appt-block.rejected{background:#fde9e9;border:1px solid #efbcbc;border-left:3px solid var(--rd)}
-    .appt-block.completed{background:#e8f1fe;border:1px solid #bfd3f4;border-left:3px solid var(--bl)}
-    .appt-time{font-size:.6rem;font-weight:700;opacity:.7;margin-bottom:2px}
-    .appt-name{font-size:.72rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .appt-svc{font-size:.62rem;opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:1px}
-    .pending  .appt-time,.pending  .appt-name,.pending  .appt-svc{color:#8e5f07}
-    .approved .appt-time,.approved .appt-name,.approved .appt-svc{color:#1f7a48}
-    .rejected .appt-time,.rejected .appt-name,.rejected .appt-svc{color:#a33e3e}
-    .completed .appt-time,.completed .appt-name,.completed .appt-svc{color:#2d67b3}
+    /* Noise-texture shimmer layer */
+    .appt-block::before{
+      content:'';position:absolute;inset:0;
+      background:linear-gradient(160deg,rgba(255,255,255,.18) 0%,rgba(255,255,255,0) 55%);
+      pointer-events:none;border-radius:inherit;
+    }
+    .appt-block:hover{
+      transform:translateY(-2px) scale(1.015);
+      opacity:.93;
+      z-index:6;
+    }
+
+    /* ── Status fallback (no category) ── */
+    .appt-block.pending {
+      background:linear-gradient(145deg,#f5c946,#c98c00);
+      box-shadow:0 3px 12px rgba(199,138,29,.35);
+    }
+    .appt-block.approved{
+      background:linear-gradient(145deg,#3ec97a,#20834e);
+      box-shadow:0 3px 12px rgba(47,157,98,.35);
+    }
+    .appt-block.rejected{
+      background:linear-gradient(145deg,#f06060,#c13636);
+      box-shadow:0 3px 12px rgba(200,76,76,.35);
+    }
+    .appt-block.completed{
+      background:linear-gradient(145deg,#5b9ef5,#2d62c9);
+      box-shadow:0 3px 12px rgba(63,130,214,.35);
+    }
+
+    /* ── Category → full background (overrides status) ── */
+    .appt-block.cat-dames{
+      background: linear-gradient(160deg,#e8849a,#c25070);
+      box-shadow: 0 2px 10px rgba(180,60,90,.28);
+    }
+    .appt-block.cat-heren{
+      background: linear-gradient(160deg,#6398d4,#3a6aaa);
+      box-shadow: 0 2px 10px rgba(50,90,160,.28);
+    }
+    .appt-block.cat-vip{
+      background: linear-gradient(160deg,#e8c96e,#b8922a);
+      box-shadow: 0 2px 10px rgba(180,140,30,.32);
+    }
+    .appt-block.cat-kinderen{
+      background: linear-gradient(160deg,#62b87a,#3a8c54);
+      box-shadow: 0 2px 10px rgba(50,130,70,.26);
+    }
+    .appt-block.cat-beauty{
+      background: linear-gradient(160deg,#a87ec8,#7050a8);
+      box-shadow: 0 2px 10px rgba(100,60,160,.26);
+    }
+
+    /* ── Text — all white ── */
+    .appt-time{
+      font-size:.58rem;font-weight:600;
+      color:rgba(255,255,255,.78);
+      margin-bottom:3px;letter-spacing:.01em;
+    }
+    .appt-name{
+      font-size:.78rem;font-weight:800;color:#fff;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      letter-spacing:-.01em;text-shadow:0 1px 4px rgba(0,0,0,.18);
+    }
+    .appt-svc{
+      font-size:.6rem;font-weight:600;
+      color:rgba(255,255,255,.72);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      margin-top:2px;
+    }
+    /* Override the status-specific text colours — everything is white now */
+    .pending  .appt-time,.pending  .appt-name,.pending  .appt-svc,
+    .approved .appt-time,.approved .appt-name,.approved .appt-svc,
+    .rejected .appt-time,.rejected .appt-name,.rejected .appt-svc,
+    .completed .appt-time,.completed .appt-name,.completed .appt-svc{ color:inherit }
+    /* VIP gold → dark text for readability */
+    .cat-vip .appt-time,.cat-vip .appt-name,.cat-vip .appt-svc { color:#3a2800; }
+
+    /* Status dot – top-right white circle with status colour ring */
+    .appt-cat-dot{
+      position:absolute;top:6px;right:7px;
+      width:8px;height:8px;border-radius:50%;
+      background:rgba(255,255,255,.9);
+      border:1.5px solid rgba(255,255,255,.5);
+      pointer-events:none;
+    }
+    /* Status-coloured dot when category is set */
+    .appt-block.cat-dames.pending     .appt-cat-dot,
+    .appt-block.cat-heren.pending     .appt-cat-dot,
+    .appt-block.cat-vip.pending       .appt-cat-dot,
+    .appt-block.cat-kinderen.pending  .appt-cat-dot,
+    .appt-block.cat-beauty.pending    .appt-cat-dot { background:var(--or);border-color:rgba(255,255,255,.6) }
+    .appt-block.cat-dames.approved    .appt-cat-dot,
+    .appt-block.cat-heren.approved    .appt-cat-dot,
+    .appt-block.cat-vip.approved      .appt-cat-dot,
+    .appt-block.cat-kinderen.approved .appt-cat-dot,
+    .appt-block.cat-beauty.approved   .appt-cat-dot { background:#fff;border-color:rgba(255,255,255,.8) }
+    .appt-block.cat-dames.rejected    .appt-cat-dot,
+    .appt-block.cat-heren.rejected    .appt-cat-dot,
+    .appt-block.cat-vip.rejected      .appt-cat-dot,
+    .appt-block.cat-kinderen.rejected .appt-cat-dot,
+    .appt-block.cat-beauty.rejected   .appt-cat-dot { background:#ff5252;border-color:rgba(255,255,255,.6) }
+    .appt-block.cat-dames.completed   .appt-cat-dot,
+    .appt-block.cat-heren.completed   .appt-cat-dot,
+    .appt-block.cat-vip.completed     .appt-cat-dot,
+    .appt-block.cat-kinderen.completed .appt-cat-dot,
+    .appt-block.cat-beauty.completed  .appt-cat-dot { background:#80d8ff;border-color:rgba(255,255,255,.6) }
 
     .cal-empty-day{
       position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
@@ -293,6 +387,113 @@
       .fg{grid-template-columns:1fr}
       .chips{display:none}
     }
+
+    /* ════ VANDAAG VIEW ════ */
+    .tstat{
+      display:flex;align-items:center;gap:6px;
+      padding:6px 11px;border-radius:999px;
+      border:1px solid var(--ln2);background:var(--s2);
+      font-size:.68rem;font-weight:700;color:var(--tx2);
+    }
+    .tstat-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+    .tstat-n{font-weight:900;color:var(--tx);font-size:.78rem;}
+
+    /* Timeline */
+    .today-timeline{display:flex;flex-direction:column;gap:0;}
+    .tl-item{
+      display:flex;align-items:stretch;gap:0;
+      position:relative;
+    }
+    /* Time column */
+    .tl-time{
+      width:62px;flex-shrink:0;
+      display:flex;flex-direction:column;align-items:flex-end;
+      padding-right:14px;padding-top:14px;
+    }
+    .tl-time-val{
+      font-size:.68rem;font-weight:800;color:var(--mu);
+      white-space:nowrap;
+    }
+    .tl-time-dur{
+      font-size:.58rem;color:var(--mu2);margin-top:2px;
+      white-space:nowrap;
+    }
+    /* Connector line */
+    .tl-line{
+      width:2px;flex-shrink:0;background:var(--ln);
+      position:relative;margin-top:18px;
+    }
+    .tl-dot{
+      width:10px;height:10px;border-radius:50%;
+      border:2px solid var(--s1);
+      position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+    }
+    .tl-item:last-child .tl-line{background:transparent;}
+
+    /* Card */
+    .tl-card{
+      flex:1;margin:6px 0 6px 14px;
+      background:var(--s1);border:1px solid var(--ln);
+      border-radius:14px;overflow:hidden;
+      transition:box-shadow .15s,transform .15s;
+    }
+    .tl-card:hover{
+      box-shadow:0 6px 22px rgba(93,72,38,.1);
+      transform:translateY(-1px);
+    }
+    .tl-card-inner{
+      display:flex;align-items:stretch;
+    }
+    /* Category accent stripe */
+    .tl-stripe{
+      width:4px;flex-shrink:0;border-radius:0;
+    }
+    .tl-stripe.cat-dames    {background:linear-gradient(180deg,#e8849a,#c25070);}
+    .tl-stripe.cat-heren    {background:linear-gradient(180deg,#6398d4,#3a6aaa);}
+    .tl-stripe.cat-vip      {background:linear-gradient(180deg,#e8c96e,#b8922a);}
+    .tl-stripe.cat-kinderen {background:linear-gradient(180deg,#62b87a,#3a8c54);}
+    .tl-stripe.cat-beauty   {background:linear-gradient(180deg,#a87ec8,#7050a8);}
+    .tl-stripe.cat-         {background:var(--ln2);}
+
+    /* Card body */
+    .tl-body{
+      flex:1;padding:12px 14px;
+      display:flex;align-items:center;gap:12px;
+      min-width:0;
+    }
+    .tl-av{
+      width:36px;height:36px;border-radius:10px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;
+      font-size:.74rem;font-weight:900;color:#fff;
+    }
+    .tl-info{flex:1;min-width:0;}
+    .tl-name{
+      font-size:.86rem;font-weight:800;color:var(--tx);
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+      letter-spacing:-.01em;
+    }
+    .tl-svc{
+      font-size:.68rem;color:var(--mu);margin-top:2px;font-weight:600;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    }
+    .tl-phone{
+      font-size:.64rem;color:var(--mu2);margin-top:3px;
+    }
+    .tl-right{
+      display:flex;flex-direction:column;align-items:flex-end;
+      gap:7px;flex-shrink:0;padding-right:2px;
+    }
+    .tl-actions{display:flex;gap:5px;}
+    .tl-act{
+      width:28px;height:28px;border-radius:8px;
+      border:1px solid var(--ln2);background:var(--s2);
+      color:var(--mu);display:flex;align-items:center;justify-content:center;
+      transition:all .13s;cursor:pointer;
+    }
+    .tl-act:hover.approve{background:var(--gn-bg);border-color:var(--gn-bd);color:var(--gn);}
+    .tl-act:hover.reject {background:var(--rd-bg);border-color:var(--rd-bd);color:var(--rd);}
+    .tl-act:hover.done   {background:var(--bl-bg);border-color:var(--bl-bd);color:var(--bl);}
+    .tl-act:hover.edit   {background:var(--gbg);border-color:var(--gbd);color:var(--gold);}
   </style>
 </head>
 <body>
@@ -333,6 +534,11 @@
       <div><div class="tn-logo-name">Magic Hairstyling</div><div class="tn-logo-tag">Admin</div></div>
     </div>
     <nav class="tn-tabs">
+      <button class="tn-tab" data-tab="today">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Vandaag
+        <span class="tn-badge" id="todayBadge" style="display:none">0</span>
+      </button>
       <button class="tn-tab active" data-tab="bookings">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Agenda
@@ -356,6 +562,11 @@
   </header>
 
   <div class="page-wrap">
+
+    <!-- ── VANDAAG ── -->
+    <div class="tab-view" id="tab-today">
+      <div id="todayWrap" style="display:flex;flex-direction:column;flex:1;overflow:hidden"></div>
+    </div>
 
     <!-- ── AGENDA (Calendar) ── -->
     <div class="tab-view active" id="tab-bookings">
@@ -514,6 +725,16 @@
   function badge(s){ return '<span class="badge status-'+s+'">'+SL[s]+'</span>'; }
   function initials(name){ return (name||'?').trim().split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase(); }
   function timeToMin(t){ if(!t)return 0; const [h,m]=t.split(':').map(Number); return h*60+m; }
+  function genderCat(b){
+    const id=(b.serviceId||'').toLowerCase();
+    const sv=(b.service||'').toLowerCase();
+    if(id.includes('vip')||sv.includes('vip')) return 'vip';
+    if(id.startsWith('women.')||sv.includes('dames')) return 'dames';
+    if(id.startsWith('men.')  ||sv.includes('heren')) return 'heren';
+    if(id.startsWith('children.')||sv.includes('kinderen')) return 'kinderen';
+    if(id.startsWith('beauty.')||sv.includes('beauty')||sv.includes('gezicht')||sv.includes('wenkbrauw')) return 'beauty';
+    return '';
+  }
   function notif(id,msg,type){
     const el=document.getElementById(id);if(!el)return;
     el.className='notif '+(type==='success'?'ok':'err');
@@ -669,24 +890,39 @@
         return {b,top,height,startMin,dur,init,endStr};
       });
 
-      /* Simple overlap columns */
+      /* Overlap columns – two-pass algorithm */
+      /* Pass 1: assign each block the lowest free column among its overlapping neighbours */
       blocks.forEach((bl,i)=>{
-        bl.col=0; bl.cols=1;
+        const taken=new Set();
         for(let j=0;j<i;j++){
           const prev=blocks[j];
-          if(bl.startMin<prev.startMin+prev.dur && bl.startMin+bl.dur>prev.startMin){
-            bl.col=prev.col+1;
-            bl.cols=Math.max(bl.cols,bl.col+1);
-            prev.cols=Math.max(prev.cols,bl.col+1);
-          }
+          if(bl.startMin<prev.startMin+prev.dur && bl.startMin+bl.dur>prev.startMin)
+            taken.add(prev.col);
         }
+        bl.col=0;
+        while(taken.has(bl.col)) bl.col++;
+        bl.cols=1;
+      });
+      /* Pass 2: set cols = size of each block's overlap cluster so all blocks
+         in the same cluster share the same total column count */
+      blocks.forEach((bl,i)=>{
+        blocks.forEach((other,j)=>{
+          if(i===j) return;
+          if(bl.startMin<other.startMin+other.dur && bl.startMin+bl.dur>other.startMin){
+            const needed=Math.max(bl.col,other.col)+1;
+            if(bl.cols<needed)    bl.cols=needed;
+            if(other.cols<needed) other.cols=needed;
+          }
+        });
       });
 
       const blocksHtml=blocks.map(({b,top,height,init,endStr,col,cols})=>{
         const pct=100/cols;
         const left=col*pct;
-        return `<button class="appt-block ${b.status}" data-id="${b.id}"
+        const cat=genderCat(b);
+        return `<button class="appt-block ${b.status}${cat?' cat-'+cat:''}" data-id="${b.id}"
           style="top:${top}px;height:${height}px;left:calc(${left}% + 3px);width:calc(${pct}% - 6px)">
+          ${cat?'<div class="appt-cat-dot"></div>':''}
           <div class="appt-time">${esc(b.time)} – ${endStr}</div>
           <div class="appt-name">${esc(b.name||'–')}</div>
           ${height>44?`<div class="appt-svc">${esc(b.service||'')}</div>`:''}
@@ -916,7 +1152,136 @@
   document.getElementById('topbarDate').textContent=
     new Intl.DateTimeFormat('nl-NL',{weekday:'short',day:'numeric',month:'long',year:'numeric'}).format(new Date());
 
-  function refreshAll(){ renderCalendar(); renderHours(); renderCapacity(); renderBlockedDates(); renderBlockedSlots(); }
+  /* ── VANDAAG – single-day calendar view ── */
+  function renderToday(){
+    const wrap  = document.getElementById('todayWrap');
+    const badge = document.getElementById('todayBadge');
+    const todayDs = dateStr(new Date());
+    const now     = new Date();
+
+    const allBooks = BookingStore.getBookings();
+    const books    = allBooks.filter(b=>b.date===todayDs)
+                             .sort((a,b)=>a.time.localeCompare(b.time));
+
+    /* badge */
+    const pending = books.filter(b=>b.status==='pending').length;
+    badge.textContent=pending; badge.style.display=pending?'':'none';
+
+    const totalH   = (CAL_END-CAL_START)*PX_PER_HR;
+    const wd       = now.getDay();
+    const cnt      = books.length;
+
+    /* stats bar */
+    const statsHtml=[
+      {dot:'var(--gold)',n:cnt,                                           lbl:'Totaal'},
+      {dot:'var(--or)',  n:books.filter(b=>b.status==='pending').length,  lbl:'Afwachting'},
+      {dot:'var(--gn)',  n:books.filter(b=>b.status==='approved').length, lbl:'Goedgekeurd'},
+      {dot:'var(--rd)',  n:books.filter(b=>b.status==='rejected').length, lbl:'Geweigerd'},
+      {dot:'var(--bl)',  n:books.filter(b=>b.status==='completed').length,lbl:'Afgerond'},
+    ].map(s=>`<div class="cstat"><div class="cstat-dot" style="background:${s.dot}"></div><div class="cstat-num">${s.n}</div><div>${s.lbl}</div></div>`).join('');
+
+    /* time labels */
+    let timesHtml='';
+    for(let h=CAL_START;h<=CAL_END;h++){
+      timesHtml+=`<div class="cal-time-lbl" style="top:${(h-CAL_START)*PX_PER_HR}px">${String(h).padStart(2,'0')}:00</div>`;
+    }
+
+    /* hour/half lines */
+    let linesHtml='';
+    for(let h=CAL_START;h<CAL_END;h++){
+      const t=(h-CAL_START)*PX_PER_HR;
+      linesHtml+=`<div class="cal-hline" style="top:${t}px"></div>`;
+      linesHtml+=`<div class="cal-hline half" style="top:${t+PX_PER_HR/2}px"></div>`;
+    }
+
+    /* now line */
+    const nowMin=(now.getHours()-CAL_START)*60+now.getMinutes();
+    const nowHtml=(nowMin>=0&&nowMin<=(CAL_END-CAL_START)*60)
+      ?`<div class="now-line" style="top:${nowMin*PX_PER_MIN}px"></div>`:'';
+
+    /* blocks – reuse same overlap algorithm */
+    const blocks=books.map(b=>{
+      const startMin=timeToMin(b.time)-CAL_START*60;
+      const dur=b.duration||30;
+      const top=Math.max(0,startMin*PX_PER_MIN);
+      const height=Math.max(dur*PX_PER_MIN,28);
+      const endH=Math.floor((timeToMin(b.time)+dur)/60);
+      const endM=(timeToMin(b.time)+dur)%60;
+      const endStr=`${String(endH).padStart(2,'0')}:${String(endM).padStart(2,'0')}`;
+      return {b,top,height,startMin,dur,endStr};
+    });
+
+    blocks.forEach((bl,i)=>{
+      const taken=new Set();
+      for(let j=0;j<i;j++){
+        const prev=blocks[j];
+        if(bl.startMin<prev.startMin+prev.dur&&bl.startMin+bl.dur>prev.startMin) taken.add(prev.col);
+      }
+      bl.col=0; while(taken.has(bl.col)) bl.col++;
+      bl.cols=1;
+    });
+    blocks.forEach((bl,i)=>{
+      blocks.forEach((other,j)=>{
+        if(i===j)return;
+        if(bl.startMin<other.startMin+other.dur&&bl.startMin+bl.dur>other.startMin){
+          const n=Math.max(bl.col,other.col)+1;
+          if(bl.cols<n) bl.cols=n;
+          if(other.cols<n) other.cols=n;
+        }
+      });
+    });
+
+    const blocksHtml=blocks.map(({b,top,height,endStr,col,cols})=>{
+      const cat=genderCat(b);
+      const pct=100/cols;
+      return `<button class="appt-block ${b.status}${cat?' cat-'+cat:''}" data-id="${b.id}"
+        style="top:${top}px;height:${height}px;left:calc(${col*pct}% + 3px);width:calc(${pct}% - 6px)">
+        ${cat?'<div class="appt-cat-dot"></div>':''}
+        <div class="appt-time">${esc(b.time)} – ${endStr}</div>
+        <div class="appt-name">${esc(b.name||'–')}</div>
+        ${height>44?`<div class="appt-svc">${esc(b.service||'')}</div>`:''}
+      </button>`;
+    }).join('');
+
+    /* header */
+    const fullDate=new Intl.DateTimeFormat('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).format(now);
+    const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+    wrap.innerHTML=`
+      <div class="cal-toolbar">
+        <span style="font-size:.82rem;font-weight:800;color:var(--tx)">${cap(fullDate)}</span>
+        <span style="font-size:.7rem;color:var(--mu);margin-left:10px">${cnt} afspraak${cnt!==1?'en':''}</span>
+      </div>
+      <div class="cal-stats">${statsHtml}</div>
+      <div class="cal-grid-wrap">
+        <div class="cal-head-row" style="display:grid;grid-template-columns:54px 1fr">
+          <div class="cal-corner"></div>
+          <div class="cal-day-hdr today">
+            <div class="cal-day-name">${DAY_FULL[wd]}</div>
+            <div class="cal-day-num">${now.getDate()}</div>
+            <div class="cal-day-count">${cnt?cnt+' afspraak':'–'}</div>
+          </div>
+        </div>
+        <div class="cal-body" style="flex:1">
+          <div class="cal-times-col" style="min-height:${totalH}px">${timesHtml}</div>
+          <div class="cal-days-wrap" style="display:grid;grid-template-columns:1fr">
+            <div class="cal-day-col" style="min-height:${totalH}px">
+              ${linesHtml}${nowHtml}${blocksHtml}
+              ${!cnt?'<div class="cal-empty-day"></div>':''}
+            </div>
+          </div>
+        </div>
+      </div>`;
+
+    wrap.querySelectorAll('.appt-block').forEach(el=>
+      el.addEventListener('click',()=>openModal(el.dataset.id)));
+  }
+
+  /* alias to avoid name collision with existing badge() */
+  function badge_fn(s){ return badge(s); }
+  function toTime(m){ return String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'); }
+
+  function refreshAll(){ renderCalendar(); renderToday(); renderHours(); renderCapacity(); renderBlockedDates(); renderBlockedSlots(); }
   function boot(){
     loginScreen.classList.toggle('hidden',state.loggedIn);
     appShell.classList.toggle('hidden',!state.loggedIn);

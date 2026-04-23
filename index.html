@@ -2722,6 +2722,11 @@
       .nav-logo-main { font-size: 1.05rem; }
       .nav-logo-icon { width: 30px; height: 30px; font-size: .8rem; }
     }
+
+    /* Laptop: hide step 4 indicator */
+    @media (min-width: 761px) {
+      #step-ind-4 { display: none; }
+    }
   </style>
 </head>
 <body data-page="index">
@@ -4255,6 +4260,11 @@
   function goToReviewStep() {
     if (!validateDetailsStep(true)) return;
     updateSummary();
+    if (window.innerWidth > 760) {
+      // Laptop: skip review step, submit directly
+      sendForm(null);
+      return;
+    }
     goToStep(4);
   }
 
@@ -4407,11 +4417,17 @@
     if (e && typeof e.preventDefault === 'function') e.preventDefault();
 
     const step4Active = document.getElementById('step4').classList.contains('active');
+    const step3Active = document.getElementById('step3').classList.contains('active');
+    const isLaptop = window.innerWidth > 760;
     if (!step4Active) {
-      if (document.getElementById('step3').classList.contains('active')) {
+      if (step3Active && isLaptop) {
+        // Laptop: allow direct submission from step 3
+      } else if (step3Active) {
         goToReviewStep();
+        return;
+      } else {
+        return;
       }
-      return;
     }
 
     if (!serviceField.value || !dateField.value || !timeField.value) {
