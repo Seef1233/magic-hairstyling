@@ -1160,6 +1160,123 @@
     .step-panel { display: none; }
     .step-panel.active { display: block; }
 
+    .review-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .review-intro {
+      padding: 18px 20px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,168,76,.16);
+      background:
+        radial-gradient(circle at top right, rgba(201,168,76,.12), transparent 38%),
+        linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,0)),
+        #151515;
+    }
+    .review-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .review-intro h3 {
+      font-size: 1.12rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .review-intro p {
+      color: var(--gray);
+      font-size: .84rem;
+      line-height: 1.75;
+    }
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .review-section {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid #202020;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)),
+        #131313;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.02);
+    }
+    .review-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .review-head h4 {
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.7);
+    }
+    .review-edit {
+      border: 1px solid rgba(201,168,76,.24);
+      background: rgba(201,168,76,.06);
+      color: var(--gold);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: .7rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .2s ease;
+    }
+    .review-edit:hover {
+      background: rgba(201,168,76,.14);
+      border-color: rgba(201,168,76,.4);
+    }
+    .review-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .review-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .review-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .review-row span {
+      color: var(--gray);
+      font-size: .75rem;
+      flex-shrink: 0;
+    }
+    .review-row strong {
+      max-width: 62%;
+      color: var(--white);
+      font-size: .84rem;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: right;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+    .review-row strong.review-accent {
+      color: var(--gold);
+    }
+    .review-row strong.review-muted {
+      color: var(--gray);
+      font-weight: 600;
+    }
+
     /* Success state */
     .success-overlay {
       display: none; flex-direction: column;
@@ -1818,7 +1935,7 @@
       }
       #afspraak-modal .step-bar {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 8px;
       }
       #afspraak-modal .step-bar::before {
@@ -1872,10 +1989,27 @@
         padding: 9px 14px;
         border-radius: 999px;
       }
+      #afspraak-modal .review-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      #afspraak-modal .review-intro,
+      #afspraak-modal .review-section {
+        padding: 16px 14px;
+      }
+      #afspraak-modal .review-head {
+        align-items: flex-start;
+      }
+      #afspraak-modal .review-row strong {
+        max-width: 58%;
+      }
       #afspraak-modal #step1.active,
       #afspraak-modal #step2.active,
       #afspraak-modal #step3.active {
         overflow: visible;
+      }
+      #afspraak-modal .booking-summary {
+        display: none;
       }
       #afspraak-modal .datetime-block {
         margin-bottom: 12px;
@@ -2040,7 +2174,8 @@
         grid-template-columns: 1fr;
       }
       #afspraak-modal #step2 .step-nav,
-      #afspraak-modal #step3 .step-nav {
+      #afspraak-modal #step3 .step-nav,
+      #afspraak-modal #step4 .step-nav {
         grid-template-columns: 1fr 1fr;
         align-items: stretch;
       }
@@ -2108,7 +2243,8 @@
         font-size: .75rem;
       }
       #afspraak-modal #step2 .step-nav,
-      #afspraak-modal #step3 .step-nav {
+      #afspraak-modal #step3 .step-nav,
+      #afspraak-modal #step4 .step-nav {
         grid-template-columns: 1fr;
       }
       #afspraak-modal .glance-item strong {
@@ -2412,7 +2548,7 @@
 <section id="stats">
   <div class="stats-row">
     <div class="stat"><div class="n">7+</div><div class="l" data-i18n="stats.days">Dagen per week</div></div>
-    <div class="stat"><div class="n">2010</div><div class="l" data-i18n="stats.founded">Opgericht in</div></div>
+    <div class="stat"><div class="n">2021</div><div class="l" data-i18n="stats.founded">Opgericht in</div></div>
     <div class="stat"><div class="n">6</div><div class="l" data-i18n="stats.treatments">Behandelingen</div></div>
     <div class="stat"><div class="n">1000+</div><div class="l" data-i18n="stats.customers">Tevreden klanten</div></div>
   </div>
@@ -2612,11 +2748,15 @@
               <div class="step-circle">3</div>
               <div class="step-label" data-i18n="booking.stepDetails">Uw gegevens</div>
             </div>
+            <div class="step-item" id="step-ind-4">
+              <div class="step-circle">4</div>
+              <div class="step-label" data-i18n="booking.stepReview">Overzicht</div>
+            </div>
           </div>
         </div>
 
         <div class="wizard-body" id="wizardBody">
-          <form id="bookForm" onsubmit="sendForm(event)">
+          <form id="bookForm" onsubmit="sendForm(event)" novalidate>
 
             <!-- â”&euro;â”&euro; Stap 1: Behandeling â”&euro;â”&euro; -->
             <div class="step-panel active" id="step1">
@@ -2791,8 +2931,94 @@
                   <i class="fas fa-arrow-left"></i> &nbsp;<span data-i18n="booking.back">Terug</span>
                 </button>
                 <div class="step-nav-right">
+                  <button type="button" class="btn btn-gold" style="padding:13px 28px;" onclick="goToReviewStep()">
+                    <span data-i18n="booking.next">Volgende</span> &nbsp;<i class="fas fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- €€ Stap 4: Overzicht €€ -->
+            <div class="step-panel" id="step4">
+              <div class="review-panel">
+                <div class="review-intro">
+                  <span class="review-kicker" data-i18n="booking.stepReview">Overzicht</span>
+                  <h3 data-i18n="booking.reviewTitle">Controleer uw afspraak</h3>
+                  <p data-i18n="booking.reviewBody">Bekijk hieronder alle gegevens voordat u de afspraak definitief bevestigt.</p>
+                </div>
+
+                <div class="review-grid">
+                  <section class="review-section">
+                    <div class="review-head">
+                      <h4 data-i18n="booking.reviewServiceSection">Behandeling</h4>
+                      <button type="button" class="review-edit" onclick="goToStep(1)" data-i18n="booking.edit">Wijzigen</button>
+                    </div>
+                    <div class="review-rows">
+                      <div class="review-row">
+                        <span data-i18n="booking.summaryTreatment">Behandeling</span>
+                        <strong id="reviewService">—</strong>
+                      </div>
+                      <div class="review-row">
+                        <span data-i18n="booking.summaryPrice">Prijs</span>
+                        <strong class="review-accent" id="reviewPrice">—</strong>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="review-section">
+                    <div class="review-head">
+                      <h4 data-i18n="booking.reviewScheduleSection">Moment</h4>
+                      <button type="button" class="review-edit" onclick="goToStep(2)" data-i18n="booking.edit">Wijzigen</button>
+                    </div>
+                    <div class="review-rows">
+                      <div class="review-row">
+                        <span data-i18n="booking.summaryDate">Datum</span>
+                        <strong id="reviewDate">—</strong>
+                      </div>
+                      <div class="review-row">
+                        <span data-i18n="booking.summaryTime">Tijd</span>
+                        <strong id="reviewTime">—</strong>
+                      </div>
+                      <div class="review-row">
+                        <span data-i18n="booking.summaryDuration">Duur</span>
+                        <strong id="reviewDur">—</strong>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="review-section">
+                    <div class="review-head">
+                      <h4 data-i18n="booking.reviewDetailsSection">Gegevens</h4>
+                      <button type="button" class="review-edit" onclick="goToStep(3)" data-i18n="booking.edit">Wijzigen</button>
+                    </div>
+                    <div class="review-rows">
+                      <div class="review-row">
+                        <span data-i18n="booking.fullName">Volledige naam</span>
+                        <strong id="reviewName">—</strong>
+                      </div>
+                      <div class="review-row">
+                        <span data-i18n="booking.phoneLabel">Telefoonnummer</span>
+                        <strong id="reviewPhone">—</strong>
+                      </div>
+                      <div class="review-row">
+                        <span data-i18n="booking.emailLabel">E-mailadres</span>
+                        <strong id="reviewEmail" class="review-muted">—</strong>
+                      </div>
+                      <div class="review-row">
+                        <span data-i18n="booking.notesLabel">Opmerkingen</span>
+                        <strong id="reviewNotes" class="review-muted">—</strong>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+              <div class="step-nav">
+                <button type="button" class="btn btn-outline" onclick="goToStep(3)">
+                  <i class="fas fa-arrow-left"></i> &nbsp;<span data-i18n="booking.back">Terug</span>
+                </button>
+                <div class="step-nav-right">
                   <button type="submit" class="btn btn-gold" style="padding:13px 28px;">
-                    <i class="fas fa-calendar-check" style="margin-right:8px;"></i><span data-i18n="booking.confirm">Bevestigen</span>
+                    <i class="fas fa-calendar-check" style="margin-right:8px;"></i><span data-i18n="booking.confirmFinal">Afspraak bevestigen</span>
                   </button>
                 </div>
               </div>
@@ -2825,7 +3051,7 @@
             <span data-i18n="booking.glanceSlot">Per tijdslot</span>
           </div>
           <div class="glance-item">
-            <strong>3 stappen</strong>
+            <strong data-i18n="booking.glanceStepsValue">4 stappen</strong>
             <span data-i18n="booking.glanceSteps">Snel boeken</span>
           </div>
           <div class="glance-item">
@@ -3383,26 +3609,89 @@
   function goToStep(n) {
     document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
     document.getElementById('step' + n).classList.add('active');
-    [1,2,3].forEach(i => {
+    [1,2,3,4].forEach(i => {
       const el = document.getElementById('step-ind-' + i);
       el.classList.remove('active','done');
       if (i < n) el.classList.add('done');
       else if (i === n) el.classList.add('active');
     });
+    updateSummary();
     /* scroll de wizard body naar boven, niet de pagina */
     const wb = document.getElementById('wizardBody');
     if (wb) wb.scrollTop = 0;
   }
 
+  function validateDetailsStep(showErrors = false) {
+    const requiredFields = [
+      document.getElementById('name'),
+      document.getElementById('phone')
+    ];
+    const optionalValidatedFields = [
+      document.getElementById('email')
+    ];
+
+    for (const field of requiredFields) {
+      if (!field || field.checkValidity()) continue;
+      if (showErrors) {
+        goToStep(3);
+        field.reportValidity();
+      }
+      return false;
+    }
+
+    for (const field of optionalValidatedFields) {
+      if (!field || !field.value || field.checkValidity()) continue;
+      if (showErrors) {
+        goToStep(3);
+        field.reportValidity();
+      }
+      return false;
+    }
+
+    return true;
+  }
+
+  function goToReviewStep() {
+    if (!validateDetailsStep(true)) return;
+    updateSummary();
+    goToStep(4);
+  }
+
   /* Live summary */
   function updateSummary() {
-    document.getElementById('sumService').textContent = selServiceId
+    const summaryService = selServiceId
       ? getServiceName(selServiceId, serviceField.value)
       : i18nText('booking.summaryEmpty', 'Nog niet gekozen');
-    document.getElementById('sumPrice').textContent   = selPrice || EMPTY_VALUE;
-    document.getElementById('sumDate').textContent    = fmtDate(dateField.value);
-    document.getElementById('sumTime').textContent    = timeField.value || EMPTY_VALUE;
-    document.getElementById('sumDur').textContent     = selDuration ? selDuration + ' min' : EMPTY_VALUE;
+    const summaryPrice = selPrice || EMPTY_VALUE;
+    const summaryDate = fmtDate(dateField.value);
+    const summaryTime = timeField.value || EMPTY_VALUE;
+    const summaryDuration = selDuration ? selDuration + ' min' : EMPTY_VALUE;
+    const summaryName = document.getElementById('name').value.trim() || EMPTY_VALUE;
+    const summaryPhone = document.getElementById('phone').value.trim() || EMPTY_VALUE;
+    const emailValue = document.getElementById('email').value.trim();
+    const notesValue = document.getElementById('notes').value.trim();
+    const summaryEmail = emailValue || i18nText('booking.notProvided', 'Niet ingevuld');
+    const summaryNotes = notesValue || i18nText('booking.notProvided', 'Niet ingevuld');
+
+    document.getElementById('sumService').textContent = summaryService;
+    document.getElementById('sumPrice').textContent = summaryPrice;
+    document.getElementById('sumDate').textContent = summaryDate;
+    document.getElementById('sumTime').textContent = summaryTime;
+    document.getElementById('sumDur').textContent = summaryDuration;
+
+    document.getElementById('reviewService').textContent = summaryService;
+    document.getElementById('reviewPrice').textContent = summaryPrice;
+    document.getElementById('reviewDate').textContent = summaryDate;
+    document.getElementById('reviewTime').textContent = summaryTime;
+    document.getElementById('reviewDur').textContent = summaryDuration;
+    document.getElementById('reviewName').textContent = summaryName;
+    document.getElementById('reviewPhone').textContent = summaryPhone;
+    const reviewEmail = document.getElementById('reviewEmail');
+    const reviewNotes = document.getElementById('reviewNotes');
+    reviewEmail.textContent = summaryEmail;
+    reviewNotes.textContent = summaryNotes;
+    reviewEmail.classList.toggle('review-muted', !emailValue);
+    reviewNotes.classList.toggle('review-muted', !notesValue);
   }
 
   /* â”&euro;â”&euro; Custom time dropdown â”&euro;â”&euro; */
@@ -3514,11 +3803,21 @@
 
   /* Submit */
   function sendForm(e) {
-    e.preventDefault();
+    if (e && typeof e.preventDefault === 'function') e.preventDefault();
+
+    const step4Active = document.getElementById('step4').classList.contains('active');
+    if (!step4Active) {
+      if (document.getElementById('step3').classList.contains('active')) {
+        goToReviewStep();
+      }
+      return;
+    }
+
     if (!serviceField.value || !dateField.value || !timeField.value) {
       alert(i18nText('booking.alertMissing', 'Kies een behandeling, datum en tijdslot om door te gaan.'));
       return;
     }
+    if (!validateDetailsStep(true)) return;
     try {
       const fd = new FormData(bookForm);
       const booking = BookingStore.createBooking({
@@ -3580,6 +3879,10 @@
 
   renderBookings();
   updateSummary();
+  ['name','phone','email','notes'].forEach(id => {
+    const field = document.getElementById(id);
+    if (field) field.addEventListener('input', updateSummary);
+  });
   window.addEventListener('storage', () => {
     renderBookings();
     if (dateField.value) populateTimeSlots();
