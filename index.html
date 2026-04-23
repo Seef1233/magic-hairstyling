@@ -2723,9 +2723,15 @@
       .nav-logo-icon { width: 30px; height: 30px; font-size: .8rem; }
     }
 
-    /* Laptop: hide step 4 indicator */
+    /* Laptop: hide step 4 indicator & swap button label */
     @media (min-width: 761px) {
       #step-ind-4 { display: none; }
+      .step3-confirm-label { display: inline-flex; align-items: center; gap: 7px; }
+      .step3-next-label { display: none; }
+    }
+    @media (max-width: 760px) {
+      .step3-confirm-label { display: none; }
+      .step3-next-label { display: inline-flex; align-items: center; gap: 7px; }
     }
   </style>
 </head>
@@ -3526,7 +3532,8 @@
                 </button>
                 <div class="step-nav-right">
                   <button type="button" class="btn btn-gold" style="padding:13px 28px;" onclick="goToReviewStep()">
-                    <span data-i18n="booking.next">Volgende</span> &nbsp;<i class="fas fa-arrow-right"></i>
+                    <span class="step3-next-label"><span data-i18n="booking.next">Volgende</span> &nbsp;<i class="fas fa-arrow-right"></i></span>
+                    <span class="step3-confirm-label"><i class="fas fa-check"></i> &nbsp;<span data-i18n="booking.confirm">Bevestigen</span></span>
                   </button>
                 </div>
               </div>
