@@ -4,8 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="meta.title">Tarieven | Magic Hairstyling</title>
+  <meta name="description" content="Bekijk de actuele tarieven van Magic Hairstyling in Alkmaar voor knippen, scheren, kleuren en beautybehandelingen." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <link rel="canonical" href="https://seef1233.github.io/tarieven.html" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Magic Hairstyling" />
+  <meta property="og:title" content="Tarieven | Magic Hairstyling" />
+  <meta property="og:description" content="Bekijk de actuele tarieven van Magic Hairstyling in Alkmaar voor knippen, scheren, kleuren en beautybehandelingen." />
+  <meta property="og:url" content="https://seef1233.github.io/tarieven.html" />
+  <meta property="og:image" content="https://seef1233.github.io/images/magic_hairstayle.png" />
+  <meta property="og:image:alt" content="Magic Hairstyling in Alkmaar" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tarieven | Magic Hairstyling" />
+  <meta name="twitter:description" content="Bekijk de actuele tarieven van Magic Hairstyling in Alkmaar voor knippen, scheren, kleuren en beautybehandelingen." />
+  <meta name="twitter:image" content="https://seef1233.github.io/images/magic_hairstayle.png" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": "https://seef1233.github.io/tarieven.html#webpage",
+      "url": "https://seef1233.github.io/tarieven.html",
+      "name": "Tarieven | Magic Hairstyling",
+      "description": "Bekijk de actuele tarieven van Magic Hairstyling in Alkmaar voor knippen, scheren, kleuren en beautybehandelingen.",
+      "inLanguage": "nl-NL",
+      "isPartOf": {
+        "@id": "https://seef1233.github.io/#website"
+      },
+      "about": {
+        "@id": "https://seef1233.github.io/#salon"
+      }
+    }
+  </script>
   <style>
     :root { --gold:#c9a84c; --gold2:#e8c96e; --dark:#0f0f0f; --dark2:#181818; --white:#fff; }
     * { box-sizing:border-box; margin:0; padding:0; }
@@ -66,6 +99,7 @@
     @media (max-width:640px) { .foot-grid { grid-template-columns:1fr; } }
   </style>
   <link rel="stylesheet" href="site-header.css" />
+  <link rel="stylesheet" href="site-mobile-nav.css" />
 </head>
 <body data-page="tarieven">
   <nav id="nav">
@@ -81,7 +115,7 @@
         <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
       <div data-language-switcher></div>
-      <a class="btn btn-gold nav-btn" href="index.html#contact"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
+      <a class="btn btn-gold nav-btn" href="index.html?booking=1#contact"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
       <button class="hamburger" id="ham" type="button" aria-expanded="false" data-i18n-aria-label="ui.menu" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -95,7 +129,7 @@
       <a href="reviews.html" onclick="closeM()" data-i18n="nav.reviews">Reviews</a>
       <a href="index.html#contact" onclick="closeM()" data-i18n="nav.contact">Contact</a>
       <div data-language-switcher></div>
-      <a href="index.html#contact" class="btn btn-gold nav-btn" onclick="closeM()"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
+      <a href="index.html?booking=1#contact" class="btn btn-gold nav-btn" onclick="closeM()"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
     </div>
   </nav>
 
@@ -168,7 +202,7 @@
           <li><a href="reviews.html" data-i18n="nav.reviews">Reviews</a></li>
           <li><a href="werken-bij-ons.html" data-i18n="nav.careers">Werken bij ons</a></li>
           <li><a href="index.html#contact" data-i18n="nav.contact">Contact</a></li>
-          <li><a href="index.html#contact" style="color:var(--gold);font-weight:600;" data-i18n="nav.book">Afspraak maken</a></li>
+          <li><a href="index.html?booking=1#contact" style="color:var(--gold);font-weight:600;" data-i18n="nav.book">Afspraak maken</a></li>
         </ul>
       </div>
       <div class="foot-col">
@@ -189,6 +223,7 @@
     </div>
   </footer>
   <script src="site-header.js"></script>
+  <script src="site-mobile-nav.js"></script>
   <script src="site-i18n.js"></script>
 </body>
 </html>

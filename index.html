@@ -4,9 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="meta.title">Magic Hairstyling - Alkmaar</title>
+  <meta name="description" content="Magic Hairstyling in Alkmaar voor dames, heren en kinderen. Bekijk diensten, prijzen, reviews en boek eenvoudig online een afspraak." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <link rel="canonical" href="https://seef1233.github.io/" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Magic Hairstyling" />
+  <meta property="og:title" content="Magic Hairstyling - Alkmaar" />
+  <meta property="og:description" content="Magic Hairstyling in Alkmaar voor dames, heren en kinderen. Bekijk diensten, prijzen, reviews en boek eenvoudig online een afspraak." />
+  <meta property="og:url" content="https://seef1233.github.io/" />
+  <meta property="og:image" content="https://seef1233.github.io/images/magic_hairstayle.png" />
+  <meta property="og:image:alt" content="Voorzijde van Magic Hairstyling in Alkmaar" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Magic Hairstyling - Alkmaar" />
+  <meta name="twitter:description" content="Magic Hairstyling in Alkmaar voor dames, heren en kinderen. Bekijk diensten, prijzen, reviews en boek eenvoudig online een afspraak." />
+  <meta name="twitter:image" content="https://seef1233.github.io/images/magic_hairstayle.png" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "HairSalon",
+          "@id": "https://seef1233.github.io/#salon",
+          "name": "Magic Hairstyling",
+          "url": "https://seef1233.github.io/",
+          "image": "https://seef1233.github.io/images/magic_hairstayle.png",
+          "logo": "https://seef1233.github.io/images/magic_hairstayle.png",
+          "description": "Magic Hairstyling in Alkmaar voor dames, heren en kinderen. Bekijk diensten, prijzen, reviews en boek eenvoudig online een afspraak.",
+          "priceRange": "EUR",
+          "telephone": "+31 72 512 7051",
+          "sameAs": [
+            "https://www.instagram.com/magic_hairstyling072/",
+            "https://www.facebook.com/p/barber_magic2019-100063655894767/",
+            "https://www.tiktok.com/@magichairhu?lang=nl-NL"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Gedempte Nieuwesloot 81",
+            "postalCode": "1811 KR",
+            "addressLocality": "Alkmaar",
+            "addressCountry": "NL"
+          },
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+31 72 512 7051",
+              "contactType": "customer service",
+              "areaServed": "NL",
+              "availableLanguage": ["nl", "en"]
+            },
+            {
+              "@type": "ContactPoint",
+              "telephone": "+31 6 87868751",
+              "contactType": "customer support",
+              "areaServed": "NL",
+              "availableLanguage": ["nl", "en"]
+            }
+          ],
+          "hasMap": "https://www.google.com/maps/search/?api=1&query=Gedempte+Nieuwesloot+81+1811+KR+Alkmaar",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "https://schema.org/Monday",
+                "https://schema.org/Tuesday"
+              ],
+              "opens": "11:00",
+              "closes": "19:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "https://schema.org/Wednesday",
+              "opens": "09:00",
+              "closes": "20:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "https://schema.org/Thursday",
+              "opens": "09:00",
+              "closes": "21:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "https://schema.org/Friday",
+              "opens": "09:00",
+              "closes": "20:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "https://schema.org/Saturday",
+              "opens": "09:00",
+              "closes": "18:00"
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://seef1233.github.io/#website",
+          "url": "https://seef1233.github.io/",
+          "name": "Magic Hairstyling",
+          "inLanguage": "nl-NL"
+        }
+      ]
+    }
+  </script>
   <style>
     /* â”&euro;â”&euro; Reset â”&euro;â”&euro; */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -280,18 +385,18 @@
     .slide-bg {
       position: absolute; inset: 0;
       background-size: cover; background-position: center;
-      filter: brightness(.72);
+      filter: brightness(.8);
       transform: scale(1.06); transition: transform 9s ease;
     }
     .slide.active .slide-bg { transform: scale(1); }
     /* overlay: ØªØ¯Ø±Ø¬ Ø¯Ø§ÙƒÙ† Ù…Ù† Ø§Ù„Ø£Ø³ÙÙ„ + Ø·Ø¨Ù‚Ø© Ø®ÙÙŠÙØ© Ù…ÙˆØ­Ø¯Ø© */
     .slide::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
-      background: rgba(0,0,0,.38);
+      background: rgba(0,0,0,.3);
     }
     .slide::after {
       content: ''; position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to top, rgba(0,0,0,.72) 0%, transparent 55%);
+      background: linear-gradient(to top, rgba(0,0,0,.6) 0%, transparent 58%);
     }
     .slide-content {
       position: relative; z-index: 2;
@@ -311,17 +416,20 @@
       content: ''; display: block; height: 1px; width: 48px;
       background: var(--gold); opacity: .7;
     }
-    .slide-content h1 {
+    .slide-content h1,
+    .slide-title {
       font-size: clamp(2.6rem, 7vw, 5rem);
       font-weight: 900; line-height: 1.1; margin-bottom: 20px;
       text-shadow: 0 4px 30px rgba(0,0,0,.5);
       letter-spacing: -.5px;
     }
     /* Ø®Ø· Ø°Ù‡Ø¨ÙŠ ØªØ­Øª Ø§Ù„Ø¹Ù†ÙˆØ§Ù† */
-    .slide-content h1 span {
+    .slide-content h1 span,
+    .slide-title span {
       position: relative; display: inline-block;
     }
-    .slide-content h1 span::after {
+    .slide-content h1 span::after,
+    .slide-title span::after {
       content: ''; position: absolute; left: 0; bottom: -4px;
       width: 100%; height: 3px; background: var(--gold); border-radius: 2px;
     }
@@ -2369,7 +2477,7 @@
 
       /* hero */
       .hero-arr { display: none; }
-      .slide-content h1 { font-size: clamp(2.2rem, 11vw, 3.2rem); }
+      .slide-content h1, .slide-title { font-size: clamp(2.2rem, 11vw, 3.2rem); }
       .hero-trust { flex-direction: row; flex-wrap: wrap; gap: 8px; justify-content: center; }
       .hero-pill { font-size: .7rem; padding: 8px 11px; }
 
@@ -2494,10 +2602,10 @@
 <section id="hero">
   <!-- Slide 1 -->
   <div class="slide active">
-    <div class="slide-bg" style="background-image:url('images/magic_hairstayle.png'); background-size:cover; background-position:center center; filter:brightness(.82) saturate(1.1);"></div>
+    <div class="slide-bg" style="background-image:url('images/magic_hairstayle.png'); background-size:cover; background-position:center center; filter:brightness(.9) saturate(1.08);"></div>
     <div class="slide-content">
       <div class="slide-tag" data-i18n="hero.slide1Tag">Alkmaar · Gedempte Nieuwesloot</div>
-      <h1 data-i18n-html="hero.slide1Title">Knippen met of<br><span>zonder afspraak</span></h1>
+      <h1 class="slide-title" data-i18n-html="hero.slide1Title">Knippen met of<br><span>zonder afspraak</span></h1>
       <p data-i18n="hero.slide1Body">Welkom bij Magic Hairstyling in Alkmaar. Professionele kapsels voor dames, heren en kinderen - altijd welkom.</p>
       <div class="slide-btns">
         <a href="#" class="btn btn-gold" onclick="openAfspraakModal();return false;" data-i18n="hero.slide1Primary">Afspraak maken</a>
@@ -2515,7 +2623,7 @@
     <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=1600&q=80');"></div>
     <div class="slide-content">
       <div class="slide-tag" data-i18n="hero.slide2Tag">Vakmanschap & Stijl</div>
-      <h1 data-i18n-html="hero.slide2Title">Perfect<br><span>geknipt</span></h1>
+      <p class="slide-title" data-i18n-html="hero.slide2Title">Perfect<br><span>geknipt</span></p>
       <p data-i18n="hero.slide2Body">Onze ervaren stylisten kennen elk haartype en elke snijstijl. Kom weg met een look die bij jou past.</p>
       <div class="slide-btns">
         <a href="#social" class="btn btn-gold" data-i18n="hero.slide2Primary">Bekijk ons werk</a>
@@ -2528,7 +2636,7 @@
     <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=1600&q=80');"></div>
     <div class="slide-content">
       <div class="slide-tag" data-i18n="hero.slide3Tag">Compleet aanbod</div>
-      <h1 data-i18n-html="hero.slide3Title">Professionele<br><span>verzorging</span></h1>
+      <p class="slide-title" data-i18n-html="hero.slide3Title">Professionele<br><span>verzorging</span></p>
       <p data-i18n="hero.slide3Body">Van knippen en scheren tot beauty-behandelingen - Magic Hairstyling verzorgt u van top tot teen.</p>
       <div class="slide-btns">
         <a href="tarieven.html" class="btn btn-gold" data-i18n="hero.slide3Primary">Bekijk tarieven</a>
@@ -3340,6 +3448,16 @@
     document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
     setTimeout(openAfspraakModal, 700);
   }
+  function maybeOpenBookingFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('booking') !== '1') return;
+
+    setTimeout(() => {
+      openAfspraakModal();
+      const cleanUrl = window.location.pathname + (window.location.hash || '');
+      window.history.replaceState({}, document.title, cleanUrl);
+    }, 450);
+  }
   document.getElementById('afspraak-modal').addEventListener('click', function(e) {
     if (e.target === this) closeAfspraakModal();
   });
@@ -3423,6 +3541,8 @@
     mobMenu.classList.remove('open');
     ham.classList.remove('open');
   }
+
+  maybeOpenBookingFromUrl();
 
   /* Hero carousel */
   const slides = document.querySelectorAll('.slide');
