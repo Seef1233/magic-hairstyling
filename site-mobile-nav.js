@@ -12,7 +12,7 @@
   const homeHref = isIndex ? '#hero' : 'index.html';
   const servicesHref = isIndex ? '#diensten' : 'index.html#diensten';
   const pricingHref = page === 'tarieven' ? 'tarieven.html' : 'tarieven.html';
-  const contactHref = isIndex ? '#contact' : 'index.html#contact';
+  const contactHref = 'contact.html';
 
   const nav = document.createElement('nav');
   nav.className = 'mob-bottom-nav';
@@ -62,6 +62,12 @@
     if (page === 'tarieven') {
       const pricingItem = nav.querySelector('[data-bnav="pricing"]');
       if (pricingItem) pricingItem.classList.add('active');
+      return;
+    }
+
+    if (page === 'contact') {
+      const contactItem = nav.querySelector('[data-bnav="contact"]');
+      if (contactItem) contactItem.classList.add('active');
       return;
     }
 

@@ -42,7 +42,7 @@
         "chooseDateTime": "Kies eerst een datum en tijd.",
         "closedDay": "Deze dag is gesloten voor nieuwe afspraken.",
         "blockedSlot": "Dit tijdslot is door de salon geblokkeerd.",
-        "slotTaken": "Dit tijdslot is al bezet. Kies een ander tijdstip.",
+        "slotTaken": "Dit tijdslot is volledig volgeboekt. Kies een ander tijdstip.",
         "bookingNotFound": "Afspraak niet gevonden."
       },
       "booking": {
@@ -98,7 +98,7 @@
         "summaryTime": "Tijd",
         "summaryDuration": "Duur",
         "summaryEmpty": "Nog niet gekozen",
-        "slotsTip": "Tijdsloten per 30 min, aangepast aan uw behandeling.",
+        "slotsTip": "Tijdsloten per 30 min, aangepast aan uw behandeling en saloncapaciteit.",
         "previousBookings": "Eerdere afspraken",
         "emptyBookings": "Nog geen afspraken op dit apparaat.",
         "code": "Code",
@@ -275,6 +275,10 @@
         "colorMeta1": "Rijke kleur",
         "colorMeta2": "Frisse look"
       },
+      "pricing": {
+        "body": "Hier vindt u een helder overzicht van de meest gekozen behandelingen en richtprijzen. Twijfelt u over de juiste keuze? Dan helpen we u graag direct verder in de salon, telefonisch of via de afspraakknop hieronder.",
+        "note": "Alle prijzen zijn inclusief btw. Voor uitgebreid kleurwerk of persoonlijk advies helpen we u graag verder in de salon of telefonisch."
+      },
       "hub": {
         "kicker": "Meer ontdekken",
         "title": "Bekijk meer in aparte pagina's",
@@ -337,6 +341,51 @@
         "successTitle": "Aanmelding ontvangen!",
         "successBody": "Bedankt voor je interesse.<br>We nemen zo snel mogelijk contact met je op.",
         "close": "Sluiten"
+      }
+    },
+    "contact": {
+      "meta": {
+        "title": "Contact | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Contact",
+        "title": "Neem contact met ons op",
+        "body": "Heeft u een vraag, wilt u een route plannen of liever direct een afspraak maken? Hieronder vindt u alle contactgegevens en openingstijden van onze salon in Alkmaar.",
+        "book": "Afspraak maken",
+        "route": "Plan uw route"
+      },
+      "info": {
+        "title": "Alles op één plek",
+        "body": "Bel ons, bezoek de salon of plan meteen uw afspraak. We helpen u graag snel en duidelijk verder.",
+        "addressTitle": "Adres",
+        "addressBody": "Gedempte Nieuwesloot 81<br>1811 KR Alkmaar",
+        "phoneTitle": "Telefoon",
+        "phoneBody": "Bel de salon voor algemene vragen of om snel iets af te stemmen.",
+        "mobileTitle": "Mobiel",
+        "mobileBody": "Liever mobiel contact? Ook daarvoor zijn we bereikbaar."
+      },
+      "hours": {
+        "title": "Openingstijden",
+        "body": "Loop gerust binnen of reserveer vooraf. Op drukke momenten is online boeken het snelst.",
+        "monTue": "Ma - Di",
+        "wed": "Woensdag",
+        "thu": "Donderdag",
+        "fri": "Vrijdag",
+        "sat": "Zaterdag",
+        "sun": "Zondag"
+      },
+      "actions": {
+        "title": "Snel verder",
+        "body": "Kies wat u nu wilt doen. Zo komt u zonder zoeken meteen bij de juiste stap.",
+        "call": "Bel de salon",
+        "mobile": "Bel mobiel",
+        "book": "Boek online",
+        "maps": "Open route"
+      },
+      "visit": {
+        "title": "Goed bereikbaar in Alkmaar",
+        "body": "Onze salon ligt aan de Gedempte Nieuwesloot, centraal in Alkmaar. Komt u met de fiets, lopend of met de auto? Via de routeknop opent u direct uw navigatie-app.",
+        "note": "Tip: wilt u zeker zijn van een plek? Gebruik dan de online afspraakknop."
       }
     },
     "tarieven": {
@@ -545,7 +594,7 @@
         "chooseDateTime": "Please choose a date and time first.",
         "closedDay": "This day is closed for new appointments.",
         "blockedSlot": "This time slot has been blocked by the salon.",
-        "slotTaken": "This time slot is already taken. Please choose another time.",
+        "slotTaken": "This time slot is fully booked. Please choose another time.",
         "bookingNotFound": "Appointment not found."
       },
       "booking": {
@@ -601,7 +650,7 @@
         "summaryTime": "Time",
         "summaryDuration": "Duration",
         "summaryEmpty": "Not selected yet",
-        "slotsTip": "30-minute slots, adjusted to your treatment.",
+        "slotsTip": "30-minute slots, adjusted to your treatment and salon capacity.",
         "previousBookings": "Previous appointments",
         "emptyBookings": "No appointments on this device yet.",
         "code": "Code",
@@ -778,6 +827,10 @@
         "colorMeta1": "Rich colour",
         "colorMeta2": "Fresh look"
       },
+      "pricing": {
+        "body": "Here you will find a clear overview of the most chosen treatments and guideline prices. Not sure which option is right for you? We are happy to help you directly in the salon, by phone or through the booking button below.",
+        "note": "All prices include VAT. For extensive colour work or personal advice, we are happy to help you further in the salon or by phone."
+      },
       "hub": {
         "kicker": "Discover more",
         "title": "Explore more on separate pages",
@@ -840,6 +893,51 @@
         "successTitle": "Application received!",
         "successBody": "Thank you for your interest.<br>We will contact you as soon as possible.",
         "close": "Close"
+      }
+    },
+    "contact": {
+      "meta": {
+        "title": "Contact | Magic Hairstyling"
+      },
+      "hero": {
+        "eyebrow": "Contact",
+        "title": "Get in touch with us",
+        "body": "Do you have a question, want to plan your route or prefer to book an appointment right away? Below you will find all contact details and opening hours for our salon in Alkmaar.",
+        "book": "Book now",
+        "route": "Plan your route"
+      },
+      "info": {
+        "title": "Everything in one place",
+        "body": "Call us, visit the salon or book your appointment straight away. We are happy to help you quickly and clearly.",
+        "addressTitle": "Address",
+        "addressBody": "Gedempte Nieuwesloot 81<br>1811 KR Alkmaar",
+        "phoneTitle": "Phone",
+        "phoneBody": "Call the salon for general questions or to quickly check something with us.",
+        "mobileTitle": "Mobile",
+        "mobileBody": "Prefer mobile contact? We are available there as well."
+      },
+      "hours": {
+        "title": "Opening hours",
+        "body": "Feel free to walk in or reserve ahead. During busy moments, online booking is usually the fastest option.",
+        "monTue": "Mon - Tue",
+        "wed": "Wednesday",
+        "thu": "Thursday",
+        "fri": "Friday",
+        "sat": "Saturday",
+        "sun": "Sunday"
+      },
+      "actions": {
+        "title": "Continue quickly",
+        "body": "Choose what you want to do right now so you can reach the right step without searching.",
+        "call": "Call the salon",
+        "mobile": "Call mobile",
+        "book": "Book online",
+        "maps": "Open route"
+      },
+      "visit": {
+        "title": "Easy to reach in Alkmaar",
+        "body": "Our salon is located on Gedempte Nieuwesloot, right in central Alkmaar. Whether you arrive by bike, on foot or by car, the route button will open your navigation app directly.",
+        "note": "Tip: want to be sure of a spot? Use the online booking button."
       }
     },
     "tarieven": {

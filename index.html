@@ -688,6 +688,35 @@
     }
     .feat { display: flex; align-items: center; gap: 9px; font-size: .87rem; font-weight: 600; }
     .feat i { color: var(--gold); }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 42px;
+    }
+    .value-box {
+      padding: 24px;
+      border-radius: 20px;
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 16px 38px rgba(0,0,0,.18);
+    }
+    .value-box span {
+      color: var(--gold);
+      font-size: .76rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 800;
+    }
+    .value-box h3 {
+      margin: 12px 0 10px;
+      font-size: 1.08rem;
+    }
+    .value-box p {
+      color: rgba(255,255,255,.66);
+      line-height: 1.8;
+      font-size: .92rem;
+    }
 
     /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        PORTFOLIO
@@ -711,6 +740,40 @@
     .port-item:hover .ov { opacity: 1; }
     .port-item.tall { grid-row: span 2; }
     .port-item.tall img { height: 514px; }
+    .port-label {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+    }
+    .port-label strong {
+      display: block;
+      font-size: 1.05rem;
+    }
+    .port-label span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(255,255,255,.74);
+      font-size: .86rem;
+      line-height: 1.7;
+    }
+    .port-chip {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(201,168,76,.14);
+      border: 1px solid rgba(201,168,76,.28);
+      color: var(--gold2);
+      font-size: .74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      flex-shrink: 0;
+    }
 
     /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        PRICING
@@ -845,6 +908,157 @@
       padding: 0;
     }
     .rev-dot.active { background: var(--gold); transform: scale(1.2); }
+
+    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+       CAREERS
+    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    #careers { padding: 100px 24px; background: var(--dark); }
+    .career-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .career-panel {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)),
+        var(--dark2);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 24px;
+      box-shadow: 0 18px 48px rgba(0,0,0,.24);
+    }
+    .career-copy { padding: 30px; }
+    .career-copy h3 {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+    .career-copy p {
+      color: rgba(255,255,255,.7);
+      line-height: 1.9;
+      margin-bottom: 14px;
+    }
+    .career-benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .career-benefit {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+    .career-benefit i {
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+    .career-benefit strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .career-benefit p {
+      color: rgba(255,255,255,.62);
+      line-height: 1.7;
+      font-size: .9rem;
+      margin-bottom: 0;
+    }
+    .career-roles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 22px;
+    }
+    .career-role {
+      padding: 20px;
+      border-radius: 18px;
+      background: rgba(201,168,76,.06);
+      border: 1px solid rgba(201,168,76,.18);
+    }
+    .career-role span {
+      color: var(--gold);
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+    .career-role h4 {
+      margin: 12px 0 10px;
+      font-size: 1.08rem;
+    }
+    .career-role ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .career-role li {
+      color: rgba(255,255,255,.68);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .career-role li::before {
+      content: '\2022 ';
+      color: var(--gold);
+    }
+    .career-cta {
+      padding: 30px;
+      position: sticky;
+      top: 122px;
+    }
+    .career-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,168,76,.26);
+      background: rgba(201,168,76,.08);
+      color: var(--gold2);
+      font-size: .72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    .career-cta h3 {
+      margin-top: 18px;
+      font-size: 1.65rem;
+      line-height: 1.2;
+    }
+    .career-cta p {
+      margin-top: 12px;
+      color: rgba(255,255,255,.66);
+      line-height: 1.8;
+    }
+    .career-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .career-mini {
+      margin-top: 24px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      display: grid;
+      gap: 12px;
+    }
+    .career-mini-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: rgba(255,255,255,.72);
+      font-size: .92rem;
+      line-height: 1.7;
+    }
+    .career-mini-item i {
+      color: var(--gold);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
 
     /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        CONTACT
@@ -1866,57 +2080,6 @@
       color: var(--gray); line-height: 1.7;
     }
 
-    .pages-hub {
-      padding: 100px 24px;
-      background: var(--dark);
-    }
-    .pages-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-    }
-    .page-link-card {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 26px 22px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)), var(--dark2);
-      border: 1px solid rgba(255,255,255,.06);
-      box-shadow: 0 16px 40px rgba(0,0,0,.22);
-      transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
-    }
-    .page-link-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(201,168,76,.3);
-      box-shadow: 0 22px 48px rgba(0,0,0,.28);
-    }
-    .page-link-card i {
-      width: 46px; height: 46px;
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(201,168,76,.12);
-      color: var(--gold);
-      font-size: 1rem;
-    }
-    .page-link-card h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
-    }
-    .page-link-card p {
-      color: rgba(255,255,255,.62);
-      line-height: 1.75;
-      font-size: .9rem;
-      flex: 1;
-    }
-    .page-link-card span {
-      color: var(--gold);
-      font-size: .78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-
     /* â”&euro;â”&euro; Hours table (kept for potential reuse) â”&euro;â”&euro; */
     .open { color: #4caf50; font-weight: 600; }
 
@@ -1928,6 +2091,8 @@
       .booking-summary { position: static; }
       .cstrip-item { border-right: none; border-bottom: 1px solid #1e1e1e; }
       .cstrip-item:last-child { border-bottom: none; }
+      .career-grid { grid-template-columns: 1fr; }
+      .career-cta { position: static; }
     }
     @media (max-width: 880px) {
       #nav { padding: 0; }
@@ -1948,12 +2113,13 @@
       }
       .over-wrap { grid-template-columns: 1fr; }
       .over-img { order: -1; }
+      .values-grid { grid-template-columns: 1fr; }
       .port-grid { grid-template-columns: 1fr 1fr; }
       .port-item.tall { grid-row: span 1; }
       .port-item.tall img { height: 250px; }
       .foot-grid { grid-template-columns: 1fr 1fr; }
       .price-wrap { grid-template-columns: 1fr; }
-      .pages-grid { grid-template-columns: 1fr 1fr; }
+      .career-benefits, .career-roles { grid-template-columns: 1fr 1fr; }
       .wizard-header, .wizard-body { padding-left: 20px; padding-right: 20px; }
       .hero-trust { gap: 10px; }
       .hero-pill { font-size: .74rem; }
@@ -1968,11 +2134,12 @@
       .d-card, .d-card.featured, .d-card.featured-left, .d-card.featured-center, .d-card.compact { min-height: 320px; }
       .d-card-content { padding: 16px; }
       .d-card h3 { font-size: 1.2rem; }
+      .values-grid,
       .port-grid { grid-template-columns: 1fr; }
       .foot-grid { grid-template-columns: 1fr; }
-      .pages-grid { grid-template-columns: 1fr; }
       .fg-row { grid-template-columns: 1fr; }
       .over-feats { grid-template-columns: 1fr; }
+      .career-benefits, .career-roles { grid-template-columns: 1fr; }
       .svc-select-grid { grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); }
       .step-bar::before { left: 10px; right: 10px; }
       .step-label { font-size: .6rem; }
@@ -2429,7 +2596,7 @@
       .mob-bottom-nav { display: flex; flex-direction: column; }
       #top-btn { bottom: 80px; right: 18px; }
 
-      #diensten, #over, #portfolio, #tarieven, #reviews, #contact, .pages-hub {
+      #diensten, #over, #portfolio, #tarieven, #reviews, #careers, #contact {
         padding-top: 64px;
         padding-bottom: 64px;
       }
@@ -2446,6 +2613,7 @@
 
       /* about badge */
       .over-badge { right: 0; bottom: 0; }
+      .career-benefits, .career-roles { grid-template-columns: 1fr 1fr; }
 
       /* stats: 2×2 grid */
       .stats-row {
@@ -2468,7 +2636,7 @@
        MOBILE OVERRIDES — 560px
     ══════════════════════════════════════ */
     @media (max-width: 560px) {
-      #diensten, #over, #portfolio, #tarieven, #reviews, #contact, .pages-hub {
+      #diensten, #over, #portfolio, #tarieven, #reviews, #careers, #contact {
         padding-top: 52px;
         padding-bottom: 52px;
         padding-left: 16px;
@@ -2480,6 +2648,8 @@
       .slide-content h1, .slide-title { font-size: clamp(2.2rem, 11vw, 3.2rem); }
       .hero-trust { flex-direction: row; flex-wrap: wrap; gap: 8px; justify-content: center; }
       .hero-pill { font-size: .7rem; padding: 8px 11px; }
+      .career-copy, .career-cta { padding: 24px 20px; }
+      .career-benefits, .career-roles { grid-template-columns: 1fr; }
 
       /* services — horizontal scroll snap */
       .diensten-grid {
@@ -2540,9 +2710,6 @@
       /* buttons — bigger touch targets */
       .btn { padding: 14px 28px; font-size: .9rem; min-height: 48px; }
 
-      /* pages grid */
-      .pages-grid { grid-template-columns: 1fr; gap: 12px; }
-
       /* price */
       .price-wrap { gap: 16px; }
     }
@@ -2577,7 +2744,7 @@
       <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
       <li><a href="tarieven.html" data-i18n="nav.pricing">Tarieven</a></li>
       <li><a href="reviews.html" data-i18n="nav.reviews">Reviews</a></li>
-      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div data-language-switcher></div>
     <a class="nav-btn" href="#contact" onclick="scrollAndOpen();return false;"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
@@ -2592,7 +2759,7 @@
     <a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a>
     <a href="tarieven.html" data-i18n="nav.pricing">Tarieven</a>
     <a href="reviews.html" data-i18n="nav.reviews">Reviews</a>
-    <a href="#contact" onclick="closeM()" data-i18n="nav.contact">Contact</a>
+    <a href="contact.html" onclick="closeM()" data-i18n="nav.contact">Contact</a>
     <div data-language-switcher></div>
     <a href="#contact" class="nav-btn" onclick="closeM();scrollAndOpen();return false;"><i class="fas fa-calendar-check"></i><span data-i18n="nav.book">Afspraak maken</span></a>
   </div>
@@ -2626,7 +2793,7 @@
       <p class="slide-title" data-i18n-html="hero.slide2Title">Perfect<br><span>geknipt</span></p>
       <p data-i18n="hero.slide2Body">Onze ervaren stylisten kennen elk haartype en elke snijstijl. Kom weg met een look die bij jou past.</p>
       <div class="slide-btns">
-        <a href="#social" class="btn btn-gold" data-i18n="hero.slide2Primary">Bekijk ons werk</a>
+        <a href="portfolio.html" class="btn btn-gold" data-i18n="hero.slide2Primary">Bekijk ons werk</a>
         <a href="over-ons.html" class="btn btn-outline" data-i18n="hero.slide2Secondary">Over ons</a>
       </div>
     </div>
@@ -2640,7 +2807,7 @@
       <p data-i18n="hero.slide3Body">Van knippen en scheren tot beauty-behandelingen - Magic Hairstyling verzorgt u van top tot teen.</p>
       <div class="slide-btns">
         <a href="tarieven.html" class="btn btn-gold" data-i18n="hero.slide3Primary">Bekijk tarieven</a>
-        <a href="#contact"  class="btn btn-outline" data-i18n="hero.slide3Secondary">Bel ons</a>
+        <a href="contact.html"  class="btn btn-outline" data-i18n="hero.slide3Secondary">Bel ons</a>
       </div>
     </div>
   </div>
@@ -2774,8 +2941,322 @@
       </div>
     </div>
   </div>
-</section><!-- â•â•â•â•â•â•â•â•â•â• OVER ONS â•â•â•â•â•â•â•â•â•â• -->
-<section class="pages-hub"><div class="container"><div class="sec-head"><span class="kicker" data-i18n="hub.kicker">Meer ontdekken</span><h2 data-i18n="hub.title">Bekijk meer in aparte pagina's</h2><div class="bar"></div><p data-i18n="hub.body">We hebben de uitgebreide informatie verplaatst naar losse pagina's zodat de homepage rustiger en duidelijker blijft.</p></div><div class="pages-grid"><a class="page-link-card" href="over-ons.html"><i class="fas fa-user-group"></i><h3 data-i18n="nav.about">Over ons</h3><p data-i18n="hub.aboutBody">Lees meer over de salon, onze stijl van werken en waarom klanten al jaren terugkomen.</p><span data-i18n="hub.aboutCta">Open pagina</span></a><a class="page-link-card" href="portfolio.html"><i class="fas fa-images"></i><h3 data-i18n="nav.portfolio">Portfolio</h3><p data-i18n="hub.portfolioBody">Bekijk een losse galerij met looks, afwerking en sfeerbeelden van het werk.</p><span data-i18n="hub.portfolioCta">Bekijk werk</span></a><a class="page-link-card" href="tarieven.html"><i class="fas fa-tags"></i><h3 data-i18n="nav.pricing">Tarieven</h3><p data-i18n="hub.pricingBody">Een duidelijk overzicht van de meest gekozen behandelingen en bijbehorende prijzen.</p><span data-i18n="hub.pricingCta">Zie prijzen</span></a><a class="page-link-card" href="reviews.html"><i class="fas fa-star"></i><h3 data-i18n="nav.reviews">Reviews</h3><p data-i18n="hub.reviewsBody">Lees wat klanten zeggen over hun ervaring, de service en het eindresultaat.</p><span data-i18n="hub.reviewsCta">Lees reviews</span></a><a class="page-link-card" href="werken-bij-ons.html"><i class="fas fa-briefcase"></i><h3 data-i18n="nav.careers">Werken bij ons</h3><p data-i18n="hub.careersBody">Bekijk vacatures, stagekansen en solliciteer via een aparte pagina.</p><span data-i18n="hub.careersCta">Bekijk kansen</span></a></div></div></section><!-- CONTACT --><section id="contact" style="background:var(--dark2);padding:100px 24px;">
+</section>
+
+<section id="over">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="over-ons.hero.eyebrow">Over Ons</span>
+      <h2 data-i18n="over-ons.hero.title">Vakmanschap met een persoonlijk tintje</h2>
+      <div class="bar"></div>
+      <p data-i18n="over-ons.hero.body">Magic Hairstyling is al meer dan 15 jaar een vertrouwd adres in Alkmaar voor dames, heren en kinderen. We combineren moderne looks, klassieke precisie en oprechte aandacht voor iedere klant die binnenstapt.</p>
+    </div>
+
+    <div class="over-wrap">
+      <div class="over-img">
+        <img src="images/overons.png" alt="Magic Hairstyling salon" />
+        <div class="over-badge">
+          <div class="yrs">15+</div>
+          <div class="yrl" data-i18n="over-ons.about.feature1Title">jaar ervaring</div>
+        </div>
+      </div>
+      <div class="over-text">
+        <span class="kicker" data-i18n="over-ons.hero.eyebrow">Over Ons</span>
+        <h2 data-i18n="over-ons.about.title">Meer dan alleen knippen</h2>
+        <p data-i18n="over-ons.about.p1">Bij ons draait het niet alleen om een goed kapsel, maar om het complete gevoel van verzorgd, gezien en welkom zijn. Of het nu gaat om een snelle knipbeurt, een strakke baardlijn of een beautybehandeling: we nemen de tijd voor kwaliteit.</p>
+        <p data-i18n="over-ons.about.p2">We werken met betrouwbare producten, een schone werkomgeving en een ontspannen sfeer waarin klanten makkelijk terugkomen. Dat zie je terug in onze vaste klantenkring en de vele positieve ervaringen.</p>
+
+        <div class="over-feats">
+          <div class="feat"><i class="fas fa-award"></i><span data-i18n="over-ons.about.feature1Title">15+ jaar ervaring</span></div>
+          <div class="feat"><i class="fas fa-user-friends"></i><span data-i18n="over-ons.about.feature2Title">Voor iedereen</span></div>
+          <div class="feat"><i class="fas fa-gem"></i><span data-i18n="over-ons.about.feature3Title">Persoonlijk advies</span></div>
+          <div class="feat"><i class="fas fa-scissors"></i><span data-i18n="over-ons.values.precision">Precisie</span></div>
+        </div>
+
+        <div class="slide-btns" style="justify-content:flex-start;">
+          <a href="#" class="btn btn-gold" onclick="openAfspraakModal();return false;" data-i18n="over-ons.hero.book">Afspraak maken</a>
+          <a href="portfolio.html" class="btn btn-outline" data-i18n="over-ons.hero.portfolio">Bekijk portfolio</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-box">
+        <span>01</span>
+        <h3 data-i18n="over-ons.values.precision">Precisie</h3>
+        <p data-i18n="over-ons.values.precisionBody">Van fade tot kleurbehandeling: afwerking en balans maken het verschil, en daar letten we scherp op.</p>
+      </div>
+      <div class="value-box">
+        <span>02</span>
+        <h3 data-i18n="over-ons.values.comfort">Comfort</h3>
+        <p data-i18n="over-ons.values.comfortBody">We willen dat iedere afspraak prettig voelt, van ontvangst tot het moment dat je de deur weer uitstapt.</p>
+      </div>
+      <div class="value-box">
+        <span>03</span>
+        <h3 data-i18n="over-ons.values.trust">Vertrouwen</h3>
+        <p data-i18n="over-ons.values.trustBody">Veel klanten komen al jaren terug. Dat vertrouwen is voor ons net zo belangrijk als het kapsel zelf.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="portfolio.hero.eyebrow">Portfolio</span>
+      <h2 data-i18n="portfolio.hero.title">Ons werk in beeld</h2>
+      <div class="bar"></div>
+      <p data-i18n="portfolio.section.body">Deze galerij geeft een indruk van de stijl en kwaliteit die we in de salon nastreven.</p>
+    </div>
+    <div class="port-grid">
+      <div class="port-item">
+        <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=900&q=85" alt="Kapsel" />
+        <div class="port-label"><div><strong>Fresh Cut</strong><span data-i18n="portfolio.cards.freshBody">Strakke afwerking met moderne vorm.</span></div><div class="port-chip">Cut</div></div>
+        <div class="ov"><i class="fas fa-plus"></i></div>
+      </div>
+      <div class="port-item">
+        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=900&q=85" alt="Knippen" />
+        <div class="port-label"><div><strong>Classic Barber</strong><span data-i18n="portfolio.cards.classicBody">Klassiek werk met nette contouren.</span></div><div class="port-chip">Barber</div></div>
+        <div class="ov"><i class="fas fa-plus"></i></div>
+      </div>
+      <div class="port-item tall">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=900&q=85" alt="Scheren" />
+        <div class="port-label"><div><strong>Signature Finish</strong><span data-i18n="portfolio.cards.signatureBody">Combinatie van vorm, glans en balans voor een verzorgde uitstraling.</span></div><div class="port-chip">Style</div></div>
+        <div class="ov"><i class="fas fa-plus"></i></div>
+      </div>
+      <div class="port-item">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=900&q=85" alt="Stylen" />
+        <div class="port-label"><div><strong>Volume &amp; Shape</strong><span data-i18n="portfolio.cards.volumeBody">Gestyled voor beweging en karakter.</span></div><div class="port-chip">Finish</div></div>
+        <div class="ov"><i class="fas fa-plus"></i></div>
+      </div>
+      <div class="port-item">
+        <img src="https://images.unsplash.com/photo-1605497787940-cb8b2ef3b3ab?w=900&q=85" alt="Kleuren" />
+        <div class="port-label"><div><strong>Color Refresh</strong><span data-i18n="portfolio.cards.colorBody">Rijke kleurtonen met frisse uitstraling.</span></div><div class="port-chip">Color</div></div>
+        <div class="ov"><i class="fas fa-plus"></i></div>
+      </div>
+      <div class="port-item">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=85" alt="Beauty" />
+        <div class="port-label"><div><strong>Beauty Care</strong><span data-i18n="portfolio.cards.beautyBody">Verzorgende details die het totaalplaatje afmaken.</span></div><div class="port-chip">Beauty</div></div>
+        <div class="ov"><i class="fas fa-plus"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tarieven">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="tarieven.hero.eyebrow">Tarieven</span>
+      <h2 data-i18n="tarieven.hero.title">Duidelijke prijzen per behandeling</h2>
+      <div class="bar"></div>
+      <p data-i18n="index.pricing.body">Hier vindt u een helder overzicht van de meest gekozen behandelingen en richtprijzen. Twijfelt u over de juiste keuze? Dan helpen we u graag direct verder in de salon, telefonisch of via de afspraakknop hieronder.</p>
+    </div>
+
+    <div class="price-wrap">
+      <div class="price-cat">
+        <div class="price-cat-head"><i class="fas fa-male"></i><h3 data-i18n="tarieven.categories.men">Heren</h3></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.men.cut.row">Knippen + Styling<small>35 min</small></div><div class="amt">EUR 25,00</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.men.wash.row">Knippen + Wassen + Styling<small>40 min</small></div><div class="amt">EUR 27,50</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.men.beard.row">Knippen + Styling + Baard<small>45 min</small></div><div class="amt">EUR 32,50</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.men.fade.row">Knippen + Overloop + Lange baard<small>45 min</small></div><div class="amt">EUR 35,00</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.men.vip.row">VIP behandeling<small>80 min</small></div><div class="amt">EUR 50,00</div></div>
+      </div>
+
+      <div class="price-cat">
+        <div class="price-cat-head"><i class="fas fa-female"></i><h3 data-i18n="tarieven.categories.women">Dames</h3></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.women.cut.row">Knippen + Fohnen + Styling<small>25 min</small></div><div class="amt">EUR 32,50</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.women.wash.row">Knippen + Wassen + Fohnen + Styling<small>35 min</small></div><div class="amt">EUR 37,50</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.women.outgrowth.row">Uitgroei kleuren + Knippen + Styling<small>50 min</small></div><div class="amt">EUR 55,00</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.women.fullColor.row">Hele haar kleuren + Knippen + Styling<small>Vanaf 60 min</small></div><div class="amt">EUR 90,00</div></div>
+      </div>
+
+      <div class="price-cat">
+        <div class="price-cat-head"><i class="fas fa-child"></i><h3 data-i18n="tarieven.categories.children">Kinderen</h3></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.children.cut.row">Knippen + Styling<small>1 t/m 15 jaar</small></div><div class="amt">EUR 25,00</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.children.design.row">Extra haar design / kleurdetail</div><div class="amt">EUR 2,50</div></div>
+      </div>
+
+      <div class="price-cat">
+        <div class="price-cat-head"><i class="fas fa-spa"></i><h3 data-i18n="tarieven.categories.beauty">Beauty</h3></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.beauty.facial.row">Waxen + Draadje + Masker<small>35 min</small></div><div class="amt">EUR 25,00</div></div>
+        <div class="price-row"><div class="svc" data-i18n-html="catalog.beauty.brows.row">Wenkbrauwen epileren + dagcreme<small>10 min</small></div><div class="amt">EUR 15,00</div></div>
+      </div>
+    </div>
+
+    <p class="price-note" data-i18n="index.pricing.note">Alle prijzen zijn inclusief btw. Voor uitgebreid kleurwerk of persoonlijk advies helpen we u graag verder in de salon of telefonisch.</p>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="reviews.hero.eyebrow">Reviews</span>
+      <h2 data-i18n="reviews.hero.title">Wat klanten over ons zeggen</h2>
+      <div class="bar"></div>
+      <p data-i18n="reviews.hero.body">De beste indruk ontstaat vaak na een bezoek. Deze beoordelingen laten zien hoe klanten de sfeer, service en resultaten van Magic Hairstyling ervaren.</p>
+    </div>
+
+    <div class="reviews-shell">
+      <button class="rev-nav rev-prev" id="revPrev" type="button" aria-label="Vorige review"><i class="fas fa-chevron-left"></i></button>
+      <div class="rev-viewport">
+        <div class="rev-track" id="revTrack">
+          <article class="rev-card">
+            <div class="rev-topline">
+              <span class="rev-origin" data-i18n="reviews.items.source">Google review</span>
+            </div>
+            <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-txt" data-i18n="reviews.items.review1">"Majid's Hair Salon is de beste kapper van Alkmaar. Ik wil gewoon dat mijn haar door Majid zelf wordt gedaan."</p>
+            <div class="rev-auth">
+              <div class="rev-av">H</div>
+              <div>
+                <div class="rev-name">Hassan barati</div>
+                <div class="rev-since" data-i18n="reviews.items.review1Time">4 maanden geleden</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rev-card">
+            <div class="rev-topline">
+              <span class="rev-origin" data-i18n="reviews.items.source">Google review</span>
+            </div>
+            <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-txt" data-i18n="reviews.items.review2">"Bij binnenkomst lekker bakkie koffie gekregen. De barber vraagt goed naar wat je wilt en neemt de tijd voor je."</p>
+            <div class="rev-auth">
+              <div class="rev-av">R</div>
+              <div>
+                <div class="rev-name">Robolya Visser</div>
+                <div class="rev-since" data-i18n="reviews.items.review2Time">een jaar geleden</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rev-card">
+            <div class="rev-topline">
+              <span class="rev-origin" data-i18n="reviews.items.source">Google review</span>
+            </div>
+            <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-txt" data-i18n="reviews.items.review3">"Absoluut een top kapper, mijn zoon Max wil alleen nog daar geknipt worden. Een aanrader als je voor je zoon een gaaf kapsel wilt."</p>
+            <div class="rev-auth">
+              <div class="rev-av">M</div>
+              <div>
+                <div class="rev-name">Martijn van der woep</div>
+                <div class="rev-since" data-i18n="reviews.items.review3Time">een jaar geleden</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rev-card">
+            <div class="rev-topline">
+              <span class="rev-origin" data-i18n="reviews.items.source">Google review</span>
+            </div>
+            <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="rev-txt" data-i18n="reviews.items.review4">"Een echte aanrader! Ik kom er al jaren en nooit met een ontevreden gevoel naar huis gegaan."</p>
+            <div class="rev-auth">
+              <div class="rev-av">R</div>
+              <div>
+                <div class="rev-name">Rick Van de pol</div>
+                <div class="rev-since" data-i18n="reviews.items.review4Time">2 jaar geleden</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <button class="rev-nav rev-next" id="revNext" type="button" aria-label="Volgende review"><i class="fas fa-chevron-right"></i></button>
+      <div class="rev-dots" id="revDots"></div>
+    </div>
+  </div>
+</section>
+
+<section id="careers">
+  <div class="container">
+    <div class="sec-head">
+      <span class="kicker" data-i18n="werken-bij-ons.hero.eyebrow">Werken bij ons</span>
+      <h2 data-i18n="werken-bij-ons.hero.title">Bouw mee aan stijl, service en sfeer in Alkmaar</h2>
+      <div class="bar"></div>
+      <p data-i18n="werken-bij-ons.hero.body">Ben jij gepassioneerd door haarstyling, gastvrijheid en kwaliteit? Bij Magic Hairstyling zoeken we mensen die energie krijgen van mooi werk, tevreden klanten en een sterke salonbeleving.</p>
+    </div>
+
+    <div class="career-grid">
+      <div class="career-panel career-copy">
+        <h3 data-i18n="werken-bij-ons.intro.title">Waarom werken bij Magic Hairstyling?</h3>
+        <p data-i18n="werken-bij-ons.intro.p1">We combineren een warme sfeer met professioneel vakmanschap. In de salon draait het niet alleen om knippen of stylen, maar ook om aandacht, uitstraling en het vertrouwen dat klanten voelen zodra ze binnenstappen.</p>
+        <p data-i18n="werken-bij-ons.intro.p2">Of je nu ervaren bent of nog leert in de praktijk, we zoeken mensen die gemotiveerd zijn, verzorgd werken en trots zijn op kwaliteit.</p>
+
+        <div class="career-benefits">
+          <div class="career-benefit">
+            <i class="fas fa-users"></i>
+            <strong data-i18n="werken-bij-ons.intro.benefit1Title">Warm team</strong>
+            <p data-i18n="werken-bij-ons.intro.benefit1Body">Een fijne werksfeer waarin samenwerken en gastvrijheid centraal staan.</p>
+          </div>
+          <div class="career-benefit">
+            <i class="fas fa-scissors"></i>
+            <strong data-i18n="werken-bij-ons.intro.benefit2Title">Ruimte voor groei</strong>
+            <p data-i18n="werken-bij-ons.intro.benefit2Body">Ontwikkel je techniek, tempo en klantcommunicatie in de salonpraktijk.</p>
+          </div>
+          <div class="career-benefit">
+            <i class="fas fa-star"></i>
+            <strong data-i18n="werken-bij-ons.intro.benefit3Title">Hoog serviceniveau</strong>
+            <p data-i18n="werken-bij-ons.intro.benefit3Body">Werk mee aan een ervaring waar klanten graag voor terugkomen.</p>
+          </div>
+          <div class="career-benefit">
+            <i class="fas fa-location-dot"></i>
+            <strong data-i18n="werken-bij-ons.intro.benefit4Title">Centrale locatie</strong>
+            <p data-i18n="werken-bij-ons.intro.benefit4Body">Onze salon ligt in het hart van Alkmaar, goed bereikbaar en levendig.</p>
+          </div>
+        </div>
+
+        <div class="career-roles">
+          <div class="career-role">
+            <span data-i18n="werken-bij-ons.roles.employeeTag">Medewerker</span>
+            <h4 data-i18n="werken-bij-ons.roles.employeeTitle">Voor wie al in het vak zit</h4>
+            <ul>
+              <li data-i18n="werken-bij-ons.roles.employeeItem1">Ervaring met knippen, stylen of salonwerk is een plus.</li>
+              <li data-i18n="werken-bij-ons.roles.employeeItem2">Klantgericht, verzorgd en zelfstandig kunnen werken.</li>
+              <li data-i18n="werken-bij-ons.roles.employeeItem3">Passie voor uitstraling en afwerking.</li>
+            </ul>
+          </div>
+          <div class="career-role">
+            <span data-i18n="werken-bij-ons.roles.internTag">Stage</span>
+            <h4 data-i18n="werken-bij-ons.roles.internTitle">Voor studenten die willen leren</h4>
+            <ul>
+              <li data-i18n="werken-bij-ons.roles.internItem1">Geschikt voor opleiding kapper of haarstylist.</li>
+              <li data-i18n="werken-bij-ons.roles.internItem2">Praktijkervaring onder begeleiding van een ervaren vakman.</li>
+              <li data-i18n="werken-bij-ons.roles.internItem3">Focus op houding, techniek en klantcontact.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="career-panel career-cta">
+        <div class="career-badge"><i class="fas fa-briefcase"></i><span data-i18n="nav.careers">Werken bij ons</span></div>
+        <h3 data-i18n="werken-bij-ons.form.title">Solliciteer direct</h3>
+        <p data-i18n="werken-bij-ons.form.body">Kies of je solliciteert als medewerker of stage zoekt. Vul het formulier in en we nemen zo snel mogelijk contact met je op.</p>
+
+        <div class="career-actions">
+          <button type="button" class="btn btn-gold" onclick="openWerkenModal()"><span data-i18n="werken-bij-ons.hero.apply">Direct solliciteren</span></button>
+          <a href="#" class="btn btn-outline" onclick="openAfspraakModal();return false;" data-i18n="over-ons.hero.book">Afspraak maken</a>
+        </div>
+
+        <div class="career-mini">
+          <div class="career-mini-item">
+            <i class="fas fa-user-check"></i>
+            <span data-i18n="werken-bij-ons.roles.employeeTitle">Voor wie al in het vak zit</span>
+          </div>
+          <div class="career-mini-item">
+            <i class="fas fa-graduation-cap"></i>
+            <span data-i18n="werken-bij-ons.roles.internTitle">Voor studenten die willen leren</span>
+          </div>
+          <div class="career-mini-item">
+            <i class="fas fa-info-circle"></i>
+            <span data-i18n="werken-bij-ons.form.stageNote">Wij bieden stageplaatsen aan voor studenten kapper / haarstylist. Een minimale stageduur van twee maanden heeft de voorkeur.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="background:var(--dark2);padding:100px 24px;">
   <div class="container">
     <div class="sec-head">
       <span class="kicker" data-i18n="contact.kicker">Online reserveren</span>
@@ -3280,7 +3761,7 @@
         <li><a href="portfolio.html" data-i18n="nav.portfolio">Portfolio</a></li>
         <li><a href="tarieven.html" data-i18n="nav.pricing">Tarieven</a></li>
         <li><a href="reviews.html" data-i18n="nav.reviews">Reviews</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
         <li><a href="#contact" onclick="scrollAndOpen();return false;" style="color:var(--gold);font-weight:600;" data-i18n="nav.book">Afspraak maken</a></li>
         <li><a href="werken-bij-ons.html" class="werken-link" data-i18n="nav.careers">Werken bij ons</a></li>
       </ul>
@@ -3422,7 +3903,7 @@
       <i class="fas fa-tag"></i>
       <span data-i18n="nav.pricing">Tarieven</span>
     </a>
-    <a href="#contact" class="mob-bnav-item">
+    <a href="contact.html" class="mob-bnav-item">
       <i class="fas fa-map-marker-alt"></i>
       <span data-i18n="nav.contact">Contact</span>
     </a>
@@ -4145,7 +4626,7 @@
       if (en.isIntersecting) { en.target.style.opacity='1'; en.target.style.transform='translateY(0)'; }
     });
   }, {threshold:0.1});
-  document.querySelectorAll('.d-card, .rev-card, .port-item, .price-cat, .booking-wizard').forEach(el => {
+  document.querySelectorAll('.d-card, .rev-card, .port-item, .price-cat, .booking-wizard, .value-box, .career-panel, .career-benefit, .career-role').forEach(el => {
     el.style.opacity='0'; el.style.transform='translateY(28px)';
     el.style.transition='opacity .55s ease, transform .55s ease';
     obs.observe(el);

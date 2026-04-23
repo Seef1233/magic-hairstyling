@@ -389,6 +389,18 @@
           </div>
           <div style="display:flex;flex-direction:column;gap:14px">
             <div class="sc">
+              <div class="sc-head"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="4" y="6" width="5" height="12" rx="1"/><rect x="10" y="4" width="5" height="14" rx="1"/><rect x="16" y="7" width="4" height="11" rx="1"/></svg></div><h3>Saloncapaciteit</h3></div>
+              <div class="sc-body">
+                <p style="font-size:.72rem;color:var(--mu);line-height:1.6;margin-bottom:12px">Stel in hoeveel klanten tegelijk kunnen worden ingepland. Handig wanneer meerdere stoelen of barbers parallel werken.</p>
+                <div class="fld" style="margin-bottom:10px">
+                  <label>Aantal stoelen / gelijktijdige plekken</label>
+                  <input id="chairCapacityInput" type="number" min="1" max="20" step="1" />
+                </div>
+                <button class="btn btn-gold btn-sm" id="saveCapacityBtn">Opslaan</button>
+                <div class="notif" id="capacityNotif"></div>
+              </div>
+            </div>
+            <div class="sc">
               <div class="sc-head"><div class="sc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="16" x2="15" y2="16"/></svg></div><h3>Hele dag sluiten</h3></div>
               <div class="sc-body"><div style="display:flex;gap:7px;align-items:flex-end"><div class="fld" style="flex:1"><label>Datum</label><input id="blockedDateInput" type="date"/></div><button class="btn btn-gold btn-sm" id="addBlockedDateBtn">Blokkeren</button></div><div class="mini-list" id="blockedDatesList"></div></div>
             </div>
@@ -481,6 +493,7 @@
   const pendingCount = document.getElementById('pendingCount');
   const calStats     = document.getElementById('calStats');
   const hoursForm    = document.getElementById('hoursForm');
+  const chairCapacityInput = document.getElementById('chairCapacityInput');
   const blockedDatesList = document.getElementById('blockedDatesList');
   const blockedSlotsList = document.getElementById('blockedSlotsList');
   const modalBackdrop= document.getElementById('modalBackdrop');
@@ -817,6 +830,10 @@
     });
   }
 
+  function renderCapacity(){
+    chairCapacityInput.value = BookingStore.getChairCapacity();
+  }
+
   function renderBlockedDates(){
     const dates=BookingStore.getSettings().blockedDates;
     const fmt=d=>new Intl.DateTimeFormat('nl-NL',{weekday:'short',day:'numeric',month:'short'}).format(new Date(d+'T12:00:00'));
@@ -851,6 +868,13 @@
       });
       notif('hoursNotif','Openingstijden opgeslagen!','success'); refreshAll();
     }catch(err){notif('hoursNotif',err.message||'Mislukt.','error');}
+  });
+  document.getElementById('saveCapacityBtn').addEventListener('click',()=>{
+    try{
+      BookingStore.setChairCapacity(Number(chairCapacityInput.value) || 1);
+      notif('capacityNotif','Saloncapaciteit opgeslagen!','success');
+      refreshAll();
+    }catch(err){notif('capacityNotif',err.message||'Mislukt.','error');}
   });
   document.getElementById('addBlockedDateBtn').addEventListener('click',()=>{
     const v=document.getElementById('blockedDateInput').value; if(!v)return;
@@ -892,7 +916,7 @@
   document.getElementById('topbarDate').textContent=
     new Intl.DateTimeFormat('nl-NL',{weekday:'short',day:'numeric',month:'long',year:'numeric'}).format(new Date());
 
-  function refreshAll(){ renderCalendar(); renderHours(); renderBlockedDates(); renderBlockedSlots(); }
+  function refreshAll(){ renderCalendar(); renderHours(); renderCapacity(); renderBlockedDates(); renderBlockedSlots(); }
   function boot(){
     loginScreen.classList.toggle('hidden',state.loggedIn);
     appShell.classList.toggle('hidden',!state.loggedIn);

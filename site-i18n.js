@@ -139,9 +139,19 @@
     if (!translations || !key) return undefined;
     const resolvedLang = normalizeLang(lang) || currentLang;
     const pageName = getPageName();
+    const langBucket = translations[resolvedLang] || {};
+    const keyParts = String(key).split('.');
+    const explicitPage = keyParts.length > 1 && Object.prototype.hasOwnProperty.call(langBucket, keyParts[0])
+      ? keyParts[0]
+      : '';
+    const scopedKey = explicitPage ? keyParts.slice(1).join('.') : key;
 
-    let value = deepGet(translations[resolvedLang] && translations[resolvedLang][pageName], key);
-    if (value === undefined) value = deepGet(translations[resolvedLang] && translations[resolvedLang].common, key);
+    let value;
+    if (explicitPage) {
+      value = deepGet(langBucket[explicitPage], scopedKey);
+    }
+    if (value === undefined) value = deepGet(langBucket[pageName], key);
+    if (value === undefined) value = deepGet(langBucket.common, key);
 
     if (value === undefined && resolvedLang !== DEFAULT_LANG) {
       return getValue(key, DEFAULT_LANG);

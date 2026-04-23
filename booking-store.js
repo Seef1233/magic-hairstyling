@@ -19,9 +19,16 @@
   const DEFAULT_SETTINGS = {
     adminPin: '1234',
     weeklyHours: DEFAULT_HOURS,
+    chairCapacity: 5,
     blockedDates: [],
     blockedSlots: []
   };
+
+  function normalizeChairCapacity(value) {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return DEFAULT_SETTINGS.chairCapacity;
+    return Math.max(1, Math.min(20, Math.round(parsed)));
+  }
 
   function clone(value) {
     return JSON.parse(JSON.stringify(value));
@@ -68,6 +75,7 @@
   function normalizeSettings(settings) {
     const merged = Object.assign({}, clone(DEFAULT_SETTINGS), settings || {});
     merged.weeklyHours = Object.assign({}, clone(DEFAULT_HOURS), (settings && settings.weeklyHours) || {});
+    merged.chairCapacity = normalizeChairCapacity(merged.chairCapacity);
     merged.blockedDates = Array.isArray(merged.blockedDates) ? merged.blockedDates : [];
     merged.blockedSlots = Array.isArray(merged.blockedSlots) ? merged.blockedSlots : [];
     return merged;
@@ -81,6 +89,10 @@
     const normalized = normalizeSettings(settings);
     writeJson(KEYS.settings, normalized);
     return normalized;
+  }
+
+  function getChairCapacity() {
+    return getSettings().chairCapacity;
   }
 
   function getWeeklyHours(day) {
@@ -147,16 +159,69 @@
     });
   }
 
-  function getConflicts(date, time, duration, ignoreId) {
-    const bookingConflicts = getActiveBookingsForDate(date, ignoreId).filter(booking =>
+  function getOverlappingBookings(date, time, duration, ignoreId) {
+    return getActiveBookingsForDate(date, ignoreId).filter(booking =>
       overlaps(time, duration, booking.time, Number(booking.duration) || 30)
-    ).map(booking => ({ type: 'booking', booking: booking }));
+    );
+  }
+
+  function getConcurrentLoad(bookings, time, duration) {
+    const bookingList = Array.isArray(bookings) ? bookings : [];
+    if (!bookingList.length) return 0;
+
+    const start = toMin(time);
+    const end = start + (Number(duration) || 30);
+    const boundaries = [start, end];
+
+    bookingList.forEach(booking => {
+      const bookingStart = toMin(booking.time);
+      const bookingEnd = bookingStart + (Number(booking.duration) || 30);
+      if (bookingStart > start && bookingStart < end) boundaries.push(bookingStart);
+      if (bookingEnd > start && bookingEnd < end) boundaries.push(bookingEnd);
+    });
+
+    const unique = Array.from(new Set(boundaries)).sort((a, b) => a - b);
+    let maxLoad = 0;
+
+    for (let index = 0; index < unique.length - 1; index += 1) {
+      const probe = (unique[index] + unique[index + 1]) / 2;
+      const active = bookingList.filter(booking => {
+        const bookingStart = toMin(booking.time);
+        const bookingEnd = bookingStart + (Number(booking.duration) || 30);
+        return bookingStart <= probe && probe < bookingEnd;
+      }).length;
+      if (active > maxLoad) maxLoad = active;
+    }
+
+    return maxLoad;
+  }
+
+  function getSlotLoad(date, time, duration, ignoreId) {
+    return getConcurrentLoad(
+      getOverlappingBookings(date, time, duration, ignoreId),
+      time,
+      duration
+    );
+  }
+
+  function getRemainingCapacity(date, time, duration, ignoreId) {
+    return Math.max(0, getChairCapacity() - getSlotLoad(date, time, duration, ignoreId));
+  }
+
+  function getConflicts(date, time, duration, ignoreId) {
+    const bookingConflicts = getOverlappingBookings(date, time, duration, ignoreId)
+      .map(booking => ({ type: 'booking', booking: booking }));
 
     const blockedConflicts = getBlockedSlots(date).filter(slot =>
       overlaps(time, duration, slot.time, Number(slot.duration) || 30)
     ).map(slot => ({ type: 'blocked', slot: slot }));
 
-    return bookingConflicts.concat(blockedConflicts);
+    if (blockedConflicts.length) return blockedConflicts.concat(bookingConflicts);
+    if (getConcurrentLoad(bookingConflicts.map(item => item.booking), time, duration) >= getChairCapacity()) {
+      return bookingConflicts;
+    }
+
+    return [];
   }
 
   function ensureSlotAvailable(date, time, duration, ignoreId) {
@@ -173,7 +238,7 @@
       if (blocked) {
         throw new Error(blocked.slot.reason || uiMessage('blockedSlot', 'Dit tijdslot is door de salon geblokkeerd.'));
       }
-      throw new Error(uiMessage('slotTaken', 'Dit tijdslot is al bezet. Kies een ander tijdstip.'));
+      throw new Error(uiMessage('slotTaken', 'Dit tijdslot is volledig volgeboekt. Kies een ander tijdstip.'));
     }
   }
 
@@ -263,6 +328,22 @@
     return saveSettings(settings);
   }
 
+  function setChairCapacity(capacity) {
+    const settings = getSettings();
+    settings.chairCapacity = normalizeChairCapacity(capacity);
+    return saveSettings(settings);
+  }
+
+  function deleteBooking(id) {
+    const bookings = getBookings();
+    const nextBookings = bookings.filter(item => item.id !== id);
+    if (nextBookings.length === bookings.length) {
+      throw new Error(uiMessage('bookingNotFound', 'Afspraak niet gevonden.'));
+    }
+    saveBookings(nextBookings);
+    return true;
+  }
+
   function getAvailableSlots(date, duration, ignoreId) {
     if (!date || isBlockedDate(date)) return [];
     const day = new Date(date + 'T12:00:00').getDay();
@@ -299,11 +380,16 @@
     unblockSlot: unblockSlot,
     updateWeeklyHours: updateWeeklyHours,
     setAdminPin: setAdminPin,
+    getChairCapacity: getChairCapacity,
+    setChairCapacity: setChairCapacity,
     getBlockedSlots: getBlockedSlots,
     isBlockedDate: isBlockedDate,
     getAvailableSlots: getAvailableSlots,
     getConflicts: getConflicts,
     ensureSlotAvailable: ensureSlotAvailable,
+    getSlotLoad: getSlotLoad,
+    getRemainingCapacity: getRemainingCapacity,
+    deleteBooking: deleteBooking,
     toMin: toMin,
     toTime: toTime,
     overlaps: overlaps
