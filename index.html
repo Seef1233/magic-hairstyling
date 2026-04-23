@@ -1066,30 +1066,106 @@
     #contact { padding: 100px 24px; }
 
     /* â”&euro;â”&euro; Contact strip â”&euro;â”&euro; */
-    .contact-strip {
-      display: flex; flex-wrap: wrap; gap: 0;
-      background: var(--dark2); border: 1px solid #1e1e1e;
-      border-radius: 14px; margin-bottom: 36px; overflow: hidden;
+    /* ── CONTACT SECTION REDESIGN ── */
+    #contact {
+      background:
+        radial-gradient(ellipse 55% 55% at 100% 0%, rgba(201,168,76,.1), transparent),
+        radial-gradient(ellipse 45% 45% at 0% 100%, rgba(201,168,76,.07), transparent),
+        var(--dark2);
+      position: relative; overflow: hidden;
     }
-    .cstrip-item {
-      display: flex; align-items: center; gap: 14px;
-      flex: 1; min-width: 200px;
-      padding: 20px 24px;
-      border-right: 1px solid #1e1e1e;
+    #contact::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+      opacity: .5;
     }
-    .cstrip-item:last-child { border-right: none; }
-    .cstrip-ic {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: rgba(201,168,76,.1);
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 2fr;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .contact-card {
+      background: linear-gradient(160deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.015) 100%), var(--dark);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 22px;
+      padding: 28px 24px;
+      display: flex; flex-direction: column; gap: 10px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 4px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.06);
+      transition: border-color .32s, transform .32s cubic-bezier(.4,0,.2,1), box-shadow .32s;
+    }
+    .contact-card:hover {
+      border-color: rgba(201,168,76,.3);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 44px rgba(0,0,0,.34);
+    }
+    .cc-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: rgba(201,168,76,.12);
+      border: 1px solid rgba(201,168,76,.24);
       display: flex; align-items: center; justify-content: center;
-      color: var(--gold); font-size: .95rem; flex-shrink: 0;
+      color: var(--gold); font-size: 1rem;
+      margin-bottom: 6px;
     }
-    .cstrip-item .lbl { font-size: .7rem; color: var(--gray); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .5px; }
-    .cstrip-item strong { font-size: .85rem; font-weight: 600; }
-    .cstrip-item strong a { color: var(--white); }
-    .hours-entry { display: flex; flex-direction: column; gap: 1px; }
-    .day-lbl { font-size: .68rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: .4px; }
-    .day-time { font-size: .82rem; font-weight: 700; color: var(--white); }
+    .cc-label {
+      font-size: .63rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .2em;
+      color: var(--gold); opacity: .85;
+    }
+    .cc-value {
+      font-size: .95rem; font-weight: 700;
+      color: var(--white); line-height: 1.65;
+    }
+    .cc-value a { color: var(--white); transition: color .2s; }
+    .cc-value a:hover { color: var(--gold); }
+    .cc-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .74rem; font-weight: 700;
+      color: var(--gold); opacity: .72;
+      transition: opacity .2s, gap .22s;
+      margin-top: 6px;
+    }
+    .cc-link:hover { opacity: 1; gap: 10px; }
+    /* Hours card */
+    .contact-card-hours .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      margin-top: 4px;
+    }
+    .hour-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,.055);
+      font-size: .82rem;
+    }
+    .hour-row:last-child { border-bottom: none; }
+    .hour-row .hr-day {
+      color: rgba(255,255,255,.52); font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em; font-size: .68rem;
+    }
+    .hour-row .hr-time { color: var(--white); font-weight: 700; }
+    /* CTA button */
+    .contact-cta {
+      text-align: center; margin-top: 8px;
+    }
+    .contact-cta-btn {
+      font-size: 1.05rem !important;
+      padding: 18px 54px !important;
+      border-radius: 14px !important;
+      display: inline-flex !important;
+      align-items: center; gap: 12px;
+      letter-spacing: .04em;
+    }
+    @media (max-width: 960px) {
+      .contact-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-card-hours .hours-grid { grid-template-columns: 1fr; }
+    }
 
     /* â”&euro;â”&euro; Booking layout â”&euro;â”&euro; */
     .booking-layout {
@@ -2734,6 +2810,7 @@
       .step3-next-label { display: inline-flex; align-items: center; gap: 7px; }
     }
   </style>
+  <link rel="stylesheet" href="modern-upgrade.css" />
 </head>
 <body data-page="index">
 
@@ -3267,57 +3344,61 @@
   </div>
 </section>
 
-<section id="contact" style="background:var(--dark2);padding:100px 24px;">
+<section id="contact" style="padding:100px 24px;">
   <div class="container">
+
     <div class="sec-head">
       <span class="kicker" data-i18n="contact.kicker">Online reserveren</span>
       <h2 data-i18n="contact.title">Boek uw afspraak</h2>
       <div class="bar"></div>
+      <p style="margin-top:16px;color:rgba(255,255,255,.54);font-size:.92rem;" data-i18n="contact.sub">Kom langs bij ons in Alkmaar — we zijn er bijna elke dag voor u.</p>
     </div>
 
-    <!-- Contact strip -->
-    <div class="contact-strip">
-      <div class="cstrip-item">
-        <div class="cstrip-ic"><i class="fas fa-map-marker-alt"></i></div>
-        <div>
-          <div class="lbl" data-i18n="contact.address">Adres</div>
-          <strong>Gedempte Nieuwesloot 81, 1811 KR Alkmaar</strong>
+    <div class="contact-grid">
+
+      <!-- Adres -->
+      <div class="contact-card">
+        <div class="cc-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="cc-label" data-i18n="contact.address">Adres</div>
+        <div class="cc-value">Gedempte Nieuwesloot 81<br>1811 KR Alkmaar</div>
+        <a class="cc-link" href="https://www.google.com/maps/search/?api=1&query=Gedempte+Nieuwesloot+81+1811+KR+Alkmaar" target="_blank" rel="noopener" data-i18n="contact.route">Route plannen →</a>
+      </div>
+
+      <!-- Telefoon -->
+      <div class="contact-card">
+        <div class="cc-icon"><i class="fas fa-phone"></i></div>
+        <div class="cc-label" data-i18n="contact.phone">Telefoon</div>
+        <div class="cc-value"><a href="tel:0725127051">072 512 7051</a></div>
+      </div>
+
+      <!-- Mobiel -->
+      <div class="contact-card">
+        <div class="cc-icon"><i class="fas fa-mobile-alt"></i></div>
+        <div class="cc-label" data-i18n="contact.mobile">Mobiel</div>
+        <div class="cc-value"><a href="tel:0687868751">06 878 68751</a></div>
+      </div>
+
+      <!-- Openingstijden -->
+      <div class="contact-card contact-card-hours">
+        <div class="cc-icon"><i class="fas fa-clock"></i></div>
+        <div class="cc-label" data-i18n="contact.hours">Openingstijden</div>
+        <div class="hours-grid">
+          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursMonTue">Ma - Di</span><span class="hr-time">11:00 - 19:00</span></div>
+          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursWed">Woensdag</span><span class="hr-time">09:00 - 20:00</span></div>
+          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursThu">Donderdag</span><span class="hr-time">09:00 - 21:00</span></div>
+          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursFri">Vrijdag</span><span class="hr-time">09:00 - 20:00</span></div>
+          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursSat">Zaterdag</span><span class="hr-time">09:00 - 18:00</span></div>
+          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursSun">Zondag</span><span class="hr-time">12:00 - 18:00</span></div>
         </div>
       </div>
-      <div class="cstrip-item">
-        <div class="cstrip-ic"><i class="fas fa-phone"></i></div>
-        <div>
-          <div class="lbl" data-i18n="contact.phone">Telefoon</div>
-          <strong><a href="tel:0725127051">072 512 7051</a></strong>
-        </div>
-      </div>
-      <div class="cstrip-item">
-        <div class="cstrip-ic"><i class="fas fa-mobile-alt"></i></div>
-        <div>
-          <div class="lbl" data-i18n="contact.mobile">Mobiel</div>
-          <strong><a href="tel:0687868751">06 878 68751</a></strong>
-        </div>
-      </div>
-      <div class="cstrip-item" style="flex:2;min-width:320px;">
-        <div class="cstrip-ic"><i class="fas fa-clock"></i></div>
-        <div style="width:100%;">
-          <div class="lbl" data-i18n="contact.hours">Openingstijden</div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:4px 12px;margin-top:6px;">
-            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursMonTue">Ma - Di</span><span class="day-time">11:00 - 19:00</span></div>
-            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursWed">Woensdag</span><span class="day-time">09:00 - 20:00</span></div>
-            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursThu">Donderdag</span><span class="day-time">09:00 - 21:00</span></div>
-            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursFri">Vrijdag</span><span class="day-time">09:00 - 20:00</span></div>
-            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursSat">Zaterdag</span><span class="day-time">09:00 - 18:00</span></div>
-            <div class="hours-entry"><span class="day-lbl" data-i18n="contact.hoursSun">Zondag</span><span class="day-time">12:00 - 18:00</span></div>
-          </div>
-        </div>
-      </div>
+
     </div>
 
-    <!-- Booking knop -->
-    <div style="text-align:center;margin-top:36px;">
-      <button class="btn btn-gold" style="font-size:1rem;padding:16px 44px;" onclick="openAfspraakModal()">
-        <i class="fas fa-calendar-check" style="margin-right:10px;"></i><span data-i18n="contact.bookButton">Maak een afspraak</span>
+    <!-- CTA -->
+    <div class="contact-cta">
+      <button class="btn btn-gold contact-cta-btn" onclick="openAfspraakModal()">
+        <i class="fas fa-calendar-check"></i>
+        <span data-i18n="contact.bookButton">Maak een afspraak</span>
       </button>
     </div>
 
@@ -4656,5 +4737,6 @@
   });
 
 </script>
+<script src="modern-upgrade.js"></script>
 </body>
 </html>
