@@ -307,7 +307,10 @@
         "hoursFri": "Vrijdag",
         "hoursSat": "Zaterdag",
         "hoursSun": "Zondag",
-        "bookButton": "Maak een afspraak"
+        "bookButton": "Maak een afspraak",
+        "sub": "Kom langs bij ons in Alkmaar — we zijn er bijna elke dag voor u.",
+        "route": "Route plannen →",
+        "contactTitle": "Contact"
       },
       "worksModal": {
         "title": "Werken bij <span>Magic</span>",
@@ -859,7 +862,10 @@
         "hoursFri": "Friday",
         "hoursSat": "Saturday",
         "hoursSun": "Sunday",
-        "bookButton": "Book an appointment"
+        "bookButton": "Book an appointment",
+        "sub": "Visit us in Alkmaar — we are open almost every day for you.",
+        "route": "Plan your route →",
+        "contactTitle": "Contact"
       },
       "worksModal": {
         "title": "Work at <span>Magic</span>",

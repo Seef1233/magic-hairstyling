@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node -e ':*)"
+      "Bash(node -e ':*)",
+      "Bash(python3 -)",
+      "Bash(node replace-contact.js)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(node replace-contact2.js)",
+      "Bash(rm replace-contact2.js)"
     ]
   }
 }

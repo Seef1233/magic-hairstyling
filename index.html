@@ -912,261 +912,134 @@
     /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        CAREERS
     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-    #careers { padding: 100px 24px; background: var(--dark); }
-    .career-grid {
-      max-width: 1180px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 28px;
-      align-items: start;
+    /* ══ CONTACT SECTION — Royal Booking ══ */
+    .royal-booking {
+      position: relative; padding: 100px 20px;
+      background: url("images/boekafspraak.png") center/cover no-repeat;
+      overflow: hidden; color: #fff;
     }
-    .career-panel {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0)),
-        var(--dark2);
+    .royal-booking::before {
+      content: ""; position: absolute; inset: 0;
+      background: rgba(0,0,0,.72); z-index: 0;
+    }
+    .royal-booking::after {
+      content: ""; position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,.14) 0%, transparent 70%);
+      z-index: 1; pointer-events: none;
+    }
+    .royal-booking .main-container {
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto; text-align: center;
+    }
+    .royal-booking .top-header { margin-bottom: 0; }
+    .royal-booking .rb-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--gold); padding: 5px 18px;
+      border-radius: 99px; font-size: .68rem; color: var(--gold);
+      letter-spacing: 3px; text-transform: uppercase; margin-bottom: 18px;
+    }
+    .royal-booking .top-header h2 {
+      font-family: "Playfair Display","Montserrat",serif;
+      font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 900;
+      margin: 0 0 12px; letter-spacing: -.02em;
+    }
+    .royal-booking .top-header p {
+      color: rgba(255,255,255,.52); font-size: .92rem; margin-bottom: 0;
+    }
+    .floating-cards-wrapper {
+      display: flex; gap: 24px;
+      margin-top: 48px; flex-wrap: wrap; justify-content: center;
+    }
+    .rb-main-card {
+      background: linear-gradient(145deg, rgba(30,30,30,.95), rgba(16,16,16,.95));
+      padding: 36px; border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.5);
+      flex: 2; min-width: 340px;
       border: 1px solid rgba(255,255,255,.07);
-      border-radius: 24px;
-      box-shadow: 0 18px 48px rgba(0,0,0,.24);
+      text-align: left;
     }
-    .career-copy { padding: 30px; }
-    .career-copy h3 {
-      font-size: 1.8rem;
-      margin-bottom: 14px;
+    .rb-card-head {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 24px;
     }
-    .career-copy p {
-      color: rgba(255,255,255,.7);
-      line-height: 1.9;
-      margin-bottom: 14px;
+    .rb-card-head i { color: var(--gold); font-size: 1rem; }
+    .rb-card-head h4 {
+      font-size: .72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: .18em; color: var(--gold);
     }
-    .career-benefits {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 22px;
+    .rb-card-head .rb-open-badge {
+      margin-left: auto; font-size: .62rem; font-weight: 800;
+      padding: 3px 12px; border-radius: 99px; letter-spacing: .1em;
+      background: rgba(47,157,98,.15); border: 1px solid rgba(47,157,98,.35);
+      color: #4db87a; display: none;
     }
-    .career-benefit {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid rgba(255,255,255,.06);
+    .hours-grid .rb-day {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.055);
+      font-size: .84rem;
     }
-    .career-benefit i {
-      color: var(--gold);
-      margin-bottom: 10px;
-      font-size: 1rem;
+    .hours-grid .rb-day:last-child { border-bottom: none; }
+    .hours-grid .rb-day span { color: rgba(255,255,255,.54); font-weight: 600; font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; }
+    .hours-grid .rb-day strong { color: var(--white); font-weight: 800; }
+    .hours-grid .rb-day.highlight { background: rgba(201,168,76,.09); border-radius: 8px; padding: 11px 10px; border-color: transparent; }
+    .hours-grid .rb-day.highlight span { color: var(--gold); }
+    .hours-grid .rb-day.highlight strong { color: var(--gold2); }
+    .side-cards { display: flex; flex-direction: column; gap: 14px; flex: 1; min-width: 220px; }
+    .rb-sub-card {
+      background: linear-gradient(145deg, rgba(28,28,28,.96), rgba(16,16,16,.94));
+      padding: 22px 24px; border-radius: 18px;
+      display: flex; align-items: center; gap: 18px;
+      border: 1px solid rgba(255,255,255,.07);
+      border-left: 3px solid var(--gold);
+      transition: transform .28s, border-color .28s, background .28s;
+      text-align: left; flex: 1;
     }
-    .career-benefit strong {
-      display: block;
-      margin-bottom: 6px;
-    }
-    .career-benefit p {
-      color: rgba(255,255,255,.62);
-      line-height: 1.7;
-      font-size: .9rem;
-      margin-bottom: 0;
-    }
-    .career-roles {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 22px;
-    }
-    .career-role {
-      padding: 20px;
-      border-radius: 18px;
-      background: rgba(201,168,76,.06);
-      border: 1px solid rgba(201,168,76,.18);
-    }
-    .career-role span {
-      color: var(--gold);
-      font-size: .72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .14em;
-    }
-    .career-role h4 {
-      margin: 12px 0 10px;
-      font-size: 1.08rem;
-    }
-    .career-role ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .career-role li {
-      color: rgba(255,255,255,.68);
-      font-size: .9rem;
-      line-height: 1.6;
-    }
-    .career-role li::before {
-      content: '\2022 ';
-      color: var(--gold);
-    }
-    .career-cta {
-      padding: 30px;
-      position: sticky;
-      top: 122px;
-    }
-    .career-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(201,168,76,.26);
-      background: rgba(201,168,76,.08);
-      color: var(--gold2);
-      font-size: .72rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .1em;
-    }
-    .career-cta h3 {
-      margin-top: 18px;
-      font-size: 1.65rem;
-      line-height: 1.2;
-    }
-    .career-cta p {
-      margin-top: 12px;
-      color: rgba(255,255,255,.66);
-      line-height: 1.8;
-    }
-    .career-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-    .career-mini {
-      margin-top: 24px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,.06);
-      display: grid;
-      gap: 12px;
-    }
-    .career-mini-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      color: rgba(255,255,255,.72);
-      font-size: .92rem;
-      line-height: 1.7;
-    }
-    .career-mini-item i {
-      color: var(--gold);
-      margin-top: 2px;
-      flex-shrink: 0;
-    }
-
-    /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-       CONTACT
-    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-    #contact { padding: 100px 24px; }
-
-    /* â”&euro;â”&euro; Contact strip â”&euro;â”&euro; */
-    /* ── CONTACT SECTION REDESIGN ── */
-    #contact {
-      background:
-        radial-gradient(ellipse 55% 55% at 100% 0%, rgba(201,168,76,.1), transparent),
-        radial-gradient(ellipse 45% 45% at 0% 100%, rgba(201,168,76,.07), transparent),
-        var(--dark2);
+    .rb-sub-card:hover { transform: translateX(6px); background: rgba(201,168,76,.07); border-color: var(--gold); }
+    .rb-sub-card i { color: var(--gold); font-size: 1.1rem; flex-shrink: 0; }
+    .rb-sub-card span { display: block; font-size: .64rem; color: rgba(255,255,255,.44); text-transform: uppercase; letter-spacing: .14em; font-weight: 700; margin-bottom: 4px; }
+    .rb-sub-card strong { display: block; font-size: .9rem; font-weight: 700; color: var(--white); }
+    .rb-sub-card strong a { color: var(--white); transition: color .2s; }
+    .rb-sub-card strong a:hover { color: var(--gold); }
+    .royal-btn {
+      margin-top: 44px;
+      background: linear-gradient(135deg,#d4a94e,#c9a84c,#a87825);
+      color: #000; border: none; padding: 18px 56px;
+      font-size: 1rem; font-weight: 800; letter-spacing: .06em;
+      text-transform: uppercase; border-radius: 14px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 14px;
+      box-shadow: 0 6px 28px rgba(201,168,76,.32);
+      transition: transform .3s, box-shadow .3s, letter-spacing .3s;
       position: relative; overflow: hidden;
     }
-    #contact::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c9a84c' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
-      opacity: .5;
+    .royal-btn::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg,rgba(255,255,255,.16),transparent 55%);
+      pointer-events: none; border-radius: inherit;
     }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 2fr;
-      gap: 16px;
-      margin-bottom: 40px;
+    .royal-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 14px 40px rgba(201,168,76,.46);
+      letter-spacing: .1em;
     }
-    .contact-card {
-      background: linear-gradient(160deg, rgba(255,255,255,.055) 0%, rgba(255,255,255,.015) 100%), var(--dark);
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 22px;
-      padding: 28px 24px;
-      display: flex; flex-direction: column; gap: 10px;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 4px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.06);
-      transition: border-color .32s, transform .32s cubic-bezier(.4,0,.2,1), box-shadow .32s;
+    @media (max-width: 768px) {
+      .royal-booking { padding: 60px 16px; }
+      .royal-booking::after { width: 320px; height: 320px; }
+      .royal-booking .top-header h2 { font-size: 2rem; }
+      .royal-booking .top-header p { font-size: .82rem; }
+      .rb-badge { font-size: .58rem; padding: 4px 12px; }
+      .floating-cards-wrapper { flex-direction: column; gap: 14px; margin-top: 28px; }
+      .rb-main-card { min-width: 0; padding: 24px 18px; border-radius: 18px; }
+      .side-cards { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+      .rb-sub-card { min-width: 0; flex: 1; padding: 16px 14px; border-radius: 14px; gap: 12px; }
+      .rb-sub-card i { font-size: .95rem; }
+      .rb-sub-card span { font-size: .58rem; }
+      .rb-sub-card strong { font-size: .82rem; }
+      .rb-sub-card strong br { display: none; }
+      .royal-btn { padding: 15px 28px !important; font-size: .86rem !important; width: 100%; justify-content: center; margin-top: 28px; }
     }
-    .contact-card:hover {
-      border-color: rgba(201,168,76,.3);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 44px rgba(0,0,0,.34);
-    }
-    .cc-icon {
-      width: 48px; height: 48px; border-radius: 14px;
-      background: rgba(201,168,76,.12);
-      border: 1px solid rgba(201,168,76,.24);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gold); font-size: 1rem;
-      margin-bottom: 6px;
-    }
-    .cc-label {
-      font-size: .63rem; font-weight: 800;
-      text-transform: uppercase; letter-spacing: .2em;
-      color: var(--gold); opacity: .85;
-    }
-    .cc-value {
-      font-size: .95rem; font-weight: 700;
-      color: var(--white); line-height: 1.65;
-    }
-    .cc-value a { color: var(--white); transition: color .2s; }
-    .cc-value a:hover { color: var(--gold); }
-    .cc-link {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: .74rem; font-weight: 700;
-      color: var(--gold); opacity: .72;
-      transition: opacity .2s, gap .22s;
-      margin-top: 6px;
-    }
-    .cc-link:hover { opacity: 1; gap: 10px; }
-    /* Hours card */
-    .contact-card-hours .hours-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 24px;
-      margin-top: 4px;
-    }
-    .hour-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255,255,255,.055);
-      font-size: .82rem;
-    }
-    .hour-row:last-child { border-bottom: none; }
-    .hour-row .hr-day {
-      color: rgba(255,255,255,.52); font-weight: 700;
-      text-transform: uppercase; letter-spacing: .06em; font-size: .68rem;
-    }
-    .hour-row .hr-time { color: var(--white); font-weight: 700; }
-    /* CTA button */
-    .contact-cta {
-      text-align: center; margin-top: 8px;
-    }
-    .contact-cta-btn {
-      font-size: 1.05rem !important;
-      padding: 18px 54px !important;
-      border-radius: 14px !important;
-      display: inline-flex !important;
-      align-items: center; gap: 12px;
-      letter-spacing: .04em;
-    }
-    @media (max-width: 960px) {
-      .contact-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 560px) {
-      .contact-grid { grid-template-columns: 1fr; }
-      .contact-card-hours .hours-grid { grid-template-columns: 1fr; }
-    }
-
     /* â”&euro;â”&euro; Booking layout â”&euro;â”&euro; */
     .booking-layout {
       display: grid;
@@ -3255,148 +3128,65 @@
   </div>
 </section>
 
-<section id="careers">
-  <div class="container">
-    <div class="sec-head">
-      <span class="kicker" data-i18n="werken-bij-ons.hero.eyebrow">Werken bij ons</span>
-      <h2 data-i18n="werken-bij-ons.hero.title">Bouw mee aan stijl, service en sfeer in Alkmaar</h2>
-      <div class="bar"></div>
-      <p data-i18n="werken-bij-ons.hero.body">Ben jij gepassioneerd door haarstyling, gastvrijheid en kwaliteit? Bij Magic Hairstyling zoeken we mensen die energie krijgen van mooi werk, tevreden klanten en een sterke salonbeleving.</p>
-    </div>
 
-    <div class="career-grid">
-      <div class="career-panel career-copy">
-        <h3 data-i18n="werken-bij-ons.intro.title">Waarom werken bij Magic Hairstyling?</h3>
-        <p data-i18n="werken-bij-ons.intro.p1">We combineren een warme sfeer met professioneel vakmanschap. In de salon draait het niet alleen om knippen of stylen, maar ook om aandacht, uitstraling en het vertrouwen dat klanten voelen zodra ze binnenstappen.</p>
-        <p data-i18n="werken-bij-ons.intro.p2">Of je nu ervaren bent of nog leert in de praktijk, we zoeken mensen die gemotiveerd zijn, verzorgd werken en trots zijn op kwaliteit.</p>
+<section id="contact" class="royal-booking">
+  <div class="main-container">
 
-        <div class="career-benefits">
-          <div class="career-benefit">
-            <i class="fas fa-users"></i>
-            <strong data-i18n="werken-bij-ons.intro.benefit1Title">Warm team</strong>
-            <p data-i18n="werken-bij-ons.intro.benefit1Body">Een fijne werksfeer waarin samenwerken en gastvrijheid centraal staan.</p>
-          </div>
-          <div class="career-benefit">
-            <i class="fas fa-scissors"></i>
-            <strong data-i18n="werken-bij-ons.intro.benefit2Title">Ruimte voor groei</strong>
-            <p data-i18n="werken-bij-ons.intro.benefit2Body">Ontwikkel je techniek, tempo en klantcommunicatie in de salonpraktijk.</p>
-          </div>
-          <div class="career-benefit">
-            <i class="fas fa-star"></i>
-            <strong data-i18n="werken-bij-ons.intro.benefit3Title">Hoog serviceniveau</strong>
-            <p data-i18n="werken-bij-ons.intro.benefit3Body">Werk mee aan een ervaring waar klanten graag voor terugkomen.</p>
-          </div>
-          <div class="career-benefit">
-            <i class="fas fa-location-dot"></i>
-            <strong data-i18n="werken-bij-ons.intro.benefit4Title">Centrale locatie</strong>
-            <p data-i18n="werken-bij-ons.intro.benefit4Body">Onze salon ligt in het hart van Alkmaar, goed bereikbaar en levendig.</p>
-          </div>
-        </div>
-
-        <div class="career-roles">
-          <div class="career-role">
-            <span data-i18n="werken-bij-ons.roles.employeeTag">Medewerker</span>
-            <h4 data-i18n="werken-bij-ons.roles.employeeTitle">Voor wie al in het vak zit</h4>
-            <ul>
-              <li data-i18n="werken-bij-ons.roles.employeeItem1">Ervaring met knippen, stylen of salonwerk is een plus.</li>
-              <li data-i18n="werken-bij-ons.roles.employeeItem2">Klantgericht, verzorgd en zelfstandig kunnen werken.</li>
-              <li data-i18n="werken-bij-ons.roles.employeeItem3">Passie voor uitstraling en afwerking.</li>
-            </ul>
-          </div>
-          <div class="career-role">
-            <span data-i18n="werken-bij-ons.roles.internTag">Stage</span>
-            <h4 data-i18n="werken-bij-ons.roles.internTitle">Voor studenten die willen leren</h4>
-            <ul>
-              <li data-i18n="werken-bij-ons.roles.internItem1">Geschikt voor opleiding kapper of haarstylist.</li>
-              <li data-i18n="werken-bij-ons.roles.internItem2">Praktijkervaring onder begeleiding van een ervaren vakman.</li>
-              <li data-i18n="werken-bij-ons.roles.internItem3">Focus op houding, techniek en klantcontact.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="career-panel career-cta">
-        <div class="career-badge"><i class="fas fa-briefcase"></i><span data-i18n="nav.careers">Werken bij ons</span></div>
-        <h3 data-i18n="werken-bij-ons.form.title">Solliciteer direct</h3>
-        <p data-i18n="werken-bij-ons.form.body">Kies of je solliciteert als medewerker of stage zoekt. Vul het formulier in en we nemen zo snel mogelijk contact met je op.</p>
-
-        <div class="career-actions">
-          <button type="button" class="btn btn-gold" onclick="openWerkenModal()"><span data-i18n="werken-bij-ons.hero.apply">Direct solliciteren</span></button>
-          <a href="#" class="btn btn-outline" onclick="openAfspraakModal();return false;" data-i18n="over-ons.hero.book">Afspraak maken</a>
-        </div>
-
-        <div class="career-mini">
-          <div class="career-mini-item">
-            <i class="fas fa-user-check"></i>
-            <span data-i18n="werken-bij-ons.roles.employeeTitle">Voor wie al in het vak zit</span>
-          </div>
-          <div class="career-mini-item">
-            <i class="fas fa-graduation-cap"></i>
-            <span data-i18n="werken-bij-ons.roles.internTitle">Voor studenten die willen leren</span>
-          </div>
-          <div class="career-mini-item">
-            <i class="fas fa-info-circle"></i>
-            <span data-i18n="werken-bij-ons.form.stageNote">Wij bieden stageplaatsen aan voor studenten kapper / haarstylist. Een minimale stageduur van twee maanden heeft de voorkeur.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" style="padding:100px 24px;">
-  <div class="container">
-
-    <div class="sec-head">
-      <span class="kicker" data-i18n="contact.kicker">Online reserveren</span>
+    <div class="top-header">
+      <div class="rb-badge"><i class="fas fa-crown" style="font-size:.7rem;"></i> <span>PREMIUM SERVICE</span> &nbsp;|&nbsp; <span>EST. 2024</span></div>
       <h2 data-i18n="contact.title">Boek uw afspraak</h2>
-      <div class="bar"></div>
-      <p style="margin-top:16px;color:rgba(255,255,255,.54);font-size:.92rem;" data-i18n="contact.sub">Kom langs bij ons in Alkmaar — we zijn er bijna elke dag voor u.</p>
+      <p data-i18n="contact.sub">Kom langs bij ons in Alkmaar — we zijn er bijna elke dag voor u.</p>
     </div>
 
-    <div class="contact-grid">
-
-      <!-- Adres -->
-      <div class="contact-card">
-        <div class="cc-icon"><i class="fas fa-map-marker-alt"></i></div>
-        <div class="cc-label" data-i18n="contact.address">Adres</div>
-        <div class="cc-value">Gedempte Nieuwesloot 81<br>1811 KR Alkmaar</div>
-        <a class="cc-link" href="https://www.google.com/maps/search/?api=1&query=Gedempte+Nieuwesloot+81+1811+KR+Alkmaar" target="_blank" rel="noopener" data-i18n="contact.route">Route plannen →</a>
-      </div>
-
-      <!-- Telefoon -->
-      <div class="contact-card">
-        <div class="cc-icon"><i class="fas fa-phone"></i></div>
-        <div class="cc-label" data-i18n="contact.phone">Telefoon</div>
-        <div class="cc-value"><a href="tel:0725127051">072 512 7051</a></div>
-      </div>
-
-      <!-- Mobiel -->
-      <div class="contact-card">
-        <div class="cc-icon"><i class="fas fa-mobile-alt"></i></div>
-        <div class="cc-label" data-i18n="contact.mobile">Mobiel</div>
-        <div class="cc-value"><a href="tel:0687868751">06 878 68751</a></div>
-      </div>
+    <div class="floating-cards-wrapper">
 
       <!-- Openingstijden -->
-      <div class="contact-card contact-card-hours">
-        <div class="cc-icon"><i class="fas fa-clock"></i></div>
-        <div class="cc-label" data-i18n="contact.hours">Openingstijden</div>
-        <div class="hours-grid">
-          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursMonTue">Ma - Di</span><span class="hr-time">11:00 - 19:00</span></div>
-          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursWed">Woensdag</span><span class="hr-time">09:00 - 20:00</span></div>
-          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursThu">Donderdag</span><span class="hr-time">09:00 - 21:00</span></div>
-          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursFri">Vrijdag</span><span class="hr-time">09:00 - 20:00</span></div>
-          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursSat">Zaterdag</span><span class="hr-time">09:00 - 18:00</span></div>
-          <div class="hour-row"><span class="hr-day" data-i18n="contact.hoursSun">Zondag</span><span class="hr-time">12:00 - 18:00</span></div>
+      <div class="rb-main-card">
+        <div class="rb-card-head">
+          <i class="fas fa-clock"></i>
+          <h4 data-i18n="contact.hours">Openingstijden</h4>
+          <span class="rb-open-badge" id="openStatus"></span>
+        </div>
+        <div class="hours-grid" id="hoursList">
+          <div class="rb-day" data-day="1,2"><span data-i18n="contact.hoursMonTue">Ma - Di</span><strong>11:00 - 19:00</strong></div>
+          <div class="rb-day" data-day="3"><span data-i18n="contact.hoursWed">Woensdag</span><strong>09:00 - 20:00</strong></div>
+          <div class="rb-day" data-day="4"><span data-i18n="contact.hoursThu">Donderdag</span><strong>09:00 - 21:00</strong></div>
+          <div class="rb-day" data-day="5"><span data-i18n="contact.hoursFri">Vrijdag</span><strong>09:00 - 20:00</strong></div>
+          <div class="rb-day" data-day="6"><span data-i18n="contact.hoursSat">Zaterdag</span><strong>09:00 - 18:00</strong></div>
+          <div class="rb-day" data-day="0"><span data-i18n="contact.hoursSun">Zondag</span><strong>12:00 - 18:00</strong></div>
+        </div>
+      </div>
+
+      <!-- Side cards -->
+      <div class="side-cards">
+        <div class="rb-sub-card">
+          <i class="fas fa-phone-alt"></i>
+          <div>
+            <span data-i18n="contact.phone">Telefoon</span>
+            <strong><a href="tel:0725127051">072 512 7051</a></strong>
+          </div>
+        </div>
+        <div class="rb-sub-card">
+          <i class="fas fa-mobile-alt"></i>
+          <div>
+            <span data-i18n="contact.mobile">Mobiel</span>
+            <strong><a href="tel:0687868751">06 878 68751</a></strong>
+          </div>
+        </div>
+        <div class="rb-sub-card">
+          <i class="fas fa-map-marked-alt"></i>
+          <div>
+            <span data-i18n="contact.address">Adres</span>
+            <strong>Gedempte Nieuwesloot 81,<br>1811 KR Alkmaar</strong>
+            <a href="https://www.google.com/maps/search/?api=1&query=Gedempte+Nieuwesloot+81+1811+KR+Alkmaar" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:.74rem;color:var(--gold);font-weight:700;" data-i18n="contact.route">Route plannen →</a>
+          </div>
         </div>
       </div>
 
     </div>
 
-    <!-- CTA -->
-    <div class="contact-cta">
-      <button class="btn btn-gold contact-cta-btn" onclick="openAfspraakModal()">
+    <div>
+      <button class="royal-btn" onclick="openAfspraakModal()">
         <i class="fas fa-calendar-check"></i>
         <span data-i18n="contact.bookButton">Maak een afspraak</span>
       </button>
@@ -3404,6 +3194,23 @@
 
   </div>
 </section>
+
+<script>
+  (function(){
+    var today = new Date().getDay();
+    document.querySelectorAll('#hoursList .rb-day').forEach(function(row){
+      var days = (row.dataset.day||'').split(',').map(Number);
+      if(days.includes(today)) row.classList.add('highlight');
+    });
+    var statusEl = document.getElementById('openStatus');
+    if(statusEl){
+      var now = new Date(), t = now.getHours()*60 + now.getMinutes();
+      var schedule = {0:[720,1080],1:[660,1140],2:[540,1200],3:[540,1260],4:[540,1200],5:[540,1080],6:[720,1080]};
+      var s = schedule[today];
+      if(s && t>=s[0] && t<s[1]){ statusEl.textContent='Open tot '+Math.floor(s[1]/60)+':00'; statusEl.style.display='inline'; }
+    }
+  })();
+</script>
 
 <!-- â•â•â•â•â•â•â•â•â•â• AFSPRAAK MODAL â•â•â•â•â•â•â•â•â•â• -->
 <div id="afspraak-modal" role="dialog" aria-modal="true">
