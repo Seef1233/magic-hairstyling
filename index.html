@@ -2017,11 +2017,13 @@
       .over-img { display: none; }
       #over::before { display: none; }
       #over { background: var(--dark2); }
-      .over-wrap { min-height: unset; padding: 40px 20px 60px; }
+      .over-wrap { min-height: unset; padding: 32px 20px 48px; flex-direction: column; gap: 20px; }
       .over-text { max-width: 100%; }
-      .over-text h2 { font-size: 1.7rem; }
-      .over-text p { font-size: .88rem; line-height: 1.7; }
-      .over-badge { position: static; margin-top: 24px; display: inline-block; }
+      .over-text h2 { font-size: 1.8rem; margin-bottom: 20px; }
+      .over-long-p { display: none; }
+      .over-feats { grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 24px; }
+      .feat { font-size: .82rem; gap: 7px; }
+      .over-badge { position: static; align-self: flex-start; margin-top: 0; padding: 14px 20px; border-radius: 14px; }
       .values-grid { grid-template-columns: 1fr; }
       .port-grid { grid-template-columns: 1fr 1fr; }
       .port-item.tall { grid-row: span 1; }
@@ -2944,8 +2946,8 @@
     <div class="over-wrap">
       <div class="over-text">
         <h2 data-i18n="over-ons.about.title">Meer dan alleen knippen</h2>
-        <p data-i18n="over-ons.about.p1">Bij ons draait het niet alleen om een goed kapsel, maar om het complete gevoel van verzorgd, gezien en welkom zijn. Of het nu gaat om een snelle knipbeurt, een strakke baardlijn of een beautybehandeling: we nemen de tijd voor kwaliteit.</p>
-        <p data-i18n="over-ons.about.p2">We werken met betrouwbare producten, een schone werkomgeving en een ontspannen sfeer waarin klanten makkelijk terugkomen. Dat zie je terug in onze vaste klantenkring en de vele positieve ervaringen.</p>
+        <p class="over-long-p" data-i18n="over-ons.about.p1">Bij ons draait het niet alleen om een goed kapsel, maar om het complete gevoel van verzorgd, gezien en welkom zijn. Of het nu gaat om een snelle knipbeurt, een strakke baardlijn of een beautybehandeling: we nemen de tijd voor kwaliteit.</p>
+        <p class="over-long-p" data-i18n="over-ons.about.p2">We werken met betrouwbare producten, een schone werkomgeving en een ontspannen sfeer waarin klanten makkelijk terugkomen. Dat zie je terug in onze vaste klantenkring en de vele positieve ervaringen.</p>
 
         <div class="over-feats">
           <div class="feat"><i class="fas fa-award"></i><span data-i18n="over-ons.about.feature1Title">15+ jaar ervaring</span></div>
