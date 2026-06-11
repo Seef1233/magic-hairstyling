@@ -447,6 +447,8 @@
   <link rel="stylesheet" href="site-header.css" />
   <link rel="stylesheet" href="site-mobile-nav.css" />
   <link rel="stylesheet" href="modern-upgrade.css" />
+  <style>@view-transition{navigation:auto}</style>
+  <script>document.addEventListener('mouseover',function(e){var a=e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(h&&h[0]!=='#'&&!/^(https?:|mailto:|tel:)/.test(h)&&!document.querySelector('link[rel=prefetch][href="'+h+'"]')){var l=document.createElement('link');l.rel='prefetch';l.href=h;document.head.appendChild(l);}},{passive:true});</script>
 </head>
 <body data-page="contact">
 
