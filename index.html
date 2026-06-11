@@ -497,6 +497,7 @@
        STATS BAR
     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
     /* â”&euro;â”&euro; Section dividers â”&euro;â”&euro; */
+    /* ╔═ Section dividers ═╗ */
     section:not(#hero):not(#stats) {
       border-top: 1px solid rgba(255,255,255,.06);
       position: relative;
@@ -655,38 +656,58 @@
     /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        ABOUT
     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-    #over { padding: 100px 24px; background: var(--dark); }
-    .over-wrap {
-      max-width: 1180px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 60px; align-items: center;
+    #over {
+      padding: 100px 24px;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
     }
-    .over-img { position: relative; }
+    #over::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(100deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.75) 45%, rgba(0,0,0,.3) 75%, rgba(0,0,0,.1) 100%);
+      z-index: 1;
+    }
+    .over-img {
+      position: absolute; inset: 0; z-index: 0;
+    }
     .over-img img {
-      width: 100%; height: 460px; object-fit: cover; border-radius: 12px;
+      width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    }
+    .over-wrap {
+      position: relative; z-index: 2;
+      max-width: 1180px; margin: 0 auto;
+      min-height: 560px;
+      display: flex; align-items: center;
+      padding: 20px 0;
     }
     .over-badge {
-      position: absolute; bottom: -18px; right: -18px;
+      position: absolute; bottom: 32px; right: 0; z-index: 3;
       background: var(--gold); color: var(--dark);
-      border-radius: 10px; padding: 18px 22px; text-align: center;
-      box-shadow: var(--shadow);
+      border-radius: 12px; padding: 18px 24px; text-align: center;
+      box-shadow: 0 8px 28px rgba(201,168,76,.45);
     }
-    .over-badge .yrs { font-size: 2.2rem; font-weight: 900; line-height: 1; }
+    .over-badge .yrs { font-size: 2.4rem; font-weight: 900; line-height: 1; }
     .over-badge .yrl { font-size: .76rem; font-weight: 700; }
+    .over-text {
+      position: relative; z-index: 2;
+      max-width: 580px; color: #fff;
+    }
     .over-text .kicker {
       font-size: .75rem; letter-spacing: 4px; text-transform: uppercase;
       color: var(--gold); margin-bottom: 12px; display: block;
     }
     .over-text h2 {
-      font-size: clamp(1.7rem, 3.5vw, 2.5rem);
-      font-weight: 900; margin-bottom: 18px; line-height: 1.3;
+      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+      font-weight: 900; margin-bottom: 18px; line-height: 1.25;
+      font-family: "Playfair Display", serif;
+      text-shadow: 0 2px 20px rgba(0,0,0,.8);
     }
-    .over-text p { color: var(--gray); line-height: 1.85; margin-bottom: 14px; }
+    .over-text p { color: rgba(255,255,255,.88); line-height: 1.85; margin-bottom: 14px; text-shadow: 0 1px 8px rgba(0,0,0,.7); }
     .over-feats {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 12px; margin: 24px 0 32px;
     }
-    .feat { display: flex; align-items: center; gap: 9px; font-size: .87rem; font-weight: 600; }
+    .feat { display: flex; align-items: center; gap: 9px; font-size: .87rem; font-weight: 600; color: rgba(255,255,255,.9); text-shadow: 0 1px 6px rgba(0,0,0,.6); }
     .feat i { color: var(--gold); }
     .values-grid {
       display: grid;
@@ -1025,14 +1046,20 @@
       letter-spacing: .1em;
     }
     @media (max-width: 768px) {
-      .royal-booking { padding: 60px 16px; }
+      .royal-booking {
+        padding: 60px 16px;
+        background-attachment: scroll;
+        background-position: center center;
+        background-size: cover;
+        min-height: 500px;
+      }
       .royal-booking::after { width: 320px; height: 320px; }
       .royal-booking .top-header h2 { font-size: 2rem; }
       .royal-booking .top-header p { font-size: .82rem; }
       .rb-badge { font-size: .58rem; padding: 4px 12px; }
       .floating-cards-wrapper { flex-direction: column; gap: 14px; margin-top: 28px; }
       .rb-main-card { min-width: 0; padding: 24px 18px; border-radius: 18px; }
-      .side-cards { flex-direction: row; flex-wrap: wrap; gap: 12px; }
+      .side-cards { flex-direction: column; gap: 12px; }
       .rb-sub-card { min-width: 0; flex: 1; padding: 16px 14px; border-radius: 14px; gap: 12px; }
       .rb-sub-card i { font-size: .95rem; }
       .rb-sub-card span { font-size: .58rem; }
@@ -1683,83 +1710,6 @@
     .foot-social a[aria-label="Facebook"]:hover  { border-color: #1877f2; color: #1877f2; box-shadow: 0 6px 20px rgba(24,119,242,.25); }
     .foot-social a[aria-label="TikTok"]:hover    { border-color: #fe2c55; color: #fe2c55; box-shadow: 0 6px 20px rgba(254,44,85,.25); }
 
-    /* â”&euro;â”&euro; Social strip â”&euro;â”&euro; */
-    #social { background: #0a0a0a; padding: 70px 24px; border-top: 1px solid #141414; }
-    .social-cards {
-      display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
-      max-width: 800px; margin: 0 auto;
-    }
-    .social-card {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 12px; padding: 32px 28px; border-radius: 16px;
-      background: #111; border: 1px solid #1e1e1e;
-      text-decoration: none; flex: 1; min-width: 180px; max-width: 220px;
-      transition: all .3s; position: relative; overflow: hidden;
-    }
-    .social-card::before {
-      content: ''; position: absolute; inset: 0;
-      opacity: 0; transition: opacity .3s;
-    }
-    .social-card:hover { transform: translateY(-6px); }
-    .social-card:hover::before { opacity: 1; }
-
-    .social-card.instagram::before { background: linear-gradient(135deg, rgba(131,58,180,.15), rgba(253,29,29,.08), rgba(252,176,69,.08)); }
-    .social-card.instagram:hover  { border-color: rgba(253,29,29,.4); box-shadow: 0 12px 40px rgba(131,58,180,.2); }
-    .social-card.instagram .sc-icon { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); }
-
-    .social-card.facebook::before { background: linear-gradient(135deg, rgba(24,119,242,.15), transparent); }
-    .social-card.facebook:hover   { border-color: rgba(24,119,242,.4); box-shadow: 0 12px 40px rgba(24,119,242,.2); }
-    .social-card.facebook .sc-icon { background: #1877f2; }
-
-    .social-card.tiktok::before { background: linear-gradient(135deg, rgba(0,0,0,.3), rgba(254,44,85,.1)); }
-    .social-card.tiktok:hover   { border-color: rgba(254,44,85,.4); box-shadow: 0 12px 40px rgba(254,44,85,.15); }
-    .social-card.tiktok .sc-icon { background: linear-gradient(135deg, #010101, #fe2c55); }
-
-    .sc-icon {
-      width: 92px; height: 92px; border-radius: 24px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.7rem; color: #fff;
-      position: relative; z-index: 1;
-      box-shadow: 0 12px 28px rgba(0,0,0,.38), inset 0 1px 0 rgba(255,255,255,.14);
-      overflow: hidden;
-    }
-    .sc-icon::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(255,255,255,.16), rgba(255,255,255,0));
-      pointer-events: none;
-    }
-    .sc-icon svg {
-      position: relative;
-      z-index: 1;
-      width: 52px; height: 52px;
-      filter: drop-shadow(0 4px 12px rgba(0,0,0,.45));
-      transition: transform .3s;
-    }
-    .social-card:hover .sc-icon svg { transform: scale(1.12); }
-    .social-card .sc-name {
-      font-size: .95rem; font-weight: 700; color: var(--white);
-      position: relative; z-index: 1;
-    }
-    .social-card .sc-handle {
-      font-size: .75rem; color: var(--gray);
-      position: relative; z-index: 1;
-      text-align: center;
-    }
-    .social-card:hover .sc-handle { color: rgba(255,255,255,.6); }
-    .sc-follow {
-      margin-top: 4px; padding: 6px 18px; border-radius: 20px;
-      border: 1px solid #2a2a2a; background: transparent;
-      font-family: 'Montserrat', sans-serif; font-size: .72rem;
-      font-weight: 700; color: var(--gray); letter-spacing: .5px;
-      text-transform: uppercase; transition: all .3s;
-      position: relative; z-index: 1;
-    }
-    .social-card:hover .sc-follow {
-      border-color: var(--gold); color: var(--gold);
-      background: rgba(201,168,76,.08);
-    }
     .foot-col h4 { font-size: .9rem; font-weight: 700; margin-bottom: 18px; color: var(--white); text-transform: uppercase; letter-spacing: 1px; }
     .foot-col ul li { margin-bottom: 9px; }
     .foot-col ul li a { color: var(--gray); font-size: .84rem; transition: color .3s; }
@@ -2060,8 +2010,9 @@
         grid-row: span 1;
         min-height: 340px;
       }
-      .over-wrap { grid-template-columns: 1fr; }
-      .over-img { order: -1; }
+      .over-wrap { padding: 50px 24px 100px; min-height: 480px; }
+      .over-badge { right: 20px; bottom: 20px; padding: 14px 18px; }
+      .over-badge .yrs { font-size: 1.8rem; }
       .values-grid { grid-template-columns: 1fr; }
       .port-grid { grid-template-columns: 1fr 1fr; }
       .port-item.tall { grid-row: span 1; }
@@ -2634,27 +2585,6 @@
       .foot-grid { grid-template-columns: 1fr; gap: 28px; }
       .foot-brand p { max-width: 100%; }
 
-      /* social cards horizontal scroll */
-      .social-cards {
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        justify-content: flex-start;
-        padding-bottom: 8px;
-        scrollbar-width: none;
-        gap: 14px;
-      }
-      .social-cards::-webkit-scrollbar { display: none; }
-      .social-card {
-        flex: 0 0 160px;
-        min-width: 160px;
-        max-width: 160px;
-        scroll-snap-align: start;
-        padding: 22px 16px;
-      }
-      .sc-icon { width: 70px; height: 70px; border-radius: 18px; font-size: 2rem; }
-      .sc-icon svg { width: 38px; height: 38px; }
 
       /* buttons — bigger touch targets */
       .btn { padding: 14px 28px; font-size: .9rem; min-height: 48px; }
@@ -2989,24 +2919,19 @@
 
 
 <section id="over">
-  <div class="container">
-    <div class="sec-head">
-      <span class="kicker" data-i18n="over-ons.hero.eyebrow">Over Ons</span>
-      <h2 data-i18n="over-ons.hero.title">Vakmanschap met een persoonlijk tintje</h2>
-      <div class="bar"></div>
-      <p data-i18n="over-ons.hero.body">Magic Hairstyling is al meer dan 15 jaar een vertrouwd adres in Alkmaar voor dames, heren en kinderen. We combineren moderne looks, klassieke precisie en oprechte aandacht voor iedere klant die binnenstapt.</p>
-    </div>
+  <!-- Kicker at top center -->
+  <div style="position:absolute; top:22px; left:0; right:0; text-align:center; z-index:3;">
+    <span style="font-size:.95rem; letter-spacing:5px; text-transform:uppercase; color:var(--gold); font-family:'Montserrat',sans-serif; font-weight:700;" data-i18n="over-ons.hero.eyebrow">Over Ons</span>
+  </div>
 
+  <!-- Full-width background image -->
+  <div class="over-img">
+    <img src="images/overons.png" alt="Magic Hairstyling salon" />
+  </div>
+
+  <div class="container" style="position:relative;z-index:2;">
     <div class="over-wrap">
-      <div class="over-img">
-        <img src="images/overons.png" alt="Magic Hairstyling salon" />
-        <div class="over-badge">
-          <div class="yrs">15+</div>
-          <div class="yrl" data-i18n="over-ons.about.feature1Title">jaar ervaring</div>
-        </div>
-      </div>
       <div class="over-text">
-        <span class="kicker" data-i18n="over-ons.hero.eyebrow">Over Ons</span>
         <h2 data-i18n="over-ons.about.title">Meer dan alleen knippen</h2>
         <p data-i18n="over-ons.about.p1">Bij ons draait het niet alleen om een goed kapsel, maar om het complete gevoel van verzorgd, gezien en welkom zijn. Of het nu gaat om een snelle knipbeurt, een strakke baardlijn of een beautybehandeling: we nemen de tijd voor kwaliteit.</p>
         <p data-i18n="over-ons.about.p2">We werken met betrouwbare producten, een schone werkomgeving en een ontspannen sfeer waarin klanten makkelijk terugkomen. Dat zie je terug in onze vaste klantenkring en de vele positieve ervaringen.</p>
@@ -3023,20 +2948,25 @@
           <a href="portfolio.html" class="btn btn-outline" data-i18n="over-ons.hero.portfolio">Bekijk portfolio</a>
         </div>
       </div>
+      <!-- Badge -->
+      <div class="over-badge">
+        <div class="yrs">15+</div>
+        <div class="yrl" data-i18n="over-ons.about.feature1Title">jaar ervaring</div>
+      </div>
     </div>
 
     <div class="values-grid">
-      <div class="value-box">
+      <div class="value-box" data-num="01">
         <span>01</span>
         <h3 data-i18n="over-ons.values.precision">Precisie</h3>
         <p data-i18n="over-ons.values.precisionBody">Van fade tot kleurbehandeling: afwerking en balans maken het verschil, en daar letten we scherp op.</p>
       </div>
-      <div class="value-box">
+      <div class="value-box" data-num="02">
         <span>02</span>
         <h3 data-i18n="over-ons.values.comfort">Comfort</h3>
         <p data-i18n="over-ons.values.comfortBody">We willen dat iedere afspraak prettig voelt, van ontvangst tot het moment dat je de deur weer uitstapt.</p>
       </div>
-      <div class="value-box">
+      <div class="value-box" data-num="03">
         <span>03</span>
         <h3 data-i18n="over-ons.values.trust">Vertrouwen</h3>
         <p data-i18n="over-ons.values.trustBody">Veel klanten komen al jaren terug. Dat vertrouwen is voor ons net zo belangrijk als het kapsel zelf.</p>
@@ -3588,54 +3518,6 @@
 </div><!-- /afspraak-modal -->
 
 <!-- â•â•â•â•â•â•â•â•â•â• SOCIAL â•â•â•â•â•â•â•â•â•â• -->
-<section id="social">
-  <div class="container">
-    <div class="sec-head">
-      <span class="kicker" data-i18n="social.sectionKicker">Volg ons</span>
-      <h2 data-i18n="social.sectionTitle">Blijf op de hoogte</h2>
-      <div class="bar"></div>
-    </div>
-    <div class="social-cards">
-
-      <a href="https://www.instagram.com/magic_hairstyling072/" class="social-card instagram" target="_blank" rel="noopener noreferrer">
-        <div class="sc-icon">
-          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-          </svg>
-        </div>
-        <span class="sc-name">Instagram</span>
-        <span class="sc-handle">@magic_hairstyling072</span>
-        <span class="sc-follow" data-i18n="social.instagramAction">Volgen</span>
-      </a>
-
-      <a href="https://www.facebook.com/p/barber_magic2019-100063655894767/" class="social-card facebook" target="_blank" rel="noopener noreferrer">
-        <div class="sc-icon">
-          <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </div>
-        <span class="sc-name">Facebook</span>
-        <span class="sc-handle">barber_magic2019</span>
-        <span class="sc-follow" data-i18n="social.facebookAction">Liken</span>
-      </a>
-
-      <a href="https://www.tiktok.com/@magichairhu?lang=nl-NL" class="social-card tiktok" target="_blank" rel="noopener noreferrer">
-        <div class="sc-icon">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#25f4ee" d="M33.6 10.4c-1.5-1.7-2.3-3.9-2.3-6.2h-5.1v23.1l-.1 12.7c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.6 0 1.2.1 1.7.2V29c-.6-.1-1.1-.1-1.7-.1-6.1 0-11.1 5-11.1 11.1s5 11.1 11.1 11.1 11.1-5 11.1-11.1l.1-22.5c2.1 1.6 4.7 2.5 7.5 2.5V14c-1.9 0-3.7-.6-5.2-1.6z"/>
-            <path fill="#fe2c55" d="M35.2 9c-.5-.8-.9-1.7-1.2-2.6-.3-1-.5-2-.5-3.1h-4c.4 2.3 1.5 4.3 3.2 5.8.8.7 1.6 1.3 2.5 1.7V9z"/>
-            <path fill="white" d="M20.2 28.9V24c-.6-.1-1.1-.2-1.7-.2-6.1 0-11.1 5-11.1 11.1 0 3.8 1.9 7.1 4.8 9.1-1.9-2-3-4.7-3-7.7 0-5.9 4.6-10.8 10.5-11.4z"/>
-          </svg>
-        </div>
-        <span class="sc-name">TikTok</span>
-        <span class="sc-handle">@magichairhu</span>
-        <span class="sc-follow" data-i18n="social.tiktokAction">Volgen</span>
-      </a>
-
-    </div>
-  </div>
-</section>
-
 <!-- â•â•â•â•â•â•â•â•â•â• FOOTER â•â•â•â•â•â•â•â•â•â• -->
 <footer id="footer">
   <div class="foot-grid">
