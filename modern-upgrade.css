@@ -17,6 +17,16 @@
   letter-spacing: -.02em;
 }
 
+/* ── SLIDE TITLE SIZE FIX — overrides .slide-content p specificity ── */
+.slide-content .slide-title {
+  font-size: clamp(2.6rem, 7vw, 5rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  max-width: none !important;
+  margin-bottom: 20px !important;
+  color: var(--white) !important;
+}
+
 /* ══════════════════════════════
    KEYFRAMES
 ══════════════════════════════ */
