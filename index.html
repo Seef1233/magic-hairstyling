@@ -2013,6 +2013,20 @@
       .over-wrap { padding: 50px 24px 100px; min-height: 480px; }
       .over-badge { right: 20px; bottom: 20px; padding: 14px 18px; }
       .over-badge .yrs { font-size: 1.8rem; }
+      /* over-ons mobile fix */
+      #over::before { background: linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.60) 100%); }
+      .over-img img { object-position: 70% center; filter: brightness(.55) saturate(.9); }
+      .over-text {
+        background: rgba(8,8,8,.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 24px 20px;
+        border: 1px solid rgba(255,255,255,.07);
+        max-width: 100%;
+      }
+      .over-text p { font-size: .9rem; line-height: 1.75; }
+      .over-text h2 { font-size: 1.7rem; }
       .values-grid { grid-template-columns: 1fr; }
       .port-grid { grid-template-columns: 1fr 1fr; }
       .port-item.tall { grid-row: span 1; }
