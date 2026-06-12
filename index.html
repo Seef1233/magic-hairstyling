@@ -656,6 +656,7 @@
     /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
        ABOUT
     â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+    .over-mob-stats { display: none; }
     #over {
       padding: 100px 24px;
       background: var(--dark);
@@ -2013,17 +2014,60 @@
       .over-wrap { padding: 50px 24px 100px; min-height: 480px; }
       .over-badge { right: 20px; bottom: 20px; padding: 14px 18px; }
       .over-badge .yrs { font-size: 1.8rem; }
-      /* over-ons mobile fix */
-      .over-img { display: none; }
+      /* over-ons mobile redesign */
+      #over { background: var(--dark); padding: 0; }
       #over::before { display: none; }
-      #over { background: var(--dark2); }
-      .over-wrap { min-height: unset; padding: 32px 20px 48px; flex-direction: column; gap: 20px; }
+      .over-img {
+        display: block; position: relative; height: 200px;
+        overflow: hidden;
+      }
+      .over-img::after {
+        content: ''; position: absolute; inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,.2) 0%, rgba(15,15,15,1) 100%);
+      }
+      .over-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+      .over-wrap {
+        min-height: unset; padding: 0 20px 40px;
+        flex-direction: column; gap: 0;
+        margin-top: -2px;
+      }
       .over-text { max-width: 100%; }
-      .over-text h2 { font-size: 1.8rem; margin-bottom: 20px; }
+      .over-text .kicker { display: none; }
+      .over-text h2 { font-size: 1.75rem; margin-bottom: 18px; line-height: 1.2; }
       .over-long-p { display: none; }
-      .over-feats { grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 24px; }
-      .feat { font-size: .82rem; gap: 7px; }
-      .over-badge { position: static; align-self: flex-start; margin-top: 0; padding: 14px 20px; border-radius: 14px; }
+      /* stats strip */
+      .over-mob-stats {
+        display: flex; gap: 0;
+        border: 1px solid rgba(201,168,76,.18);
+        border-radius: 14px; overflow: hidden;
+        margin-bottom: 22px;
+        background: rgba(201,168,76,.05);
+      }
+      .over-mob-stat {
+        flex: 1; padding: 14px 8px; text-align: center;
+        border-right: 1px solid rgba(201,168,76,.14);
+      }
+      .over-mob-stat:last-child { border-right: none; }
+      .over-mob-stat strong {
+        display: block; font-size: 1.5rem; font-weight: 900;
+        color: var(--gold); line-height: 1;
+      }
+      .over-mob-stat span {
+        display: block; font-size: .62rem; font-weight: 700;
+        color: rgba(255,255,255,.5); text-transform: uppercase;
+        letter-spacing: .06em; margin-top: 4px;
+      }
+      /* features */
+      .over-feats { grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 22px; }
+      .feat {
+        font-size: .8rem; gap: 7px;
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.07);
+        border-radius: 10px; padding: 10px 12px;
+      }
+      .over-badge { display: none; }
+      .slide-btns { flex-direction: column; gap: 10px; }
+      .slide-btns .btn { width: 100%; text-align: center; }
       .values-grid { grid-template-columns: 1fr; }
       .port-grid { grid-template-columns: 1fr 1fr; }
       .port-item.tall { grid-row: span 1; }
@@ -2946,6 +2990,11 @@
     <div class="over-wrap">
       <div class="over-text">
         <h2 data-i18n="over-ons.about.title">Meer dan alleen knippen</h2>
+        <div class="over-mob-stats">
+          <div class="over-mob-stat"><strong>15+</strong><span>Jaar ervaring</span></div>
+          <div class="over-mob-stat"><strong>1000+</strong><span>Klanten</span></div>
+          <div class="over-mob-stat"><strong>6</strong><span>Diensten</span></div>
+        </div>
         <p class="over-long-p" data-i18n="over-ons.about.p1">Bij ons draait het niet alleen om een goed kapsel, maar om het complete gevoel van verzorgd, gezien en welkom zijn. Of het nu gaat om een snelle knipbeurt, een strakke baardlijn of een beautybehandeling: we nemen de tijd voor kwaliteit.</p>
         <p class="over-long-p" data-i18n="over-ons.about.p2">We werken met betrouwbare producten, een schone werkomgeving en een ontspannen sfeer waarin klanten makkelijk terugkomen. Dat zie je terug in onze vaste klantenkring en de vele positieve ervaringen.</p>
 
